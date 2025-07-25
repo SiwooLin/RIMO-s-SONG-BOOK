@@ -10,17 +10,15 @@
     background: #1f1f1f;
     color: #f0f0f0;
     font-family: 'Jua', sans-serif;
-    margin: 20px auto;
     max-width: 900px;
+    margin: 20px auto;
     text-align: center;
   }
   h1 {
     color: #ff5400;
     font-size: 3.6rem;
-    font-weight: 900;
     margin-bottom: 10px;
     cursor: pointer;
-    font-family: 'Jua', sans-serif;
   }
   .important-notice {
     background: #c9b8f9;
@@ -29,7 +27,6 @@
     border-radius: 6px;
     font-weight: bold;
     margin-bottom: 15px;
-    font-family: 'Jua', sans-serif;
   }
   #searchInput {
     width: 90%;
@@ -40,7 +37,7 @@
     border-radius: 20px;
     background: #333;
     color: #f0f0f0;
-    margin: 10px auto 20px; /* 필독공지 아래, 설명서 텍스트 위 */
+    margin: 10px auto 20px;
     text-align: center;
     box-sizing: border-box;
     display: block;
@@ -82,38 +79,18 @@
   .genre-categories button:hover {
     background: #cc6f1a;
   }
-  .initials.korean button {
-    width: 34px; height: 34px;
-    line-height: 34px;
-    font-size: 1.05rem;
-    background: #f9a263;
-    color: #1f1f1f;
-    margin: 3px 4px;
-    border-radius: 20px;
-  }
-  .initials.korean button:hover {
-    background: #ff7f00;
-    color: white;
-  }
-  .initials.alpha button {
-    width: 34px; height: 34px;
-    line-height: 34px;
-    font-size: 1.05rem;
-    background: #fbc48f;
-    color: #1f1f1f;
-    margin: 3px 4px;
-    border-radius: 20px;
-  }
-  .initials.alpha button:hover {
-    background: #ff7f00;
-    color: white;
-  }
-  #alphaInitials > div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px 10px;
-    margin-bottom: 5px;
+  #textContent {
+    white-space: pre-wrap;
+    background: #2c2c3a;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 0 auto 30px;
+    color: #f0f0f0;
+    font-size: 1.12rem;
+    text-align: left;
+    max-width: 900px;
+    font-family: 'Jua', sans-serif;
+    min-height: 150px;
   }
   table {
     width: 100%;
@@ -147,23 +124,11 @@
     display: none;
     font-family: 'Jua', sans-serif;
   }
-  #textContent {
-    white-space: pre-wrap;
-    background: #2c2c3a;
-    border-radius: 8px;
-    padding: 15px;
-    margin: 0 auto 30px;
-    color: #f0f0f0;
-    font-size: 1.12rem;
-    text-align: left;
-    max-width: 900px;
-    font-family: 'Jua', sans-serif;
-  }
 </style>
 </head>
 <body>
 
-<h1 onclick="filterCategory('노래책 설명서')">RIMO's SONG BOOK</h1>
+<h1 onclick="filterCategory('노래책 설명서')">RIMO's SONG BOOK 🎵</h1>
 
 <div class="important-notice" id="importantNotice">
   📌 필독 공지: 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
@@ -184,58 +149,6 @@
   <button onclick="filterCategory('Pop')">Pop</button>
 </div>
 
-<div id="koreanInitials" class="initials korean" style="display:none;">
-  <button onclick="filterByInitial('전체')">전체</button>
-  <button onclick="filterByInitial('ㄱ')">ㄱ</button>
-  <button onclick="filterByInitial('ㄴ')">ㄴ</button>
-  <button onclick="filterByInitial('ㄷ')">ㄷ</button>
-  <button onclick="filterByInitial('ㄹ')">ㄹ</button>
-  <button onclick="filterByInitial('ㅁ')">ㅁ</button>
-  <button onclick="filterByInitial('ㅂ')">ㅂ</button>
-  <button onclick="filterByInitial('ㅅ')">ㅅ</button>
-  <button onclick="filterByInitial('ㅇ')">ㅇ</button>
-  <button onclick="filterByInitial('ㅈ')">ㅈ</button>
-  <button onclick="filterByInitial('ㅊ')">ㅊ</button>
-  <button onclick="filterByInitial('ㅋ')">ㅋ</button>
-  <button onclick="filterByInitial('ㅌ')">ㅌ</button>
-  <button onclick="filterByInitial('ㅍ')">ㅍ</button>
-  <button onclick="filterByInitial('ㅎ')">ㅎ</button>
-</div>
-
-<div id="alphaInitials" class="initials alpha" style="display:none;">
-  <div>
-    <button onclick="filterByInitial('전체')">전체</button>
-    <button onclick="filterByInitial('A')">A</button>
-    <button onclick="filterByInitial('B')">B</button>
-    <button onclick="filterByInitial('C')">C</button>
-    <button onclick="filterByInitial('D')">D</button>
-    <button onclick="filterByInitial('E')">E</button>
-    <button onclick="filterByInitial('F')">F</button>
-    <button onclick="filterByInitial('G')">G</button>
-    <button onclick="filterByInitial('H')">H</button>
-    <button onclick="filterByInitial('I')">I</button>
-    <button onclick="filterByInitial('J')">J</button>
-    <button onclick="filterByInitial('K')">K</button>
-    <button onclick="filterByInitial('L')">L</button>
-  </div>
-  <div>
-    <button onclick="filterByInitial('M')">M</button>
-    <button onclick="filterByInitial('N')">N</button>
-    <button onclick="filterByInitial('O')">O</button>
-    <button onclick="filterByInitial('P')">P</button>
-    <button onclick="filterByInitial('Q')">Q</button>
-    <button onclick="filterByInitial('R')">R</button>
-    <button onclick="filterByInitial('S')">S</button>
-    <button onclick="filterByInitial('T')">T</button>
-    <button onclick="filterByInitial('U')">U</button>
-    <button onclick="filterByInitial('V')">V</button>
-    <button onclick="filterByInitial('W')">W</button>
-    <button onclick="filterByInitial('X')">X</button>
-    <button onclick="filterByInitial('Y')">Y</button>
-    <button onclick="filterByInitial('Z')">Z</button>
-  </div>
-</div>
-
 <table id="songTable" style="margin: 0 auto; max-width: 900px; display:none;">
   <thead>
     <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
@@ -253,125 +166,140 @@
     "노래책 설명서": {
       type: "text",
       content:
-`•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)
+`• 노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)
 
-•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.  
+• 컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.  
 (거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)
 
-•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.
+• 설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.
 
-•추천 곡은 디스코드 노래 추천방에 적어주세요.
+• 추천 곡은 디스코드 노래 추천방에 적어주세요.
 
-❌과도한 평가와 훈수는 자제해주세요❌`
+❌ 과도한 평가와 훈수는 자제해주세요 ❌`
     },
     "가격표": {
       type: "text",
       content:
-`•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.
+`• 기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.
 
-•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.
+• 어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.
 
-•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.
+• 유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.
 
-•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.`
+• 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.`
     },
     "K-pop": {
       type: "table",
       songs: [
-        {artist: "가수1", title: "노래1", code: "C", difficulty: "중", skill: "상"},
-        {artist: "가수2", title: "노래2", code: "Am", difficulty: "하", skill: "중"},
+        {artist: "아이유", title: "좋은 날", code: "C", difficulty: "중", skill: "상"},
+        {artist: "블랙핑크", title: "How You Like That", code: "Am", difficulty: "하", skill: "중"},
+        {artist: "방탄소년단", title: "Dynamite", code: "F", difficulty: "중", skill: "상"},
       ]
     },
     "K-pop 아이돌": {
       type: "table",
       songs: [
-        {artist: "아이돌가수1", title: "노래A", code: "F", difficulty: "중", skill: "상"},
-        {artist: "아이돌가수2", title: "노래B", code: "Dm", difficulty: "하", skill: "중"},
+        {artist: "트와이스", title: "Cheer Up", code: "G", difficulty: "중", skill: "상"},
+        {artist: "엑소", title: "Love Shot", code: "Dm", difficulty: "하", skill: "중"},
+        {artist: "세븐틴", title: "Very Nice", code: "Em", difficulty: "중", skill: "상"},
       ]
     },
     "Pop": {
       type: "table",
       songs: [
-        {artist: "Pop 가수1", title: "Pop 노래1", code: "G", difficulty: "중", skill: "상"},
-        {artist: "Pop 가수2", title: "Pop 노래2", code: "Em", difficulty: "하", skill: "중"},
+        {artist: "Ed Sheeran", title: "Shape of You", code: "C", difficulty: "중", skill: "상"},
+        {artist: "Adele", title: "Hello", code: "Am", difficulty: "하", skill: "중"},
+        {artist: "Bruno Mars", title: "Just the Way You Are", code: "F", difficulty: "중", skill: "상"},
       ]
     }
   };
 
   let currentCategory = "노래책 설명서";
-  let currentInitial = "전체";
 
   const textContentDiv = document.getElementById("textContent");
   const songTable = document.getElementById("songTable");
   const tableBody = document.getElementById("tableBody");
   const noResultMsg = document.getElementById("noResultMsg");
-  const koreanInitials = document.getElementById("koreanInitials");
-  const alphaInitials = document.getElementById("alphaInitials");
   const searchInput = document.getElementById("searchInput");
 
-  // 카테고리 필터
+  // 카테고리 버튼 클릭 시 호출
   function filterCategory(category) {
     currentCategory = category;
-    currentInitial = "전체";
     searchInput.value = "";
+    noResultMsg.style.display = "none";
     updateDisplay();
   }
 
-  // 이니셜 필터
-  function filterByInitial(initial) {
-    currentInitial = initial;
-    updateDisplay();
-  }
-
-  // 전체 검색창 입력 필터 (모든 데이터에서 검색)
+  // 검색창 입력 시 호출 (전체 테이블 데이터에서 검색)
   function handleSearch() {
     const query = searchInput.value.trim().toLowerCase();
 
-    // 검색어가 있으면 텍스트 내용과 카테고리 버튼 무시하고 전체 곡 중에서만 검색
-    if (query.length > 0) {
-      koreanInitials.style.display = "none";
-      alphaInitials.style.display = "none";
-      textContentDiv.style.display = "none";
+    if (query.length === 0) {
       noResultMsg.style.display = "none";
-
-      let results = [];
-      for (const cat in data) {
-        if (data[cat].type === "table") {
-          results = results.concat(data[cat].songs.filter(song => 
-            song.artist.toLowerCase().includes(query) || 
-            song.title.toLowerCase().includes(query)
-          ));
-        }
-      }
-      renderTable(results);
-      songTable.style.display = results.length > 0 ? "table" : "none";
-      noResultMsg.style.display = results.length === 0 ? "block" : "none";
+      updateDisplay();
       return;
     }
 
-    // 검색어 없으면 일반 필터 보여주기
-    updateDisplay();
+    // 검색어 있을 때는 텍스트 내용 숨기고 테이블만 보이도록
+    textContentDiv.style.display = "none";
+    songTable.style.display = "table";
+
+    let results = [];
+    for (const cat in data) {
+      if (data[cat].type === "table") {
+        const filtered = data[cat].songs.filter(song => 
+          song.artist.toLowerCase().includes(query) || song.title.toLowerCase().includes(query)
+        );
+        results = results.concat(filtered);
+      }
+    }
+    renderTable(results);
+
+    if(results.length === 0) {
+      noResultMsg.style.display = "block";
+      songTable.style.display = "none";
+    } else {
+      noResultMsg.style.display = "none";
+      songTable.style.display = "table";
+    }
   }
 
-  // 현재 카테고리+이니셜 필터 반영 화면 업데이트
-  function updateDisplay() {
-    noResultMsg.style.display = "none";
-    songTable.style.display = "none";
-    textContentDiv.style.display = "none";
-    koreanInitials.style.display = "none";
-    alphaInitials.style.display = "none";
+  // 표 출력 함수
+  function renderTable(songs) {
+    tableBody.innerHTML = "";
+    songs.forEach(song => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${song.artist}</td>
+        <td>${song.title}</td>
+        <td>${song.code}</td>
+        <td>${song.difficulty}</td>
+        <td>${song.skill}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
 
-    if(currentCategory === "노래책 설명서" || currentCategory === "가격표") {
+  // 현재 카테고리에 맞게 화면 업데이트
+  function updateDisplay() {
+    if(data[currentCategory].type === "text") {
+      songTable.style.display = "none";
       textContentDiv.style.display = "block";
       textContentDiv.textContent = data[currentCategory].content;
-    } else if (data[currentCategory] && data[currentCategory].type === "table") {
-      let songs = data[currentCategory].songs;
-      if(currentInitial !== "전체") {
-        if(currentCategory === "Pop") {
-          songs = songs.filter(song => song.artist.charAt(0).toUpperCase() === currentInitial);
-        } else {
-          songs = songs.filter(song => song.artist.charAt(0) === currentInitial);
-        }
-      }
-      if(songs.length === 0) {
-        no
+      noResultMsg.style.display = "none";
+    } else if(data[currentCategory].type === "table") {
+      textContentDiv.style.display = "none";
+      renderTable(data[currentCategory].songs);
+      songTable.style.display = "table";
+      noResultMsg.style.display = "none";
+    }
+  }
+
+  // 초기 화면 로드 시 실행
+  window.onload = () => {
+    updateDisplay();
+  };
+</script>
+
+</body>
+</html>
