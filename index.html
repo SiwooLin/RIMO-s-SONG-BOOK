@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+
+<h1 onclick="resetToDefault()" title="홈으로 이동">RIMO's SONG BOOK 🎵</h1>
+
+<div class="important-notice">
+  📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
+</div>
+
+<div class="search<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RIMO's SONG BOOK</title>
+  <title>노래책</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
     body {
       background: #1f1f1f;
       color: #f0f0f0;
@@ -22,7 +28,7 @@
       font-weight: bold;
     }
     .important-notice {
-      background: #c8baff; /* 연한 보라 */
+      background: #c8baff;
       color: #3f2e70;
       padding: 14px 20px;
       border-radius: 8px;
@@ -64,7 +70,7 @@
     .btn-pill {
       padding: 0 28px;
       border-radius: 9999px;
-      background-color: #ffaf5a; /* 연한 주황 */
+      background-color: #ffaf5a;
       min-width: 80px;
     }
     .btn-pill:hover {
@@ -73,7 +79,7 @@
     .btn-circle {
       width: 42px;
       border-radius: 50%;
-      background-color: #ff7a00; /* 주황 진한 */
+      background-color: #ff7a00;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -84,12 +90,12 @@
       filter: brightness(0.85);
     }
     .btn-doc {
-      background: #8c76e0; /* 노래책 설명서/가격표 배경 보라 */
+      background: #8c76e0;
       min-width: 110px;
       font-weight: bold;
     }
     .btn-genre {
-      background: #ff7a00; /* Kpop 색 진한 주황 */
+      background: #ff7a00;
       font-weight: bold;
       min-width: 100px;
     }
@@ -130,7 +136,7 @@
       margin-right: auto;
     }
     thead tr {
-      background: #ff7a00; /* 헤더 배경: Kpop 색상 주황 */
+      background: #ff7a00;
     }
     thead th {
       padding: 14px 8px;
@@ -160,7 +166,7 @@
       border-right: none;
     }
     #searchResultsMessage {
-      color: #c8baff; /* 연한 보라 */
+      color: #c8baff;
       font-weight: 700;
       font-size: 18px;
       margin: 10px auto 40px;
@@ -173,14 +179,57 @@
   </style>
 </head>
 <body>
+  <div id="category-top">
+    <button data-topcat="K-pop">K-pop</button>
+    <button data-topcat="K-pop 아이돌">K-pop 아이돌</button>
+    <button data-topcat="pop">pop</button>
+  </div>
 
-<h1 onclick="resetToDefault()" title="홈으로 이동">RIMO's SONG BOOK 🎵</h1>
+  <div id="category-sub">
+    <!-- ㄱ~ㅎ -->
+    <button data-subcat="ㄱ">ㄱ</button>
+    <button data-subcat="ㄴ">ㄴ</button>
+    <button data-subcat="ㄷ">ㄷ</button>
+    <button data-subcat="ㄹ">ㄹ</button>
+    <button data-subcat="ㅁ">ㅁ</button>
+    <button data-subcat="ㅂ">ㅂ</button>
+    <button data-subcat="ㅅ">ㅅ</button>
+    <button data-subcat="ㅇ">ㅇ</button>
+    <button data-subcat="ㅈ">ㅈ</button>
+    <button data-subcat="ㅊ">ㅊ</button>
+    <button data-subcat="ㅋ">ㅋ</button>
+    <button data-subcat="ㅌ">ㅌ</button>
+    <button data-subcat="ㅍ">ㅍ</button>
+    <button data-subcat="ㅎ">ㅎ</button>
 
-<div class="important-notice">
-  📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
-</div>
-
-<div class="search-box">
+    <!-- a~z -->
+    <button data-subcat="a">a</button>
+    <button data-subcat="b">b</button>
+    <button data-subcat="c">c</button>
+    <button data-subcat="d">d</button>
+    <button data-subcat="e">e</button>
+    <button data-subcat="f">f</button>
+    <button data-subcat="g">g</button>
+    <button data-subcat="h">h</button>
+    <button data-subcat="i">i</button>
+    <button data-subcat="j">j</button>
+    <button data-subcat="k">k</button>
+    <button data-subcat="l">l</button>
+    <button data-subcat="m">m</button>
+    <button data-subcat="n">n</button>
+    <button data-subcat="o">o</button>
+    <button data-subcat="p">p</button>
+    <button data-subcat="q">q</button>
+    <button data-subcat="r">r</button>
+    <button data-subcat="s">s</button>
+    <button data-subcat="t">t</button>
+    <button data-subcat="u">u</button>
+    <button data-subcat="v">v</button>
+    <button data-subcat="w">w</button>
+    <button data-subcat="x">x</button>
+    <button data-subcat="y">y</button>
+    <button data-subcat="z">z</button>
+  </div>-box">
   <input id="search" placeholder="노래 제목, 가수명 등 검색" oninput="searchSongs()" autocomplete="off" spellcheck="false" />
 </div>
 
@@ -194,7 +243,7 @@
   <button class="btn-pill btn-genre" onclick="selectGenre('Kpop아이돌')">K-pop 아이돌</button>
   <button class="btn-pill btn-genre" onclick="selectGenre('Pop')">Pop</button>
 </div>
-
+</body>
 <div id="buttonsContainer"></div>
 
 <div id="노래책 설명서" class="doc-section">
@@ -1110,6 +1159,147 @@
   window.onload = () => {
     resetToDefault();
   };
+<script>
+  const korInitials = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  const engInitials = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+  let currentGenre = '';
+  let currentFilter = '';
+
+  function resetToDefault(){
+    showDoc('노래책 설명서');
+    document.getElementById('buttonsContainer').innerHTML = '';
+    document.getElementById('songsTableContainer').innerHTML = '';
+    document.getElementById('searchResultsMessage').textContent = '';
+    document.getElementById('search').value = '';
+    currentGenre = '';
+    currentFilter = '';
+  }
+
+  function showDoc(which){
+    document.getElementById('노래책 설명서').style.display = which==='노래책 설명서' ? 'block' : 'none';
+    document.getElementById('가격표').style.display = which==='가격표' ? 'block' : 'none';
+    document.getElementById('songsTableContainer').innerHTML = '';
+    document.getElementById('searchResultsMessage').textContent = '';
+    document.getElementById('buttonsContainer').innerHTML = '';
+  }
+
+  function selectGenre(genre){
+    currentGenre = genre;
+    currentFilter = genre + ' 전체';
+    showDoc('');
+    drawButtons();
+    drawTable(songs.filter(s => s.category.startsWith(genre)));
+    showSubCategory(genre); // 🔹 추가
+  }
+
+  function drawButtons(){
+    const cont = document.getElementById('buttonsContainer');
+    cont.innerHTML = '';
+
+    if (!currentGenre) return;
+
+    const allBtn = document.createElement('button');
+    allBtn.className = 'btn-circle btn-filter';
+    allBtn.textContent = '전체';
+    allBtn.title = '전체 곡 보기';
+    allBtn.onclick = () => {
+      currentFilter = currentGenre + ' 전체';
+      drawTable(songs.filter(s => s.category.startsWith(currentGenre)));
+    };
+    cont.appendChild(allBtn);
+
+    const initials = currentGenre === 'Pop' ? engInitials : korInitials;
+    initials.forEach(ch => {
+      const b = document.createElement('button');
+      b.className = 'btn-circle btn-filter';
+      b.textContent = ch;
+      b.title = `${ch}로 시작하는 곡 보기`;
+      b.onclick = () => {
+        currentFilter = `${currentGenre} ${ch}`;
+        drawTable(songs.filter(s => s.category === currentFilter));
+      };
+      cont.appendChild(b);
+    });
+  }
+
+  function drawTable(list){
+    const cont = document.getElementById('songsTableContainer');
+    cont.innerHTML = '';
+    document.getElementById('searchResultsMessage').textContent = '';
+    if(list.length === 0){
+      document.getElementById('searchResultsMessage').textContent = '검색 결과가 없습니다.';
+      return;
+    }
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+
+    ['가수', '제목', '코드', '난이도', '숙련도', '비고'].forEach(h => {
+  const th = document.createElement('th');
+  th.textContent = h;
+  trHead.appendChild(th);
+});
+
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    list.forEach(({singer, title, code, difficulty, skill, note}) => {
+  const tr = document.createElement('tr');
+  [singer, title, code, difficulty, skill, note || ''].forEach(text => {
+    const td = document.createElement('td');
+    td.textContent = text;
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    cont.appendChild(table);
+  }
+
+  function searchSongs(){
+    const val = document.getElementById('search').value.trim().toLowerCase();
+    showDoc('');
+    if(val===''){
+      document.getElementById('searchResultsMessage').textContent = '';
+      document.getElementById('songsTableContainer').innerHTML = '';
+      document.getElementById('buttonsContainer').innerHTML = '';
+      return;
+    }
+
+    const filtered = songs.filter(s => {
+      return s.title.toLowerCase().includes(val) || s.singer.toLowerCase().includes(val);
+    });
+    currentGenre = '';
+    currentFilter = '';
+    document.getElementById('buttonsContainer').innerHTML = '';
+    drawTable(filtered);
+  }
+
+  function showSubCategory(type) {
+    const subButtons = document.querySelectorAll('#category-sub button');
+    subButtons.forEach(btn => {
+      const subcat = btn.getAttribute('data-subcat');
+      if (type === 'K-pop' || type === 'K-pop 아이돌') {
+        btn.style.display = korInitials.includes(subcat) ? 'inline-block' : 'none';
+      } else if (type === 'pop') {
+        btn.style.display = engInitials.includes(subcat) ? 'inline-block' : 'none';
+      }
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    resetToDefault();
+    showSubCategory('K-pop'); // 기본으로 K-pop만 보여줌
+  });
+
+  document.querySelectorAll('#category-top button').forEach(button => {
+    button.addEventListener('click', () => {
+      const selected = button.getAttribute('data-topcat');
+      showSubCategory(selected);
+    });
+  });
 </script>
 
 </body>
