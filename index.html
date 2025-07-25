@@ -17,89 +17,107 @@
     margin-left: auto;
     margin-right: auto;
   }
+  /* 제목 */
   h1 {
-    color: #d35400;
+    color: #ca6702; /* 진한 주황 */
     margin-bottom: 10px;
     cursor: pointer;
     user-select: none;
     text-align: center;
   }
+  /* 필독 공지 (설명서, 가격표 영역) */
   .important-notice {
-    background: #8e7cc3;
+    background: #6c5b7b; /* 보라색 계열 세련되게 */
     color: #f0f0f0;
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 25px; /* 설명서-가격표와 검색창 사이 간격 넓게 */
     text-align: center;
   }
+  /* 검색창 */
   #searchInput {
     width: 90%;
     max-width: 400px;
     padding: 8px;
     font-size: 1rem;
-    border: 2px solid #d35400;
+    border: 2px solid #ca6702; /* 메인 주황 */
     border-radius: 8px;
     background: #333;
     color: #f0f0f0;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Kpop과 검색창 사이 간격 좁게 */
     text-align: center;
   }
   #searchInput:focus {
-    border-color: #b34700;
+    border-color: #a65401;
     outline: none;
   }
-  button {
-    background: #d35400;
-    color: #1f1f1f;
-    border: none;
+  /* 설명서, 가격표 버튼 */
+  .top-categories button {
+    background: #6c5b7b; /* 보라색 */
+    color: #f0f0f0;
+    border-radius: 6px;
+    padding: 7px 12px;
     font-weight: bold;
-    cursor: pointer;
     margin: 4px;
+    cursor: pointer;
     text-align: center;
   }
-  button:hover {
-    background: #b34700;
+  .top-categories button:hover {
+    background: #584b6e;
   }
+  /* Kpop 이하 카테고리 버튼 */
+  .genre-categories button {
+    background: #e67e22; /* 메인 주황 */
+    color: #1f1f1f;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-weight: bold;
+    margin: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .genre-categories button:hover {
+    background: #ca6702;
+    color: #fff;
+  }
+  /* ㄱㄴㄷ 버튼 - 보라색 계열 */
   .kpop-initials button {
-    background: #7961a6;
+    background: #6c5b7b;
     color: #f0f0f0;
+    margin: 2px;
+    font-weight: bold;
   }
   .kpop-initials button:hover {
-    background: #684d8e;
+    background: #584b6e;
   }
+  /* Pop 알파벳 버튼 - 주황색 계열 */
   .pop-initials button {
-    background: #d35400;
+    background: #e67e22;
     color: #1f1f1f;
+    margin: 2px;
+    font-weight: bold;
   }
   .pop-initials button:hover {
-    background: #b34700;
+    background: #ca6702;
+    color: #fff;
   }
-  /* 초성/알파벳 버튼 모양 지정 */
-  .initial-btn {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 2px;
-    text-align: center;
+  /* 버튼 기본 스타일 */
+  button {
+    border: none;
   }
-  /* 완전 원형 버튼 그룹 */
-  .circle {
+  /* 완전 원형 버튼 */
+  .initial-btn.circle {
     border-radius: 50%;
     width: 36px;
     height: 36px;
-    padding: 0;
     line-height: 36px;
-    text-align: center;
+    padding: 0;
   }
-  /* 라운드 타원형 버튼 나머지 */
-  .rounded {
+  /* 둥근 타원 버튼 */
+  .initial-btn.rounded {
     border-radius: 999px;
     padding: 6px 14px;
-  }
-  /* 기존 범주 버튼 스타일 */
-  .category-buttons button {
-    padding: 7px 12px;
-    border-radius: 6px;
   }
   /* 표 스타일 */
   table {
@@ -110,16 +128,15 @@
   }
   th,
   td {
-    border-top: 1px dashed #666;
-    border-bottom: 1px dashed #666;
+    border-top: 1px dashed #666; /* 가로 행 점선 */
     border-left: none;
     border-right: none;
     padding: 8px;
     text-align: center;
   }
   th {
-    background: #7961a6;
-    color: #1f1f1f;
+    background: #6c5b7b; /* 보라색 헤더 */
+    color: #f0f0f0;
   }
   tbody tr:nth-child(odd) {
     background: #2b2b2b;
@@ -130,7 +147,7 @@
   .no-result {
     margin-top: 20px;
     font-weight: bold;
-    color: #e07b39;
+    color: #e67e22;
     display: none;
     text-align: center;
   }
@@ -165,11 +182,9 @@
 
 <div id="hangulInitialFilter" class="kpop-initials" style="display:none; margin-bottom:15px; text-align:center;">
   <span class="initial-btn circle" onclick="filterByInitial('전체')">전체</span>
-  <!-- 원형: ㄱ, ㄴ, ㄷ -->
   <span class="initial-btn circle" onclick="filterByInitial('ㄱ')">ㄱ</span>
   <span class="initial-btn circle" onclick="filterByInitial('ㄴ')">ㄴ</span>
   <span class="initial-btn circle" onclick="filterByInitial('ㄷ')">ㄷ</span>
-  <!-- 나머지는 둥근 타원 -->
   <span class="initial-btn rounded" onclick="filterByInitial('ㄹ')">ㄹ</span>
   <span class="initial-btn rounded" onclick="filterByInitial('ㅁ')">ㅁ</span>
   <span class="initial-btn rounded" onclick="filterByInitial('ㅂ')">ㅂ</span>
@@ -185,11 +200,9 @@
 
 <div id="alphaInitialFilter" class="pop-initials" style="display:none; margin-bottom:15px; text-align:center;">
   <span class="initial-btn circle" onclick="filterByInitial('전체')">전체</span>
-  <!-- 원형: A, B, C -->
   <span class="initial-btn circle" onclick="filterByInitial('A')">A</span>
   <span class="initial-btn circle" onclick="filterByInitial('B')">B</span>
   <span class="initial-btn circle" onclick="filterByInitial('C')">C</span>
-  <!-- 나머지 알파벳 둥근 타원 -->
   <script>
     for(let c=68; c<=90; c++){
       document.write(`<span class="initial-btn rounded" onclick="filterByInitial('${String.fromCharCode(c)}')">${String.fromCharCode(c)}</span>`);
@@ -209,7 +222,6 @@
 </div>
 
 <script>
-  // 예시 데이터 (노래책 설명서, 가격표, 장르별 데이터 등)
   const data = {
     '노래책 설명서': [
       { text: `•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)\n
@@ -236,153 +248,4 @@
     ],
     'Pop': [
       { artist: "Adele", title: "Hello", code: "C", difficulty: "중", skill: "높음" },
-      { artist: "Beyonce", title: "Halo", code: "G", difficulty: "어려움", skill: "중" },
-      { artist: "Coldplay", title: "Yellow", code: "D", difficulty: "쉬움", skill: "낮음" }
-    ]
-  };
-
-  let currentCategory = '노래책 설명서';
-  let currentGenre = null;
-  let currentInitial = '전체';
-
-  function clearTable() {
-    const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = '';
-  }
-
-  function filterCategory(category) {
-    currentCategory = category;
-    currentGenre = null;
-    currentInitial = '전체';
-    document.getElementById('noResultMsg').style.display = 'none';
-    document.getElementById('searchInput').value = '';
-
-    // 필터별 버튼 보임 처리
-    if(category === '노래책 설명서' || category === '가격표') {
-      document.getElementById('hangulInitialFilter').style.display = 'none';
-      document.getElementById('alphaInitialFilter').style.display = 'none';
-      document.getElementById('searchInput').style.display = 'inline-block';
-    } else {
-      document.getElementById('searchInput').style.display = 'inline-block';
-      if(category === 'Pop') {
-        document.getElementById('hangulInitialFilter').style.display = 'none';
-        document.getElementById('alphaInitialFilter').style.display = 'block';
-      } else {
-        document.getElementById('hangulInitialFilter').style.display = 'block';
-        document.getElementById('alphaInitialFilter').style.display = 'none';
-      }
-    }
-    render();
-  }
-
-  function showGenre(genre) {
-    currentCategory = genre;
-    currentGenre = genre;
-    currentInitial = '전체';
-    document.getElementById('noResultMsg').style.display = 'none';
-    document.getElementById('searchInput').value = '';
-
-    if(genre === 'Pop') {
-      document.getElementById('hangulInitialFilter').style.display = 'none';
-      document.getElementById('alphaInitialFilter').style.display = 'block';
-    } else {
-      document.getElementById('hangulInitialFilter').style.display = 'block';
-      document.getElementById('alphaInitialFilter').style.display = 'none';
-    }
-    render();
-  }
-
-  function filterByInitial(initial) {
-    currentInitial = initial;
-    render();
-  }
-
-  function handleSearch() {
-    render();
-  }
-
-  function render() {
-    clearTable();
-    const tbody = document.getElementById('tableBody');
-    const noResultMsg = document.getElementById('noResultMsg');
-    const searchVal = document.getElementById('searchInput').value.trim().toLowerCase();
-
-    noResultMsg.style.display = 'none';
-
-    // 노래책 설명서, 가격표 텍스트 출력
-    if(currentCategory === '노래책 설명서' || currentCategory === '가격표') {
-      document.getElementById('tableHead').style.display = 'none';
-      let arr = data[currentCategory];
-      if(!arr) {
-        tbody.innerHTML = '';
-        return;
-      }
-      tbody.innerHTML = '';
-      for(const item of arr) {
-        let tr = document.createElement('tr');
-        let td = document.createElement('td');
-        td.colSpan = 5;
-        td.className = 'text-cell';
-        td.textContent = item.text;
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-      }
-      return;
-    } else {
-      document.getElementById('tableHead').style.display = 'table-header-group';
-    }
-
-    // 노래 데이터 필터링
-    let arr = data[currentCategory];
-    if(!arr) arr = [];
-
-    // 초성 / 알파벳 필터 적용
-    if(currentInitial && currentInitial !== '전체') {
-      arr = arr.filter(item => {
-        let firstChar = item.artist.charAt(0).toUpperCase();
-        if(currentCategory === 'Pop') {
-          return firstChar === currentInitial.toUpperCase();
-        } else {
-          // 한글 초성 비교 (간단히 초성 문자와 비교)
-          const 초성목록 = {
-            'ㄱ': ['가','갸','거','겨','고','교','구','규','그','기','갸','갸'],
-            'ㄴ': ['나','냐','너','녀','노','뇨','누','뉴','느','니'],
-            'ㄷ': ['다','댜','더','뎌','도','됴','두','듀','드','디'],
-            'ㄹ': ['라','랴','러','려','로','료','루','류','르','리'],
-            'ㅁ': ['마','먀','머','멸','모','묘','무','뮤','므','미'],
-            'ㅂ': ['바','뱌','버','벼','보','뵤','부','뷰','브','비'],
-            'ㅅ': ['사','샤','서','셔','소','쇼','수','슈','스','시'],
-            'ㅇ': ['아','야','어','여','오','요','우','유','으','이'],
-            'ㅈ': ['자','쟈','저','져','조','죠','주','쥬','즈','지'],
-            'ㅊ': ['차','챠','처','쳐','초','쵸','추','츄','츠','치'],
-            'ㅋ': ['카','캬','커','켜','코','쿄','쿠','큐','크','키'],
-            'ㅌ': ['타','탸','터','텨','토','툐','투','튜','트','티'],
-            'ㅍ': ['파','퍄','퍼','펴','포','표','푸','퓨','프','피'],
-            'ㅎ': ['하','햐','허','혀','호','효','후','휴','흐','히']
-          };
-          const firstCharKor = item.artist.charAt(0);
-          return 초성목록[currentInitial] && 초성목록[currentInitial].some(ch => ch === firstCharKor);
-        }
-      });
-    }
-
-    // 검색 필터 적용
-    if(searchVal) {
-      arr = arr.filter(item =>
-        (item.artist && item.artist.toLowerCase().includes(searchVal)) ||
-        (item.title && item.title.toLowerCase().includes(searchVal)) ||
-        (item.code && item.code.toLowerCase().includes(searchVal))
-      );
-    }
-
-    tbody.innerHTML = '';
-    if(arr.length === 0) {
-      noResultMsg.style.display = 'block';
-      return;
-    } else {
-      noResultMsg.style.display = 'none';
-    }
-
-    for(const item of arr) {
-      let tr = document.createElement('tr');
-      tr.innerHTML = `<td>${item.artist}</td><td>${item
+      { artist: "Beyonce", title: "Halo", code: "G", difficulty: "어려움", skill:
