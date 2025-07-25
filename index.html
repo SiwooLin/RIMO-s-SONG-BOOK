@@ -40,7 +40,7 @@
     border-radius: 20px;
     background: #333;
     color: #f0f0f0;
-    margin: 0 auto 20px;
+    margin: 10px auto 20px; /* 필독공지 아래, 설명서 텍스트 위 */
     text-align: center;
     box-sizing: border-box;
     display: block;
@@ -169,12 +169,14 @@
   📌 필독 공지: 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
 </div>
 
+<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off">
+
+<div id="textContent"></div>
+
 <div class="top-categories">
   <button onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
   <button onclick="filterCategory('가격표')">가격표</button>
 </div>
-
-<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off">
 
 <div class="genre-categories">
   <button onclick="filterCategory('K-pop')">K-pop</button>
@@ -234,9 +236,7 @@
   </div>
 </div>
 
-<div id="textContent"></div>
-
-<table id="songTable" style="margin: 0 auto; max-width: 900px;">
+<table id="songTable" style="margin: 0 auto; max-width: 900px; display:none;">
   <thead>
     <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
   </thead>
@@ -248,6 +248,7 @@
 </div>
 
 <script>
+  // 기본 데이터 예시, 실제 데이터에 맞게 수정하세요
   const data = {
     "노래책 설명서": {
       type: "text",
@@ -306,23 +307,57 @@
   const noResultMsg = document.getElementById("noResultMsg");
   const koreanInitials = document.getElementById("koreanInitials");
   const alphaInitials = document.getElementById("alphaInitials");
+  const searchInput = document.getElementById("searchInput");
 
+  // 카테고리 필터
   function filterCategory(category) {
     currentCategory = category;
     currentInitial = "전체";
-    document.getElementById("searchInput").value = "";
+    searchInput.value = "";
     updateDisplay();
   }
 
+  // 이니셜 필터
   function filterByInitial(initial) {
     currentInitial = initial;
     updateDisplay();
   }
 
+  // 전체 검색창 입력 필터 (모든 데이터에서 검색)
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+
+    // 검색어가 있으면 텍스트 내용과 카테고리 버튼 무시하고 전체 곡 중에서만 검색
+    if (query.length > 0) {
+      koreanInitials.style.display = "none";
+      alphaInitials.style.display = "none";
+      textContentDiv.style.display = "none";
+      noResultMsg.style.display = "none";
+
+      let results = [];
+      for (const cat in data) {
+        if (data[cat].type === "table") {
+          results = results.concat(data[cat].songs.filter(song => 
+            song.artist.toLowerCase().includes(query) || 
+            song.title.toLowerCase().includes(query)
+          ));
+        }
+      }
+      renderTable(results);
+      songTable.style.display = results.length > 0 ? "table" : "none";
+      noResultMsg.style.display = results.length === 0 ? "block" : "none";
+      return;
+    }
+
+    // 검색어 없으면 일반 필터 보여주기
+    updateDisplay();
+  }
+
+  // 현재 카테고리+이니셜 필터 반영 화면 업데이트
   function updateDisplay() {
     noResultMsg.style.display = "none";
-    textContentDiv.style.display = "none";
     songTable.style.display = "none";
+    textContentDiv.style.display = "none";
     koreanInitials.style.display = "none";
     alphaInitials.style.display = "none";
 
@@ -330,42 +365,13 @@
       textContentDiv.style.display = "block";
       textContentDiv.textContent = data[currentCategory].content;
     } else if (data[currentCategory] && data[currentCategory].type === "table") {
-      songTable.style.display = "table";
-      renderTable(data[currentCategory].songs);
-      if(currentCategory === "K-pop" || currentCategory === "K-pop 아이돌") {
-        koreanInitials.style.display = "flex";
-      } else if(currentCategory === "Pop") {
-        alphaInitials.style.display = "block";
+      let songs = data[currentCategory].songs;
+      if(currentInitial !== "전체") {
+        if(currentCategory === "Pop") {
+          songs = songs.filter(song => song.artist.charAt(0).toUpperCase() === currentInitial);
+        } else {
+          songs = songs.filter(song => song.artist.charAt(0) === currentInitial);
+        }
       }
-    }
-  }
-
-  function renderTable(songs) {
-    tableBody.innerHTML = "";
-    let filteredSongs = songs;
-
-    if(currentInitial !== "전체") {
-      if(currentCategory === "Pop") {
-        filteredSongs = songs.filter(song => song.artist.charAt(0).toUpperCase() === currentInitial);
-      } else {
-        filteredSongs = songs.filter(song => song.artist.charAt(0) === currentInitial);
-      }
-    }
-
-    if(filteredSongs.length === 0) {
-      songTable.style.display = "none";
-      noResultMsg.style.display = "block";
-      return;
-    }
-
-    noResultMsg.style.display = "none";
-
-    filteredSongs.forEach(song => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${song.artist}</td>
-        <td>${song.title}</td>
-        <td>${song.code}</td>
-        <td>${song.difficulty}</td>
-        <td>${song.skill}</td>
-      `;
+      if(songs.length === 0) {
+        no
