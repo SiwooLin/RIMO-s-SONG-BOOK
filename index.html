@@ -19,20 +19,20 @@
   }
   /* 제목 */
   h1 {
-    color: #ca6702; /* 진한 주황 */
+    color: #ff6f00; /* 화사하고 진한 주황 */
     margin-bottom: 10px;
     cursor: pointer;
     user-select: none;
     text-align: center;
   }
-  /* 필독 공지 (설명서, 가격표 영역) */
+  /* 필독 공지 */
   .important-notice {
-    background: #6c5b7b; /* 보라색 계열 세련되게 */
-    color: #f0f0f0;
+    background: #c8a2c8; /* 연한 보라 */
+    color: #1f1f1f;
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
-    margin-bottom: 25px; /* 설명서-가격표와 검색창 사이 간격 넓게 */
+    margin-bottom: 25px;
     text-align: center;
   }
   /* 검색창 */
@@ -41,21 +41,21 @@
     max-width: 400px;
     padding: 8px;
     font-size: 1rem;
-    border: 2px solid #ca6702; /* 메인 주황 */
+    border: 2px solid #ff6f00;
     border-radius: 8px;
     background: #333;
     color: #f0f0f0;
-    margin-bottom: 15px; /* Kpop과 검색창 사이 간격 좁게 */
+    margin-bottom: 15px;
     text-align: center;
   }
   #searchInput:focus {
-    border-color: #a65401;
+    border-color: #cc5c00;
     outline: none;
   }
-  /* 설명서, 가격표 버튼 */
+  /* 노래책 설명서, 가격표 버튼 */
   .top-categories button {
-    background: #6c5b7b; /* 보라색 */
-    color: #f0f0f0;
+    background: #a64ca6; /* 화사하고 매력적인 보라 */
+    color: #fff;
     border-radius: 6px;
     padding: 7px 12px;
     font-weight: bold;
@@ -64,11 +64,11 @@
     text-align: center;
   }
   .top-categories button:hover {
-    background: #584b6e;
+    background: #913f92;
   }
   /* Kpop 이하 카테고리 버튼 */
   .genre-categories button {
-    background: #e67e22; /* 메인 주황 */
+    background: #e67e22; /* 기존 주황 */
     color: #1f1f1f;
     border-radius: 6px;
     padding: 7px 12px;
@@ -81,25 +81,26 @@
     background: #ca6702;
     color: #fff;
   }
-  /* ㄱㄴㄷ 버튼 - 보라색 계열 */
+  /* ㄱㄴㄷ 버튼 - Kpop 주황보다 연한 주황 */
   .kpop-initials button {
-    background: #6c5b7b;
-    color: #f0f0f0;
+    background: #f5a25d; /* 연한 주황 */
+    color: #1f1f1f;
     margin: 2px;
     font-weight: bold;
   }
   .kpop-initials button:hover {
-    background: #584b6e;
+    background: #d18330;
+    color: #fff;
   }
-  /* Pop 알파벳 버튼 - 주황색 계열 */
+  /* Pop 알파벳 버튼 - Kpop 주황보다 연한 주황 */
   .pop-initials button {
-    background: #e67e22;
+    background: #f5a25d; /* 연한 주황 */
     color: #1f1f1f;
     margin: 2px;
     font-weight: bold;
   }
   .pop-initials button:hover {
-    background: #ca6702;
+    background: #d18330;
     color: #fff;
   }
   /* 버튼 기본 스타일 */
@@ -128,15 +129,15 @@
   }
   th,
   td {
-    border-top: 1px dashed #666; /* 가로 행 점선 */
+    border-top: 1px dashed #666;
     border-left: none;
     border-right: none;
     padding: 8px;
     text-align: center;
   }
   th {
-    background: #6c5b7b; /* 보라색 헤더 */
-    color: #f0f0f0;
+    background: #e67e22; /* Kpop 주황과 동일 */
+    color: #1f1f1f;
   }
   tbody tr:nth-child(odd) {
     background: #2b2b2b;
@@ -144,18 +145,27 @@
   tbody tr:nth-child(even) {
     background: #333;
   }
+  /* 노래책 설명서/가격표 내용용 */
+  #textContent {
+    white-space: pre-wrap;
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #2c2c3a;
+    display: none;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .no-result {
     margin-top: 20px;
     font-weight: bold;
-    color: #e67e22;
+    color: #ff6f00;
     display: none;
     text-align: center;
-  }
-  .text-cell {
-    text-align: center;
-    white-space: pre-line;
-    font-size: 1rem;
-    color: #f0f0f0;
   }
 </style>
 </head>
@@ -210,6 +220,8 @@
   </script>
 </div>
 
+<div id="textContent"></div>
+
 <table id="songTable" style="margin-left:auto; margin-right:auto;">
   <thead id="tableHead">
     <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
@@ -222,25 +234,33 @@
 </div>
 
 <script>
+  // 데이터 예시 (실제 노래책 설명서/가격표 내용 반영)
   const data = {
     '노래책 설명서': [
-      { text: `•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)\n
-•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.\n(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)\n
-•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.\n
-•추천 곡은 디스코드 노래 추천방에 적어주세요.\n
-❌과도한 평가와 훈수는 자제해주세요❌` }
+`•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)
+
+•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다. 
+(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)
+
+•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.
+
+•추천 곡은 디스코드 노래 추천방에 적어주세요.
+
+❌과도한 평가와 훈수는 자제해주세요❌`
     ],
     '가격표': [
-      { text: `•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.\n
-•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.\n
-•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.\n
-•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.` }
+`•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.
+
+•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.
+
+•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.
+
+•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.`
     ],
     'K-pop': [
       { artist: "가수1", title: "노래1", code: "C", difficulty: "중", skill: "높음" },
       { artist: "강수", title: "노래2", code: "G", difficulty: "쉬움", skill: "중" },
-      { artist: "나나", title: "노래3", code: "D", difficulty: "어려움", skill: "낮음" },
-      { artist: "다솜", title: "노래4", code: "F", difficulty: "중", skill: "중" }
+      { artist: "나나", title: "노래3", code: "D", difficulty: "어려움", skill: "낮음" }
     ],
     'K-pop 아이돌': [
       { artist: "아이돌1", title: "노래A", code: "Am", difficulty: "쉬움", skill: "중" },
@@ -248,4 +268,99 @@
     ],
     'Pop': [
       { artist: "Adele", title: "Hello", code: "C", difficulty: "중", skill: "높음" },
-      { artist: "Beyonce", title: "Halo", code: "G", difficulty: "어려움", skill:
+      { artist: "Beyonce", title: "Halo", code: "G", difficulty: "어려움", skill: "중" }
+    ]
+  };
+
+  let currentCategory = '노래책 설명서';
+  let currentInitial = '전체';
+
+  const textContent = document.getElementById('textContent');
+  const songTable = document.getElementById('songTable');
+  const tableBody = document.getElementById('tableBody');
+  const noResultMsg = document.getElementById('noResultMsg');
+  const hangulInitialFilter = document.getElementById('hangulInitialFilter');
+  const alphaInitialFilter = document.getElementById('alphaInitialFilter');
+  const searchInput = document.getElementById('searchInput');
+
+  function filterCategory(category) {
+    currentCategory = category;
+    currentInitial = '전체';
+    searchInput.value = '';
+    noResultMsg.style.display = 'none';
+
+    if (category === '노래책 설명서' || category === '가격표') {
+      // 설명서, 가격표 텍스트 출력
+      textContent.style.display = 'block';
+      songTable.style.display = 'none';
+      hangulInitialFilter.style.display = 'none';
+      alphaInitialFilter.style.display = 'none';
+
+      textContent.textContent = data[category].join('\n\n');
+    } else {
+      // 노래 리스트 출력
+      textContent.style.display = 'none';
+      songTable.style.display = 'table';
+
+      if(category === 'K-pop' || category === 'K-pop 아이돌') {
+        hangulInitialFilter.style.display = 'block';
+        alphaInitialFilter.style.display = 'none';
+      } else if(category === 'Pop') {
+        hangulInitialFilter.style.display = 'none';
+        alphaInitialFilter.style.display = 'block';
+      } else {
+        hangulInitialFilter.style.display = 'none';
+        alphaInitialFilter.style.display = 'none';
+      }
+
+      renderTable();
+    }
+  }
+
+  function renderTable() {
+    const list = data[currentCategory] || [];
+    const filtered = list.filter(song => {
+      if(currentInitial === '전체') return true;
+      if(currentCategory === 'Pop') {
+        return song.artist.toUpperCase().startsWith(currentInitial);
+      } else {
+        // 한글 초성 필터링 (간단히)
+        const firstChar = song.artist.charAt(0);
+        return currentInitial === '전체' || firstChar.startsWith(currentInitial);
+      }
+    });
+    tableBody.innerHTML = '';
+
+    if(filtered.length === 0) {
+      songTable.style.display = 'none';
+      noResultMsg.style.display = 'block';
+    } else {
+      songTable.style.display = 'table';
+      noResultMsg.style.display = 'none';
+      for(let song of filtered){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${song.artist}</td><td>${song.title}</td><td>${song.code}</td><td>${song.difficulty}</td><td>${song.skill}</td>`;
+        tableBody.appendChild(tr);
+      }
+    }
+  }
+
+  function filterByInitial(initial) {
+    currentInitial = initial;
+    renderTable();
+  }
+
+  function showGenre(genre) {
+    filterCategory(genre);
+  }
+
+  function handleSearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    if(query === '') {
+      filterCategory(currentCategory);
+      return;
+    }
+    // 검색 시 모두 보여주기 (설명서, 가격표 제외)
+    textContent.style.display = 'none';
+    songTable.style.display = 'table';
+    hangulInitialFilter.style.display = (current
