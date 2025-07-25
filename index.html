@@ -1103,39 +1103,41 @@
   }
 
   function drawTable(list){
-    const cont = document.getElementById('songsTableContainer');
-    cont.innerHTML = '';
-    document.getElementById('searchResultsMessage').textContent = '';
-    if(list.length === 0){
-      document.getElementById('searchResultsMessage').textContent = '검색 결과가 없습니다.';
-      return;
-    }
-    const table = document.createElement('table');
-    const thead = document.createElement('thead');
-    const trHead = document.createElement('tr');
+  const cont = document.getElementById('songsTableContainer');
+  cont.innerHTML = '';
+  document.getElementById('searchResultsMessage').textContent = '';
 
-    // '가수'가 제목보다 앞에 위치하도록 배열 수정
-    ['가수', '제목', '코드', '난이도', '숙련도'].forEach(h => {
-      const th = document.createElement('th');
-      th.textContent = h;
-      trHead.appendChild(th);
-    });
-    thead.appendChild(trHead);
-    table.appendChild(thead);
-
-    const tbody = document.createElement('tbody');
-    list.forEach(({singer, title, code, difficulty, skill}) => {
-      const tr = document.createElement('tr');
-      [singer, title, code, difficulty, skill].forEach(text => {
-        const td = document.createElement('td');
-        td.textContent = text;
-        tr.appendChild(td);
-      });
-      tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-    cont.appendChild(table);
+  if(list.length === 0){
+    document.getElementById('searchResultsMessage').textContent = '검색 결과가 없습니다.';
+    return;
   }
+
+  const table = document.createElement('table');
+  const thead = document.createElement('thead');
+  const trHead = document.createElement('tr');
+
+  // ✅ '비고' 열 추가됨
+  ['가수', '제목', '코드', '난이도', '숙련도', '비고'].forEach(h => {
+    const th = document.createElement('th');
+    th.textContent = h;
+    trHead.appendChild(th);
+  });
+  thead.appendChild(trHead);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  list.forEach(({singer, title, code, difficulty, skill, note}) => {
+    const tr = document.createElement('tr');
+    [singer, title, code, difficulty, skill, note || ''].forEach(text => {
+      const td = document.createElement('td');
+      td.textContent = text;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  cont.appendChild(table);
+}
 
   function searchSongs(){
     const val = document.getElementById('search').value.trim().toLowerCase();
