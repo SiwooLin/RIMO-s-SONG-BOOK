@@ -6,37 +6,32 @@
   <title>RIMO's SONG BOOK</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
-    /* 기본 설정 */
     body {
       background: #1f1f1f;
       color: #f0f0f0;
       font-family: 'Jua', sans-serif;
       text-align: center;
-      margin: 20px auto;
+      margin: 30px auto;
       max-width: 900px;
     }
     h1 {
-      color: #ff5000; /* 가장 진한 주황 */
+      color: #ff5000;
       font-size: 4.2rem;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       cursor: pointer;
     }
     .important-notice {
       background: #b1a0e5;
       color: #3b2d70;
-      padding: 12px;
+      padding: 14px 20px;
       border-radius: 8px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin: 20px auto 30px;
       max-width: 860px;
-      margin: auto;
     }
-
-    /* 검색창 길이 조정 */
     .search-box {
       max-width: 600px;
-      margin: 0 auto 30px;
+      margin: 0 auto 40px;
     }
     #search {
       width: 100%;
@@ -47,8 +42,6 @@
       text-align: center;
       font-family: 'Jua', sans-serif;
     }
-
-    /* 버튼 기본 스타일 */
     .btn-pill, .btn-circle {
       font-family: 'Jua', sans-serif;
       color: white;
@@ -56,61 +49,50 @@
       cursor: pointer;
       user-select: none;
       transition: filter 0.2s;
+      height: 42px;
+      line-height: 42px;
+      font-size: 16px;
+      box-sizing: border-box;
     }
     .btn-pill:hover, .btn-circle:hover {
-      filter: brightness(0.8);
+      filter: brightness(0.85);
     }
-
-    /* 알약형 버튼 (알약) */
     .btn-pill {
-      font-size: 16px;
-      padding: 10px 26px;
+      padding: 0 26px;
       border-radius: 9999px;
-      margin: 5px 6px;
+      margin: 6px;
     }
-    /* 원형 버튼 (circle) */
     .btn-circle {
-      width: 38px;
-      height: 38px;
+      width: 42px;
       border-radius: 50%;
-      font-size: 16px;
-      margin: 5px 4px;
+      margin: 6px 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
-
-    /* 설명서/가격표 버튼 색상 (보라계열) */
     .btn-doc {
       background: #8c76e0;
     }
-
-    /* 전체 / 이니셜 버튼 색상 (연한 주황) */
     .btn-filter {
       background: #ffb870;
     }
-
-    /* 장르 버튼 색상 (K-pop 계열 진한 주황) */
     .btn-genre {
       background: #ff7a00;
     }
-
     .button-row {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       max-width: 860px;
       margin: auto;
       text-align: center;
     }
-
-    /* 문서 섹션 */
     .doc-section {
       background: #8c76e0;
       color: #f3ecff;
-      padding: 18px 22px;
+      padding: 20px;
       border-radius: 12px;
-      margin-bottom: 40px;
+      margin: 40px auto;
       text-align: left;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .section-title {
       font-size: 2rem;
@@ -118,8 +100,6 @@
       color: #ff7a00;
       text-align: center;
     }
-
-    /* 표 스타일 */
     table {
       width: 100%;
       border-collapse: separate;
@@ -128,24 +108,31 @@
       font-size: 16px;
     }
     thead tr {
-      background: #331a00;
+      background: #ff7a00; /* K‑pop 색상 */
     }
     thead th {
       padding: 12px;
-      color: #ff5500;
+      color: #ffffff; /* 헤더 글자색 흰색 */
       border-right: 2px dotted #ff7a00;
       text-align: center;
     }
-    thead th:last-child { border-right: none; }
-    tbody tr:nth-child(even) { background: #2b2b2b; }
-    tbody tr:nth-child(odd) { background: #1f1f1f; }
+    thead th:last-child {
+      border-right: none;
+    }
+    tbody tr:nth-child(even) {
+      background: #2b2b2b;
+    }
+    tbody tr:nth-child(odd) {
+      background: #1f1f1f;
+    }
     tbody td {
       padding: 10px;
       text-align: center;
       border-right: 2px dotted #ff7a00;
     }
-    tbody td:last-child { border-right: none; }
-
+    tbody td:last-child {
+      border-right: none;
+    }
     #searchResultsMessage {
       color: #b1a0e5;
       font-weight: bold;
@@ -266,29 +253,29 @@ function drawButtons(){
 
 function drawTable(list){
   const cont = document.getElementById('songsTableContainer');
-    const msg = document.getElementById('searchResultsMessage');
-    cont.innerHTML=''; msg.textContent='';
-    if(list.length===0){
-      msg.textContent='검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
-      return;
-    }
-    const tbl=document.createElement('table');
-    const thead=tbl.createTHead();
-    const hr=thead.insertRow();
-    ['제목','가수','코드','난이도','숙련도'].forEach(t=>{
-      const th=document.createElement('th');
-      th.textContent=t;
-      hr.appendChild(th);
+  const msg = document.getElementById('searchResultsMessage');
+  cont.innerHTML=''; msg.textContent='';
+  if(list.length===0){
+    msg.textContent='검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
+    return;
+  }
+  const tbl=document.createElement('table');
+  const thead=tbl.createTHead();
+  const hr=thead.insertRow();
+  ['제목','가수','코드','난이도','숙련도'].forEach(t=>{
+    const th=document.createElement('th');
+    th.textContent=t;
+    hr.appendChild(th);
+  });
+  const tb=tbl.createTBody();
+  list.forEach(s=>{
+    const r=tb.insertRow();
+    ['title','singer','code','difficulty','skill'].forEach(k=>{
+      const td=r.insertCell();
+      td.textContent=s[k];
     });
-    const tb=tbl.createTBody();
-    list.forEach(s=>{
-      const r=tb.insertRow();
-      ['title','singer','code','difficulty','skill'].forEach(k=>{
-        const td=r.insertCell();
-        td.textContent=s[k];
-      });
-    });
-    cont.appendChild(tbl);
+  });
+  cont.appendChild(tbl);
 }
 
 function searchSongs(){
@@ -300,6 +287,6 @@ function searchSongs(){
 
 window.onload=resetToDefault;
 </script>
+
 </body>
 </html>
-```
