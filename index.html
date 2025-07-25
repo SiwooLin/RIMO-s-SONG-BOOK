@@ -225,12 +225,1375 @@
   const korInitials = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
   const engInitials = 'abcdefghijklmnopqrstuvwxyz'.split('');
   const songs = [
-    {category:'Kpop 전체', title:'Dynamite', singer:'BTS', code:'C', difficulty:'중', skill:'고'},
-    {category:'Kpop ㄱ', title:'Gangnam Style', singer:'PSY', code:'Am', difficulty:'쉬움', skill:'중'},
-    {category:'Kpop ㄴ', title:'Nobody', singer:'Wonder Girls', code:'G', difficulty:'쉬움', skill:'중'},
-    {category:'Kpop아이돌 전체', title:'Ice Cream', singer:'BLACKPINK', code:'F', difficulty:'중', skill:'중'},
-    {category:'Pop 전체', title:'Shape of You', singer:'Ed Sheeran', code:'Dm', difficulty:'중', skill:'고'},
-    {category:'Pop a', title:'All of Me', singer:'John Legend', code:'Em', difficulty:'중', skill:'중'}
+    const songs = [
+  // --- Kpop 전체 ---
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'폰서트', code:'A', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'그라데이션', code:'B', difficulty:'', skill:'여키에서 1키 업'},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'pet', code:'D', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'사랑은 은하수 다방에서', code:'B', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'스토커', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'너에게 닿기를', code:'', difficulty:'', skill:'연습중'},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'봄이좋냐??', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'10cm(십센치)', title:'어제너는나를버렸어', code:'C', difficulty:'', skill:'브릿지 모름'},
+  {category:'Kpop 전체', singer:'50mang쏘망', title:'장산범 (Feat.시유)', code:'C#', difficulty:'', skill:''},
+  {category:'Kpop 전체', singer:'#안녕', title:'너의번호를누르고 (Prod.영화처럼)', code:'E', difficulty:'', skill:''},
+
+  // --- Kpop ㄱ ---
+  {category:'Kpop ㄱ', singer:'가호', title:'시작(이태원클라쓰OST)', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'규현(KYUHYUN)', title:'광화문애서(At Gwanghwamun)', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'검정치마', title:'기다린만큼, 더(또오해영OST)', code:'C', difficulty:'', skill:'7키업, 완벽 카피X'},
+  {category:'Kpop ㄱ', singer:'결', title:'가끔연락하던애', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'길구봉구', title:'이별', code:'B', difficulty:'', skill:'4키'},
+  {category:'Kpop ㄱ', singer:'과나', title:'그거아세요?', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'과나', title:'공주의규칙', code:'D', difficulty:'', skill:'방종곡'},
+  {category:'Kpop ㄱ', singer:'김건모', title:'잘못된만남', code:'Cm', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김건모', title:'서울의달', code:'Cm', difficulty:'', skill:'3키만 올려라'},
+  {category:'Kpop ㄱ', singer:'김광진', title:'편지 (Ver. BIBI)', code:'F/B', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'거미(Gummy)', title:'어른아이', code:'Bbm', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄱ', singer:'거미(Gummy)', title:'친구라도될걸그랬어', code:'A', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄱ', singer:'권진아 (Kwon Jinah)', title:'뭔가잘못됐어', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'권진아 (Kwon Jinah)', title:'오늘뭐했는지말해봐', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김나영 (Kim Na Young)', title:'솔직하게말해서나', code:'Gb', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김필선', title:'마마', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김세정', title:'꽃길(Flower Way) (Prod. By 지코)', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김세정', title:'재회(경의로운 소문 OST)', code:'Eb', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄱ', singer:'김윤아(자우림)', title:'스물다섯,스물하나', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김윤아(자우림)', title:'샤이닝', code:'Ab', difficulty:'', skill:'잘모름'},
+  {category:'Kpop ㄱ', singer:'경서', title:'밤하늘의별을(2020)', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㄱ', singer:'김광석', title:'서른즈음에', code:'A', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄱ', singer:'김광석', title:'잊어야한다는마음으로', code:'G', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄱ', singer:'김고은', title:'당신을기억합니다황후마마여(영웅OST)', code:'Ebm', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄱ', singer:'김아중', title:'Maria(미녀는괴로워OST)', code:'B', difficulty:'', skill:''},
+
+  // --- Kpop ㄴ ---
+  {category:'Kpop ㄴ', singer:'넬(NELL)', title:'기억을걷는시간', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㄴ', singer:'닐로(Nil_o)', title:'지나오다', code:'G', difficulty:'', skill:''},
+  {category:'Kpop ㄴ', singer:'나래(Narae)', title:'호랑수월가(나와호랑이님OST)', code:'Em', difficulty:'', skill:''},
+  {category:'Kpop ㄴ', singer:'나래(Narae)', title:'호랑풍류가(나와호랑이님OST)', code:'Em', difficulty:'', skill:''},
+  {category:'Kpop ㄴ', singer:'나비', title:'길에서', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㄴ', singer:'노을(NOEL)', title:'늦은 밤 너의 집 앞 골목길에서', code:'Gb', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄴ', singer:'너드커넥션 (Nerd Connection)', title:'조용히완전히영원히', code:'E', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄴ', singer:'너드커넥션 (Nerd Connection)', title:'좋은밤좋은꿈', code:'D', difficulty:'', skill:''},
+
+  // --- Kpop ㄷ ---
+  {category:'Kpop ㄷ', singer:'다비치(Davichi)', title:'안녕이라고말하지마', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'다비치(Davichi)', title:'사랑과전쟁', code:'C#m', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄷ', singer:'다비치(Davichi)', title:'8282', code:'D', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'딘(DEAN)', title:'21', code:'F#m', difficulty:'', skill:'1절'},
+  {category:'Kpop ㄷ', singer:'딘(DEAN)', title:'Instagram', code:'Eb', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄷ', singer:'디핵(D-hack)', title:'오하요 마이 나이트(OHAYO MY NIGHT)', code:'Gm', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'다이나믹듀오', title:'죽일놈(Guilty)', code:'Bbm', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'다이나믹듀오', title:'맵고짜고단거(Feat.페노메코)', code:'Dm', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'달의하루', title:'염라(Karma)', code:'Gm', difficulty:'', skill:''},
+  {category:'Kpop ㄷ', singer:'다린(darin)', title:'가을', code:'C', difficulty:'', skill:''},
+
+  // --- Kpop ㄹ ---
+  {category:'Kpop ㄹ', singer:'로이킴(Roy Kim)', title:'그때헤어지면돼', code:'Gb', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'로이킴(Roy Kim)', title:'봄봄봄', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'로이킴(Roy Kim)', title:'잘지내자, 우리(여름날우리 X 로이킴)', code:'B', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄹ', singer:'로이킴(Roy Kim)', title:'북두칠성', code:'Bb', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㄹ', singer:'린(Lyn)', title:'곰인형(Feat.해금)', code:'D', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'린(Lyn)', title:'시간을거슬러(해를품은달OST)', code:'D', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'린(Lyn)', title:'...사랑했잖아...', code:'Eb', difficulty:'', skill:'브릿지 모름'},
+  {category:'Kpop ㄹ', singer:'러브홀릭스', title:'Butterfly(국가대표OST)', code:'D', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'럼블피쉬', title:'비와 당신', code:'C', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄹ', singer:'려욱(RYEOWOOK)', title:'어린왕자(The Little Prince)', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'로꼬, 유주(Loco & Yuju)', title:'우연히 봄(냄새를보는소녀OST)', code:'G', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'로꼬, 화사(Loco & Hwasa)', title:'주지마', code:'Fm', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'로꼬,펀치(Loco &Punch)', title:'Say Yes(달의연인-보보경심려OST)', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'릴러말즈(Leellamarz)', title:'거리에서(Feat.ASH ISLAND)', code:'B', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'릴러말즈(Leellamarz)', title:'Trip(Feat.Hannah)', code:'F', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㄹ', singer:'릴러말즈(Leellamarz)', title:'이쁜여자가좋더라(Feat.Gist,Jayci yucca)', code:'Am', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'릴러말즈(Leellamarz)', title:'나쁜 X (Feat.창모)', code:'Em', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'릴러말즈,TOIL', title:'하지마', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㄹ', singer:'릴러말즈,TOIL', title:'엉덩이가큰그녀', code:'Dm', difficulty:'', skill:'5키 업'},
+
+  // --- Kpop ㅁ ---
+  {category:'Kpop ㅁ', singer:'마크툽(MAKTUB)', title:'Marry Me(구윤회)', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'마크툽(MAKTUB)', title:'찰나가영원이될때(The Eternal Moment)', code:'Eb', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅁ', singer:'마크툽(MAKTUB)', title:'오늘도빛나는너에게(To You My Light)(Feat.이라온)', code:'F', difficulty:'3키', skill:''},
+  {category:'Kpop ㅁ', singer:'마크툽(MAKTUB)', title:'시작의 아이 ハジマリのコ (Starting With You)', code:'F#', difficulty:'3키', skill:''},
+  {category:'Kpop ㅁ', singer:'문문(MOON MOON)', title:'비행운', code:'Gm', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'문문(MOON MOON)', title:'물감', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'모트(Motte)', title:'도망가지마(에이틴OST)', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'멜로망스(MeloMance)', title:'*&', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'멜로망스(MeloMance)', title:'사랑인가봐(사내맞선OST)', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'멜로망스(MeloMance)', title:'부끄럼', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㅁ', singer:'먼데이키즈', title:'사랑이식었다고말해도돼', code:'E', difficulty:'5키', skill:''},
+  {category:'Kpop ㅁ', singer:'맨스티어(Men\'s Tear)', title:'AK47', code:'G#M', difficulty:'', skill:''}
+
+  // --- Kpop ㅂ ---
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'좋다고말해', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'나의사춘기에게', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'처음부터너와나', code:'Bb', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'여행', code:'Db', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'우주를줄게', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'Blue', code:'Bm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'나만, 봄', code:'G', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'심술', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'썸탈꺼야', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'나만안되는연애', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'워커홀릭', code:'Em', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'#첫사랑', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'볼빨간사춘기(BOL4)', title:'별보러갈래?', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박보람(Boram Park)', title:'예뻐졌다(Feat.지코(블락비))', code:'C', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'박보람(Boram Park)', title:'애쓰지마요', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박보람(Boram Park)', title:'혜화동(혹은쌍문동)(응답하라1988 OST)', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박재정(Parc Jae Jung)', title:'헤어지자말해요(Let\'s Say Goodbye)', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'벤(BEN)', title:'헤어져줘서고마워', code:'G', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'벤(BEN)', title:'열애중', code:'B', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'벤(BEN)', title:'180도', code:'B', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'벤(BEN)', title:'혼술하고싶은밤', code:'Gb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'벤(BEN)', title:'오늘은가지마', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백아연(Baek A Yeon)', title:'이럴거면그러지말지(Feat.영현)', code:'F#', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백예린(Yerin Baek)', title:'Bye Bye My Blue', code:'Eb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백예린(Yerin Baek)', title:'Square(2017)', code:'Ab', difficulty:'', skill:'잘모름'},
+  {category:'Kpop ㅂ', singer:'백예린(Yerin Baek)', title:'그건아마우리의잘못은아닐거야', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백예린(Yerin Baek)', title:'Antifreeze', code:'Bb', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㅂ', singer:'백아(Baek A)', title:'첫사랑', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박화요비', title:'그런일은', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박화요비', title:'이런 밤', code:'Db', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'박화요비', title:'어떤가요', code:'D', difficulty:'', skill:'연습중'},
+  {category:'Kpop ㅂ', singer:'박화요비', title:'Lie', code:'Ebm', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'박정현', title:'꿈에', code:'Bb', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백지영(Baek Z Young)', title:'거짓말이라도해서 널 보고싶어', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'백지영(Baek Z Young)', title:'총맞은것처럼', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'밤양갱', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'우리가헤어져야했던이유(그해우리는OST)', code:'C', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'사랑의묘약', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'JOTTO(조또)', code:'C#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'홍대 R&B', code:'Bm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'사장님도박은재미로하셔야합니다(KAZINO)', code:'F#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'쉬가릿(cigarette and condom)', code:'Cm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'가면무도회', code:'Fm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'모토스피드 24시', code:'C#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'나쁜X', code:'F#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'불륜(Sweet Sorrow of Mother)', code:'C#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'비누(BINU)', code:'Em', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'인생은나쁜X(Life is a Bi…)', code:'Bbm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비비(BIBI)', title:'Scott and Zelda (책방오빠 문학소녀)', code:'Dm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'버스커버스커(Busker Busker)', title:'꽃송이가', code:'B', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'버스커버스커(Busker Busker)', title:'여수밤바다', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'버스커버스커(Busker Busker)', title:'벚꽃엔딩', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박혜원(HYNN)', title:'LET ME OUT', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박혜원(HYNN)', title:'시든꽃에물을주듯', code:'E', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박혜원(HYNN)', title:'차가워진이바람엔우리가써있어', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'보아(BoA)', title:'Only One', code:'C', difficulty:'', skill:'잘모름'},
+  {category:'Kpop ㅂ', singer:'보아(BoA)', title:'아틀란티스소녀', code:'F', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비오(BE\'O)', title:'문득', code:'F#m', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비오(BE\'O)', title:'리무진(Feat.송민호)(Prod.그레이)', code:'Em', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'빈센트 블루(Vincent Blue)', title:'비가와', code:'F,B', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'빅마마', title:'체념', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박경(블락비)(Park Kyung)', title:'자격지심(Feat.은하(여자친구))', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박봄', title:'You And I', code:'Ab', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박봄', title:'봄(Feat.산다라박)', code:'Gm', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'박봄', title:'내연인', code:'A', difficulty:'', skill:''},
+  {category:'Kpop ㅂ', singer:'비아이(B.I)', title:'역겹겠지만(Remember me)', code:'C', difficulty:'', skill:'완벽 카피X'},
+  {category:'Kpop ㅂ', singer:'서동현(BIG Naughty )', title:'MUSIC (Feat. 이찬혁)', code:'G#m', difficulty:'', skill:''}
+  
+// --- Kpop ㅅ ---
+  {category:'Kpop ㅅ', singer:'선우정아(swja)', title:'구애', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'선우정아(swja)', title:'고양이(Feat.IU)', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'선우정아(swja)', title:'도망가자(Run With Me)', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'선우정아(swja)', title:'휘파람', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'선우정아(swja)', title:'삐뚤어졌어', key:'F#m', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'선미(Sunmi)', title:'가시나', key:'Ebm', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'선미(Sunmi)', title:'주인공(Heroine)', key:'G', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'손디아(Sondia)', title:'어른(나의아저씨OST)', key:'A', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'소향(Sohyang)', title:'나언젠간떠날거야(영화\'모아나\'OST)', key:'E', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'송하예(Song Ha Yea)', title:'니소식', key:'B', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'송하예(Song Ha Yea)', title:'새사랑', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'송하예(Song Ha Yea)', title:'사랑이라쓰고이별이라읽어', key:'Ab', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'신예영(Sin Ye-young)', title:'우리왜헤어져야해', key:'G', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'스탠딩 에그(Standing Egg)', title:'Little Star', key:'Eb', difficulty:'', note:'기억이슈'},
+
+  {category:'Kpop ㅅ', singer:'스텔라장(Stella Jang)', title:'빌런(Villain)', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'스텔라장(Stella Jang)', title:'월급은 통장을 스칠뿐', key:'G#m', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅅ', singer:'송지연(Song Ji Yeon)', title:'I Was A Car', key:'F', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅅ', singer:'심규선 (Lucia)', title:'화조도', key:'F#m', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅅ', singer:'심규선 (Lucia)', title:'아라리', key:'G#m', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'심규선 (Lucia)', title:'파탈리테', key:'C#m', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅅ', singer:'수란 (SURAN)', title:'오늘취하면(Feat.창모)(Prod By. SUGA)', key:'G', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'신현희와김루트(SEENROOT)', title:'오빠야', key:'E', difficulty:'', note:'유료곡'},
+
+  {category:'Kpop ㅅ', singer:'숀(SHAUN)', title:'Way Back Home', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅅ', singer:'숀(SHAUN)', title:'닫힌엔딩(Closed Ending)', key:'Em', difficulty:'6키업', note:''},
+  {category:'Kpop ㅅ', singer:'숀(SHAUN)', title:'습관(Bad Habits)', key:'F', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'시유(SeeU)', title:'사랑해줘 사랑해줘 사랑해줘 (愛して愛して愛して)', key:'Ab', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'시소(siso)', title:'사랑이아닌단어로사랑을말해요', key:'B', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'쏠(SOLE)', title:'RIDE(Feat.THAMA)', key:'F', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅅ', singer:'산이(San E)', title:'아는사람얘기', key:'Ab', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'소코도모(sokodomo)', title:'회전목마(Feat.자이언티,원슈타인)(Prod.Slom)', key:'B', difficulty:'', note:''},
+
+  {category:'Kpop ㅅ', singer:'산들(SANDEUL of b1A4)', title:'취기를빌려(취향저격그녀 X 산들)', key:'Db', difficulty:'', note:''}
+
+// --- Kpop ㅇ ---
+  {category:'Kpop ㅇ', singer:'올데이 프로젝트(ALLDAY PROJECT)', title:'FAMOUS', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Love wins all', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'밤편지', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'무릎', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'아이와나의바다', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Love poem', key:'B', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Blueming', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'이름에게', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'이런엔딩', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'비밀의화원', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'좋은날', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Celebrity', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'이지금', key:'E', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'스물셋', key:'Cm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'너랑나', key:'Db', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'분홍신(The Red Shoes)', key:'Bbm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'unlucky', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'strawberry moon', key:'Gb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'드라마(Drama)', key:'C', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'에잇(Prod,Feat.SUGA)', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'어푸(Ah puh)', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'복숭아', key:'A', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'라일락', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'내손을잡아(최고의사랑OST)', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'내꿈은파티시엘(꿈빛파티시엘OST)', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'마쉬멜로우', key:'A', difficulty:'', note:'유료곡'},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Someday (드림하이OST)', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'Coin', key:'Fm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'마음을드려요(사랑의불시착OST)', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'잔소리(With 임슬옹(2AM))', key:'F#', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'사랑이잘(With 오혁)', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'삐삐', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'가을아침', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU)', title:'네모의 꿈', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아이유(IU),하이포', title:'봄사랑벚꽃말고', key:'Gb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이명화(랄랄)', title:'진짜배기', key:'Ebm', difficulty:'', note:'유료곡'},
+  {category:'Kpop ㅇ', singer:'유성은(U Sung Eun)', title:'도망가요(Runaway)', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'아율(Ayul)', title:'여봉봉', key:'C#', difficulty:'', note:'유료곡,5만부터 가능'},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'낙하(With IU)', key:'Cm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'200%', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'어떻게이별까지사랑하겠어, 널사랑하는거지', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'후라이의꿈', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'오랜날오랜밤', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'Love Lee', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'악뮤(AKMU)', title:'DINOSAUR', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'Heaven', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'U & I', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'저녁하늘', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'보여줄게', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'첫눈처럼너에게가겠다(도깨비OST)', key:'Fm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'노래가늘었어', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'손대지마(Don\'t Touch Me)', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'가르치지마', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에일리(Ailee)', title:'Higher(Feat.이루마)', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'알리(Ali)', title:'365일', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'알리(Ali)', title:'펑펑', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'홍연', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'상사화(역적: 백성을훔친도적OST)', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'창귀', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'출항', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'난파', key:'Cm', difficulty:'어려움', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'파아란', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'달그림자', key:'Cm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'안예은(Ahn Ye Eun)', title:'문어의꿈', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이예준(Lee Ye Joon)', title:'이소설의끝을다시써보려해', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이예준(Lee Ye Joon)', title:'미친소리', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이예준(Lee Ye Joon)', title:'그날에나는맘이편했을까', key:'Bb', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅇ', singer:'이예준(Lee Ye Joon)', title:'진심', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'엠씨더맥스(M.C The Max)', title:'사계 (하루살이)', key:'E', difficulty:'', note:'5key'},
+  {category:'Kpop ㅇ', singer:'엠씨더맥스(M.C The Max)', title:'어디에도', key:'F#', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이수(ISU of M.C The Max)', title:'My Way', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이소라(Lee Sora)', title:'사랑이아니라말하지말아요', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이바다(LEEBADA)', title:'야몽음인', key:'C#m', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'신호등', key:'B', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'과제곡(교수님죄송합니다)', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'누구없소(싱어게인63호가수)', key:'G#m', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'가을타나봐', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'에피소드', key:'D', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'잠깐시간될까', key:'C', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅇ', singer:'이무진(Lee Mu-jin)', title:'눈이오잖아(Feat.헤이즈)', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤하(Younha)', title:'오르트구름', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤하(Younha)', title:'사건의지평선', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤하(Younha)', title:'혜성', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤하(Younha)', title:'비밀번호 486', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤하(Younha)', title:'별의조각', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'양다일(Yang Da-Il)', title:'미안해', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'옥상달빛(OKDAL)', title:'수고했어,오늘도', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'구원자(Feat.B.I)', key:'Bbm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'Rose', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'1,2,3,4(원,투,쓰리,포)', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'홀로', key:'Gb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'한숨', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'누구없소(Feat. B.I)', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'World Tour(비행)', key:'C#m', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'My Star', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이하이(Lee Hi)', title:'빨간립스틱(Feat.T(윤미래))', key:'Ebm', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'이선희(Lee Sun-Hee)', title:'인연(동녘바람)', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이선희(Lee Sun-Hee)', title:'그 중에 그대를 만나', key:'', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'유라(Yura)', title:'수영해', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'유라(Yura),공일오비', title:'나의머리는녹색', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'오반(OVAN)', title:'어떻게지내', key:'B', difficulty:'', note:'잘모름'},
+  {category:'Kpop ㅇ', singer:'오반(OVAN)', title:'Flower', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'익스（Ex）', title:'잘부탁드립니다(2005MBC대학가요제대상)', key:'G', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'유다빈밴드', title:'LETTER', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'유다빈밴드', title:'좋지아니한가', key:'Bb', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅇ', singer:'유다빈밴드', title:'WHY', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'임창정(IM CHANG JUNG)', title:'내가저지른사랑', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'임창정(IM CHANG JUNG)', title:'힘든건사랑이아니다', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'임창정(IM CHANG JUNG)', title:'멍청이', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'WOODZ(조승연)', title:'Drowning', key:'Ab', difficulty:'', note:'어려움'},
+  {category:'Kpop ㅇ', singer:'윤종신', title:'좋니', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤종신', title:'환생', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'왁스(WAX)', title:'화장을고치고', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'인순이(Insooni)', title:'거위의꿈', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'임재현(Lim Jae Hyun)', title:'조금취했어(Prod.2soo)', key:'C', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'임재현(Lim Jae Hyun)', title:'사랑에연습이있었다면(Prod. By 2soo)', key:'D', difficulty:'', note:'잘 모름'},
+  {category:'Kpop ㅇ', singer:'이문세', title:'깊은밤을날아서', key:'C', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'이문세', title:'소녀', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'에이치코드(H:CODE)', title:'꿈속에너(Feat.전상근)', key:'D', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'에이치코드(H:CODE)', title:'그대없는밤에(Feat.전상근)', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'원슈타인(Wonstein)', title:'존재만으로(스물다섯스물하나OST)', key:'G', difficulty:'', note:'브릿지 모름'},
+  {category:'Kpop ㅇ', singer:'원슈타인(Wonstein)', title:'안아름답고도안아프구나', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'ASH ISLAND(애쉬 아일랜드)', title:'작별인사(Feat.Paul Blanco)', key:'Bbm', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'ASH ISLAND(애쉬 아일랜드)', title:'Beautiful', key:'B', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'ASH ISLAND(애쉬 아일랜드)', title:'OST(Feat.CHANMINA)', key:'Eb', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'ASH ISLAND(애쉬 아일랜드)', title:'멜로디', key:'Eb', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'유재하', title:'사랑하기때문에', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이구이 (IGWI)', title:'사랑없는노래(리얼:타임:러브3 OST)', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤도현밴드(Yoon Do Hyun Band)', title:'나는나비', key:'B', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'윤도현밴드(Yoon Do Hyun Band)', title:'흰수염고래(Blue whale)', key:'C', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'윤도현밴드(Yoon Do Hyun Band)', title:'담배가게아가씨', key:'Em', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅇ', singer:'아야츠노 유니(Ayatsuno Yuni)', title:'SUPADOPA', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅇ', singer:'이젤(EJel)', title:'봄은 내 안티', key:'', difficulty:'', note:''}
+
+// --- Kpop ㅈ ---
+  {category:'Kpop ㅈ', singer:'잔나비(Jannabi)', title:'주저하는연인들을위해', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'잔나비(Jannabi)', title:'사랑하긴했었나요스쳐가는인연이었나요짧지않은...', key:'Dm', difficulty:'어려움', note:''},
+  {category:'Kpop ㅈ', singer:'잔나비(Jannabi)', title:'투게더!', key:'A', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'No Make Up', key:'A', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'Complex', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'양화대교(Yanghwa BRDG)', key:'D#m', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'Comedian', key:'Bbm', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'멋지게인사하는법(Feat.슬기(레드벨벳))', key:'E', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'자이언티(Zion.T)', title:'V(Peace)(Feat.AKMU(악뮤))', key:'Bb', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'장범준(Jang Beom June)', title:'흔들리는꽃들속에서네샴푸향이느껴진거야(멜로가체질OST)', key:'B', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'정효빈(Jeong Hyo Bean)', title:'이제는어떻게사랑을하나요(연애의참견시즌3 OST)', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'정효빈(Jeong Hyo Bean)', title:'거울에게', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'정효빈(Jeong Hyo Bean)', title:'달라진니마음', key:'Db', difficulty:'', note:'연습중'},
+
+  {category:'Kpop ㅈ', singer:'정은지(Jeong Eun Ji)', title:'하늘바라기(Feat.하림)', key:'Eb', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'정키 (Jung Key)', title:'홀로 (Feat. 김나영)', key:'Ab', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅈ', singer:'정키 (Jung Key)', title:'잊혀지다(Feat. 양다일)', key:'G', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'정준일(Jung jun il)', title:'안아줘', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'정준일(Jung jun il)', title:'첫눈(도깨비OST)', key:'E', difficulty:'', note:'연습중'},
+
+  {category:'Kpop ㅈ', singer:'장덕철', title:'그날처럼', key:'Eb', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'정승환(Jung Seung Hwan)', title:'눈사람', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'정승환(Jung Seung Hwan)', title:'너였다면(또오해영OST)', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'정승환(Jung Seung Hwan)', title:'언제라도어디에서라도', key:'Ab', difficulty:'', note:'연습중'},
+
+  {category:'Kpop ㅈ', singer:'죠지(george)', title:'camping everywhere', key:'D', difficulty:'', note:'1절'},
+  {category:'Kpop ㅈ', singer:'죠지(george)', title:'Boat', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'죠지(george)', title:'바라봐줘요', key:'Db', difficulty:'', note:'연습중'},
+
+  {category:'Kpop ㅈ', singer:'제시(Jessi)', title:'제시(Jessi)', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅈ', singer:'제시(Jessi)', title:'ZOOM', key:'Eb', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'주시크(Joosiq)', title:'너를생각해', key:'Bb', difficulty:'', note:''},
+
+  {category:'Kpop ㅈ', singer:'정인(Jeong-In)', title:'장마(Rainy Season)', key:'F#', difficulty:'', note:'완벽 카피X'}
+
+// --- Kpop ㅊ ---
+  {category:'Kpop ㅊ', singer:'창모(CHANGMO)', title:'METEOR', key:'Ab', difficulty:'', note:''},
+
+  {category:'Kpop ㅊ', singer:'체리필터(Cherry Filter)', title:'오리날다', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'체리필터(Cherry Filter)', title:'낭만고양이', key:'Bb', difficulty:'', note:''},
+
+  {category:'Kpop ㅊ', singer:'최예근(YEGNY)', title:'어른', key:'Am', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅊ', singer:'최예근(YEGNY)', title:'Super moon(Feat.일도 Of 이천원)', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'최예근(YEGNY)', title:'고릴라', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'최예근(YEGNY)', title:'파렴치(Shameless)', key:'Bbm', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'최예근(YEGNY)', title:'춘래불사춘(春來不似春)', key:'Ad', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅊ', singer:'청하 (CHUNG HA)', title:'Roller Coaster', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'청하 (CHUNG HA)', title:'벌써 12시', key:'Ebm', difficulty:'', note:''},
+
+  {category:'Kpop ㅊ', singer:'첸 (CHEN of EXO)', title:'사월이지나면우리헤어져요', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'첸(CHEN),펀치(Punch)', title:'Everytime(태양의후예OST)', key:'Eb', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅊ', singer:'찬열(CHANYEOL),펀치(Punch)', title:'Stay With Me(도깨비OST)', key:'Cm', difficulty:'', note:''},
+
+  {category:'Kpop ㅊ', singer:'최유리', title:'숲', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅊ', singer:'최유리', title:'동그라미', key:'Ab', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅊ', singer:'최유리', title:'잘지내자, 우리', key:'G', difficulty:'', note:'연습중'},
+
+  {category:'Kpop ㅊ', singer:'치즈,스텔라장', title:'31', key:'E', difficulty:'', note:'완벽 카피X'}
+
+// --- Kpop ㅋ ---
+  {category:'Kpop ㅋ', singer:'케이시 (Kassy)', title:'그때가좋았어', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅋ', singer:'케이시 (Kassy)', title:'가을밤떠난너', key:'B', difficulty:'', note:''},
+
+  {category:'Kpop ㅋ', singer:'콜드(Colde)', title:'와르르 ♥', key:'E', difficulty:'', note:'완벽 카피X'},
+
+  {category:'Kpop ㅋ', singer:'크러쉬(Crush)', title:'SOFA', key:'Db', difficulty:'', note:''},
+  {category:'Kpop ㅋ', singer:'크러쉬(Crush)', title:'Beautiful(도깨비OST)', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅋ', singer:'크러쉬(Crush)', title:'가끔(Sometimes)', key:'D', difficulty:'', note:'1절'},
+  {category:'Kpop ㅋ', singer:'크러쉬(Crush)', title:'잊어버리지마(Feat.태연)', key:'C', difficulty:'', note:''},
+  {category:'Kpop ㅋ', singer:'크러쉬(Crush)', title:'놓아줘(With 태연)', key:'G', difficulty:'', note:''},
+
+  {category:'Kpop ㅋ', singer:'크르르(Krr)', title:'무슨 관계 (Between us)', key:'D', difficulty:'', note:''},
+
+  {category:'Kpop ㅋ', singer:'CAMO(카모)', title:'Life is Wet(Feat.JMIN)', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅋ', singer:'CAMO(카모)', title:'생각해봤어', key:'G#m', difficulty:'', note:''},
+
+  {category:'Kpop ㅋ', singer:'KIXO(키조)', title:'내가바보라서그래?', key:'Bb', difficulty:'', note:''}
+
+// --- Kpop ㅌ ---
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'I(Feat.버벙진트(Verbal Jint))', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'What Do I Call You', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'INVU', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'U R', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'Rain', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'Fine', key:'G', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'사계(Four Seasons)', key:'Ebm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'그대라는시(호텔델루나OST)', key:'A', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'11:11', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'Can\'t Control Myself', key:'Ebm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'To. X', key:'Cm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'숨겨진세상(겨울왕국 2 OST)', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'Weekend', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'This Christmas', key:'Cm', difficulty:'', note:''},
+  {category:'Kpop ㅌ', singer:'태연(Taeyeon)', title:'불티(Spark)', key:'C#m', difficulty:'', note:''},
+
+  {category:'Kpop ㅌ', singer:'태양(TAEYANG)', title:'눈, 코, 입(Eyes,Nose,Lips)', key:'C', difficulty:'', note:''},
+
+  {category:'Kpop ㅌ', singer:'터치드(TOUCHED)', title:'Highlight', key:'Bm', difficulty:'', note:''},
+
+  {category:'Kpop ㅌ', singer:'TOIL(토일)', title:'검정색하트(Feat.릴러말즈,BE\'O(비오))', key:'G#m', difficulty:'', note:''},
+
+  {category:'Kpop ㅌ', singer:'TOIL(토일),Gist(지스트)', title:'거짓말처럼(남은인생 10년 X TOIL,Gist)', key:'D', difficulty:'', note:''},
+
+  {category:'Kpop ㅌ', singer:'TOIL(토일),Gist(지스트)', title:'몇번의여름(여름날우리 X TOIL,Gist)', key:'Eb', difficulty:'', note:''}
+
+// --- Kpop ㅍ ---
+  {category:'Kpop ㅍ', singer:'폴킴(Paul Kim)', title:'너를만나', key:'C', difficulty:'옥타브', note:''},
+  {category:'Kpop ㅍ', singer:'폴킴(Paul Kim)', title:'모든날, 모든순간(yours)', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'폴킴(Paul Kim)', title:'초록빛(yours)', key:'C', difficulty:'7키 업', note:'완벽 카피X'},
+  {category:'Kpop ㅍ', singer:'펀치(Punch)', title:'밤이 되니까', key:'Dm', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'Paul Blanco(폴 블랑코)', title:'Summer(Feat.BE\'O(비오))', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'Paul Blanco(폴 블랑코)', title:'그런일은', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'Paul Blanco(폴 블랑코)', title:'믿어(Feat.크러쉬)', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'Paul Blanco(폴 블랑코)', title:'Every Night', key:'Bb', difficulty:'', note:''},
+  {category:'Kpop ㅍ', singer:'PATEKO(파테코)', title:'Rainy day(Feat.ASH ISLAND,스키니브라운)', key:'D', difficulty:'', note:''}
+
+// --- Kpop ㅎ ---
+
+  {category:'Kpop ㅎ', singer:'혁오(HYUKOH)', title:'위잉위잉', key:'F', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'혁오(HYUKOH)', title:'Tomboy', key:'Eb', difficulty:'6키업', note:''},
+  {category:'Kpop ㅎ', singer:'혁오(HYUKOH)', title:'와리가리(Comes And Goes)', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'오혁', title:'소녀(응답하라1988 OST)', key:'Eb', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'헤이즈(Heize)', title:'널너무모르고', key:'Em', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'헤이즈(Heize)', title:'헤픈우연', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'헤이즈(Heize)', title:'비도오고그래서(Feat.신용재)', key:'C#m', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'하현우(Ha Hyun Woo)', title:'Lazenca, Save Us(우리동네음악대장)', key:'Ebm', difficulty:'', note:'유료곡'},
+  {category:'Kpop ㅎ', singer:'하리(Hari)', title:'귀요미송', key:'C', difficulty:'', note:'유료곡'},
+  {category:'Kpop ㅎ', singer:'화사(Hwasa)', title:'멍청이(twit)', key:'Fm', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'화사(Hwasa)', title:'마리아', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'화사(Hwasa)', title:'I Love My Body', key:'B', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop ㅎ', singer:'황인욱(Hwang In-Wook)', title:'포장마차', key:'D', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'황인욱(Hwang In-Wook)', title:'플러팅', key:'D', difficulty:'', note:'연습중'},
+  {category:'Kpop ㅎ', singer:'하은(라코스테남)', title:'신용재', key:'', difficulty:'4카', note:''},
+  {category:'Kpop ㅎ', singer:'홍광호', title:'데스노트(뮤지컬\'데스노트\'OST)', key:'Am', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'현진영', title:'소리쳐봐(Break Me Down)', key:'Bm', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'효정(HYOJUNG)', title:'내꼬해송', key:'', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'효정(HYOJUNG)', title:'얌얌송', key:'', difficulty:'', note:''},
+  {category:'Kpop ㅎ', singer:'효정(HYOJUNG)', title:'오또케송', key:'', difficulty:'', note:''},
+
+// --- Kpop_idol 전체 ---
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'화', key:'F#m', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'덤디덤디', key:'E', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'한(-)', key:'A', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'LATATA', key:'Am', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Lion', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Oh My God', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Senorita', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'TOMBOY', key:'G#m', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Nxde', key:'Am', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'퀸카(Queencard)', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'나는 아픈 건 딱 질색이니까', key:'C', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Uh-Oh', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'Super Lady', key:'Em', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'클락션(Klaxon)', key:'G', difficulty:'', note:'완벽 카피X'},
+  {category:'Kpop 아이돌', singer:'(여자)아이들(G)I-DLE', title:'MY BAG', key:'G#m', difficulty:'', note:''},
+
+  {category:'Kpop 아이돌', singer:'2NE1(투애니원)', title:'그리워해요', key:'C', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'2NE1(투애니원)', title:'I Don\'t care', key:'E', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'2NE1(투애니원)', title:'UGLY', key:'Ab', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'2NE1(투애니원)', title:'내가 제일 잘나가', key:'Cm', difficulty:'', note:''},
+
+  {category:'Kpop 아이돌', singer:'4minute(포미닛)', title:'미쳐', key:'Gm', difficulty:'', note:''},
+  {category:'Kpop 아이돌', singer:'4minute(포미닛)', title:'이름이뭐예요?(What\'s Your Name)', key:'Bm', difficulty:'', note:''},
+
+  // --- Kpop_idol ㄱ ---
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: "걸스데이(GIRL'S DAY)",
+    title: 'Something',
+    key: 'F#m',
+    difficulty: '',
+    note: ''
+  },
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: "걸스데이(GIRL'S DAY)",
+    title: 'Darling',
+    key: 'D',
+    difficulty: '',
+    note: ''
+  },
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: "걸스데이(GIRL'S DAY)",
+    title: '반짝반짝',
+    key: 'Dm',
+    difficulty: '',
+    note: '완벽 카피X'
+  },
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: "걸스데이(GIRL'S DAY)",
+    title: '여자대통령',
+    key: 'F#m',
+    difficulty: '',
+    note: ''
+  },
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: "갓더비트(GOT the beat)",
+    title: 'Step Back',
+    key: 'Bbm4',
+    difficulty: '',
+    note: ''
+  },
+  {
+    category: 'kpop 아이돌 ㄱ',
+    singer: '(여자)아이들 (G)I-DLE',
+    title: 'LATATA',
+    key: 'Am',
+    difficulty: '',
+    note: ''
+  },
+
+
+  // --- Kpop_idol ㄴ ---
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Ditto', key: 'A', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'OMG', key: 'Dm', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Hype boy', key: 'G', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Attention', key: 'Bb', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'ETA', key: 'Bbm', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Bubble Gum', key: 'F#m', difficulty: '', note: '완벽 카피X'},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Supernatural', key: 'Db', difficulty: '', note: '완벽 카피X'},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Cookie', key: 'Em', difficulty: '', note: ''},
+  {category: 'kpop 아이돌 ㄴ', singer: '뉴진스(New Jeans)', title: 'Super Shy', key: 'Fm', difficulty: '', note: ''},
+
+
+// --- Kpop_idol ㄷ ---
+  { category: 'kpop 아이돌 ㄷ', singer: '데이식스(DAY6)', title: 'HAPPY', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄷ', singer: '데이식스(DAY6)', title: '한페이지가될수있게', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄷ', singer: '데이식스(DAY6)', title: '예뻤어', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄷ', singer: '데이식스(DAY6)', title: 'Welcome to the Show', key: 'A', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㄷ', singer: '데이식스(DAY6)', title: 'Love me or Leave me', key: 'F#m', difficulty: '', note: '완벽 카피X' },
+
+  // --- Kpop_idol ㄹ ---
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Psycho', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Feel My Rhythm', key: 'Db', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: '러시안룰렛', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: '피카부(Peek-A-Boo)', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: '빨간맛', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Ice Cream Cake', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: '행복(Happiness)', key: 'Bb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Dumb Dumb', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: '음파음파', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Rookie', key: 'G#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳(RedVelvet)', title: 'Power Up', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '레드벨벳 (조이)', title: '안녕(Hello)', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '라이즈(RIIZE)', title: 'Boom Boom Bass', key: 'Cm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㄹ', singer: '라이즈(RIIZE)', title: 'Love 119', key: 'Eb', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㄹ', singer: '라이즈(RIIZE)', title: 'Get A Guitar', key: 'Ab', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '라이즈(RIIZE)', title: 'Talk Saxy', key: 'Fm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㄹ', singer: '라이즈(RIIZE)', title: 'Siren', key: 'Bm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '러블리즈', title: 'Ah-Choo', key: 'F', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '러블리즈', title: 'Candy Jelly Love', key: 'C', difficulty: '', note: '잘모름' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'FEARLESS', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'UNFORGIVEN', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'ANTIFRAGILE', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'Smart', key: 'Db', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'EASY', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '르세라핌(LE SSERAFIM)', title: 'Blue Flame', key: 'Em', difficulty: '', note: '브릿지 모름' },
+  { category: 'kpop 아이돌 ㄹ', singer: '이브, 프시케그리고푸른수염의아내', title: '', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㄹ', singer: '이브, 프시케그리고푸른수염의아내', title: 'Good Parts(when the quality is bad but I am)', key: 'C', difficulty: '', note: '' },
+
+// --- Kpop_idol ㅁ ---
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: 'Decalcomanie', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: '음오아예(Um Oh Ah Yeh)', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: '너나해(Egotistic)', key: 'Ebm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: 'HIP', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: '넌 is 뭔들', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: '별이빛나는밤', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '마마무(MAMAMOO)', title: '나로말할것같으면', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅁ', singer: '모모랜드', title: '뿜뿜', key: 'Ebm', difficulty: '', note: '' },
+
+  // --- Kpop_idol ㅂ ---
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'No More Dream', key: 'Gm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '팔도강산', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '어디에서 왔는지', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '쩔어', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '상남자 (Boy In Luv)', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'BTS Cypher PT.3 : KILLER (Feat. Supreme Boi)', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'I NEED U', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'RUN', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Save ME', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '불타오르네 (FIRE)', key: 'D#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'BTS Cypher 4', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '피 땀 눈물', key: 'Cm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Not Today', key: 'Cm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '봄날', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '고민보다 Go', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'MIC Drop', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'DNA', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'FAKE LOVE', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'IDOL', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Euphoria', key: 'Bm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '작은 것들을 위한 시 (Boy With Luv) (Feat. Halsey)', key: 'Bm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Dynamite', key: 'C#m', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Butter', key: 'Ab', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: 'Butterfly', key: 'Db', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '방탄소년단(BTS)', title: '소우주(Mikrokosmos)', key: 'Eb', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '비투비(BTOB)', title: '그리워하다', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '비투비(BTOB)', title: '너없인안된다', key: 'C', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '비투비(BTOB)', title: '아름답고도아프구나', key: 'Db', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '빅뱅(BIGBANG)', title: '봄여름가을겨울(Still Life)', key: 'Ab', difficulty: '', note: '1절' },
+  { category: 'kpop 아이돌 ㅂ', singer: '빅뱅(BIGBANG)', title: '꽃길', key: 'E', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅂ', singer: '빅뱅(BIGBANG)', title: '에라모르겠다(FXXK IT)', key: 'Cm', difficulty: '', note: '1절' },
+  { category: 'kpop 아이돌 ㅂ', singer: '빅뱅(BIGBANG)', title: '뱅뱅뱅(BANG BANG BANG)', key: 'Cm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '빅뱅(BIGBANG)', title: 'If You', key: 'Bbm', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Lovesick Girls', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: '휘파람(WHISTLE)', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: '불장난', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'How You Like That', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: '마지막처럼', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: '뚜두뚜두(DDU-DU DDU-DU)', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Forever Young', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'STAY', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Pink Venom', key: 'Em', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Shut Down', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: '붐바야(BOOMBAYAH)', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Kill This Love', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(BLACKPINK)', title: 'Pretty Savage', key: 'Am', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(제니)/JENNIE', title: 'SOLO', key: 'Gb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(지수)/JISOO', title: '꽃', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(로제)/ROSE', title: 'APT.', key: 'Cm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블랙핑크(로제)/ROSE', title: 'On The Ground', key: 'Bbm', difficulty: '', note: '잘모름' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '블락비(Block B)', title: 'HER', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블락비(Block B)', title: 'Jackpot', key: 'Dm', difficulty: '', note: '잘모름' },
+  { category: 'kpop 아이돌 ㅂ', singer: '블락비바스타즈(Block B Bastarz)', title: '품행제로', key: 'Fm', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅂ', singer: '베이비몬스터(BABYMONSTER)', title: 'SHEESH', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '베이비몬스터(BABYMONSTER)', title: 'BATTER UP', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅂ', singer: '베이비몬스터(BABYMONSTER)', title: 'DRIP', key: 'C#m', difficulty: '', note: '' },
+
+  // --- Kpop_idol ㅅ ---
+  { category: 'kpop 아이돌 ㅅ', singer: '세븐틴 (SEVENTEEN)', title: '예쁘다', key: 'Eb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '세븐틴 (SEVENTEEN)', title: '아주 NICE', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '세븐틴 (SEVENTEEN)', title: '박수', key: 'Bbm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅅ', singer: '세븐틴 (SEVENTEEN)', title: '손오공', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '세븐틴(부석순)', title: '파이팅해야지(Feat.이영지)', key: 'Em', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅅ', singer: '소녀시대(Girls\' Generation)', title: '다시만난세계', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '소녀시대(Girls\' Generation)', title: 'Gee', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '소녀시대(Girls\' Generation)', title: '소원을말해봐(Genie)', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '소녀시대(Girls\' Generation)', title: 'Lion Heart', key: 'D', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '소녀시대(Girls\' Generation)', title: 'FOREVER 1', key: 'A', difficulty: '', note: '잘모름' },
+
+  { category: 'kpop 아이돌 ㅅ', singer: '씨스타(SISTAR)', title: 'Shake It', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '씨스타(SISTAR)', title: 'Give It To Me', key: 'Gm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '씨스타(SISTAR)', title: 'Touch My Body', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '씨스타(SISTAR)', title: 'Loving U(러빙유)', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '씨스타(SISTAR)', title: '나혼자', key: 'Em', difficulty: '', note: '완벽 카피X' },
+
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'RUN2U', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'Poppy(Korean Ver.)', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'SO BAD', key: 'Gm', difficulty: '', note: '잘모름' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: '색안경(STEREOTYPE)', key: 'Gb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'Teddy Bear', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'ASAP', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'Bubbl', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅅ', singer: '스테이씨', title: 'BEAUTIFUL MONSTER', key: 'Gb', difficulty: '', note: '완벽 카피X' },
+
+  // --- Kpop_idol ㅇ ---
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Whiplash', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Supernova', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Armageddon', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Savage', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Next Level', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Drama', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Black Mamba', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Girls', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Thirsty', key: 'Db', difficulty: '', note: '1절' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Spicy', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: '도깨비불(Illusion)', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'Dreams Come True', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에스파(aespa)', title: 'UP(KARINA Solo)', key: 'C#m', difficulty: '', note: '1절' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '아일릿(ILLIT)', title: 'Magnetic', key: 'Bbm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아일릿(ILLIT)', title: 'Cherish(My Love)', key: 'C#m', difficulty: '', note: '연습중' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아일릿(ILLIT)', title: 'Tick-Tack', key: 'Bm', difficulty: '', note: '연습중' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'After LIKE', key: 'C', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'Kitsch', key: 'B', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'ELEVEN', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'LOVE DIVE', key: 'C#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'I AM', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: '해야(HEYA)', key: 'Fm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'REBEL HEART', key: 'G', difficulty: '', note: '잘모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이브(IVE)', title: 'Baddie', key: 'C', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '아이오아이(I.O.I)', title: '소나기', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이오아이(I.O.I)', title: '너무너무너무', key: 'Em', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: 'Panorama', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: 'FIESTA', key: 'D', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: '라비앙로즈(La Vie en Rose)', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: '비올레타', key: 'G', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: 'Airplane', key: 'Gb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '아이즈원(IZ*ONE)', title: '환상동화(Secret Story of the Swan)', key: 'Gm', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '워너원(Wanna One)', title: '에너제틱(Energetic)', key: 'Dm', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '여자친구', title: '시간을달려서(Rough)', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '여자친구', title: '오늘부터우리는(Me Gustas Tu)', key: 'Ab', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '여자친구', title: '너그리고나(NAVILLERA)', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '여자친구', title: '유리구슬(Glass Bead)', key: 'D#m', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '아이콘(iKON)', title: '사랑을했다(LOVE SCENARIO)', key: 'Em', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '위너(WINNER)', title: 'Really Really', key: 'D', difficulty: '', note: '1절' },
+  { category: 'kpop 아이돌 ㅇ', singer: '위너(WINNER)', title: '끼부리지마', key: 'Bbm', difficulty: '', note: '잘모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '위너(WINNER)', title: 'AH YEAH', key: 'G', difficulty: '', note: '잘모름' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸', title: 'Dolphin', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸', title: '비밀정원', key: 'G', difficulty: '', note: '브릿지 모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸', title: '불꽃놀이(Remember Me)', key: 'G', difficulty: '', note: '브릿지 모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸', title: '살짝설렜어(Nonstop)', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸', title: 'Dun Dun Dance', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '오마이걸(유아)', title: '숲의아이(Bon voyage)', key: 'D', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '이세계아이돌', title: 'RE: WIND', key: 'C', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '이세계아이돌', title: 'LOCKDOWN', key: 'F#m', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '에이핑크(Apink)', title: 'Mr.Chu', key: 'E', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에이핑크(Apink)', title: 'NoNoNo', key: 'E', difficulty: '', note: '브릿지 모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에이핑크(Apink)', title: 'Luv', key: 'F#m', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에이핑크(Apink)', title: 'Remember', key: 'F#', difficulty: '', note: '완벽 카피X' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: 'O.O', key: 'Em', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: '별별별(See that?)', key: 'Gm', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: 'DASH', key: 'Cm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: 'DICE', key: 'Gm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: 'Love Me Like This', key: 'G#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스(NMIXX)', title: 'Sonar(Breaker)', key: 'G', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엔믹스 (혜원)', title: '마루는강쥐', key: 'A', difficulty: '유료곡', note: '완벽 카피X' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '에이오에이(A.O.A)', title: '짧은치마(Miniskirt)', key: 'Gm', difficulty: '', note: '1절' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에이오에이(A.O.A)', title: '심쿵해(Heart Attack)', key: 'Am', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '에이오에이(A.O.A)', title: '사뿐사뿐', key: 'Fm', difficulty: '', note: '잘모름' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '인피니트', title: '내꺼하자', key: 'Bbm', difficulty: '', note: '랩파트 모름' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: 'Love Me Right', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '중독(Overdose)', key: 'Fm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '나비소녀(Don\'t Go)', key: 'Db', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '으르렁(Growl)', key: 'Bm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: 'Call Me Baby', key: 'Bbm', difficulty: '', note: '랩파트 모름' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '피터팬(Peter Pan)', key: 'Ebm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '12월의기적(Miracles In December)', key: 'Ab', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: 'Baby, Don\'t Cry(인어의눈물)', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: 'Lucky', key: 'D', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '늑대와미녀(Wolf)', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '첫눈', key: 'Bb', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '엑소(EXO)', title: '3.6.5', key: 'Ab', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '엔플라잉(N.Flying)', title: '옥탑방', key: 'Dm', difficulty: '', note: '' },
+
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: '달라달라', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: 'WANNABE', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: '마.피.아. (In the morning )', key: 'F#m', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: 'SNEAKERS', key: 'G', difficulty: '', note: '완벽 카피X' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: 'ICY', key: 'A', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: 'Not Shy', key: 'Dm', difficulty: '', note: '' },
+  { category: 'kpop 아이돌 ㅇ', singer: '있지(ITZY)', title: 'CAKE', key: 'G', difficulty: '', note: '완벽 카피X' }
+
+// --- Kpop_idol ㅊ ---
+[
+  {
+    "category": "Kpop 아이돌",
+    "singer": "최예나",
+    "title": "SMILEY",
+    "key": "A",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "최예나",
+    "title": "Hate Rodrig",
+    "key": "E",
+    "difficulty": "",
+    "note": "잘모름"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "최예나",
+    "title": "네모네모",
+    "key": "Fm",
+    "difficulty": "",
+    "note": "연습중"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "최예나",
+    "title": "Love War (Feat.BE‘O)",
+    "key": "Cm",
+    "difficulty": "",
+    "note": "연습중"
+  }
+
+  // --- Kpop_idol ㅋ ---
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "내이름맑음",
+    "key": "G",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "고민중독",
+    "key": "G",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "Discord",
+    "key": "Dm",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "가짜아이돌",
+    "key": "Fm",
+    "difficulty": "",
+    "note": "완벽 카피X"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "별의하모니",
+    "key": "Bb",
+    "difficulty": "",
+    "note": "잘모름"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "눈물참기",
+    "key": "A",
+    "difficulty": "",
+    "note": ""
+  }
+
+  // --- Kpop_idol ㅌ ---
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "내이름맑음",
+    "key": "G",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "고민중독",
+    "key": "G",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "Discord",
+    "key": "Dm",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "가짜아이돌",
+    "key": "Fm",
+    "difficulty": "",
+    "note": "완벽 카피X"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "별의하모니",
+    "key": "Bb",
+    "difficulty": "",
+    "note": "잘모름"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "큐더블유이알(QWER)",
+    "title": "눈물참기",
+    "key": "A",
+    "difficulty": "",
+    "note": ""
+  }
+
+  // --- Kpop_idol ㅍ ---
+  {
+    "category": "Kpop 아이돌",
+    "singer": "펜타곤(PENTAGON)",
+    "title": "빛나리",
+    "key": "Eb",
+    "difficulty": "",
+    "note": "숙지 미달"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "프로미스나인(fromis_9)",
+    "title": "Supersonic",
+    "key": "A",
+    "difficulty": "",
+    "note": "완벽 카피X"
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "프로미스나인(이서연)",
+    "title": "너는나나는너",
+    "key": "Cm",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "피프티피프티(FIFTY FIFTY)",
+    "title": "Cupid",
+    "key": "D",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "플레이브(PLAVE)",
+    "title": "Pump Up The Volume!",
+    "key": "E",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "Kpop 아이돌",
+    "singer": "플레이브(PLAVE)",
+    "title": "버추얼아이돌",
+    "key": "D",
+    "difficulty": "",
+    "note": "완벽 카피X"
+  }
+
+  // --- Kpop_idol ㅎ ---
+  {
+    "category": "Kpop 아이돌 ㅎ",
+    "singer": "하이키(H1-KEY)",
+    "title": "건물사이에피어난장미(Rose Blossom)",
+    "key": "Gb",
+    "difficulty": "",
+    "note": ""
+  },
+
+// --- pop a ---
+  {
+    "category": "pop a",
+    "singer": "Anne Marie",
+    "title": "2002",
+    "key": "C#m",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Anne Marie",
+    "title": "Birthday",
+    "key": "B",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Anne Marie",
+    "title": "FRIENDS",
+    "key": "Am",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Anne Marie",
+    "title": "Ciao adios",
+    "key": "G",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Adele",
+    "title": "Hello",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Adele",
+    "title": "Some one like you",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Adele",
+    "title": "My Same",
+    "key": "Em",
+    "difficulty": "",
+    "note": "1절"
+  },
+  {
+    "category": "pop a",
+    "singer": "Adele",
+    "title": "Rolling in the Deep",
+    "key": "",
+    "difficulty": "",
+    "note": "잘 모름"
+  },
+  {
+    "category": "pop a",
+    "singer": "Abir",
+    "title": "Tango",
+    "key": "",
+    "difficulty": "",
+    "note": "1절"
+  },
+  {
+    "category": "pop a",
+    "singer": "Alessia Cara",
+    "title": "Scars to Your Beautiful",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Ariana Grande",
+    "title": "Almost Is Never Enough(ft. Nathan Sykes)",
+    "key": "",
+    "difficulty": "",
+    "note": "여자 파트만"
+  },
+  {
+    "category": "pop a",
+    "singer": "Ariana Grande",
+    "title": "Santa tell me",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop a",
+    "singer": "Alan Walker",
+    "title": "The Drum",
+    "key": "F#",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop b ---
+  {
+    "category": "pop b",
+    "singer": "Billie Eilish",
+    "title": "Bad Guy",
+    "key": "C#m",
+    "difficulty": "",
+    "note": "브릿지 모름"
+  },
+  {
+    "category": "pop b",
+    "singer": "Bishop Briggs",
+    "title": "River",
+    "key": "Dm",
+    "difficulty": "어려움",
+    "note": ""
+  },
+  {
+    "category": "pop b",
+    "singer": "Buster Poindexter",
+    "title": "Hit the road Jack",
+    "key": "",
+    "difficulty": "",
+    "note": "잘모름"
+  },
+
+// --- pop c ---
+  {
+    "category": "pop c",
+    "singer": "Christopher",
+    "title": "Bad",
+    "key": "",
+    "difficulty": "",
+    "note": "브릿지 모름"
+  },
+  {
+    "category": "pop c",
+    "singer": "Conan Gray",
+    "title": "Maniac",
+    "key": "Ab",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop c",
+    "singer": "CIL",
+    "title": "One More Shot",
+    "key": "Ab",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop d ---
+  {
+    "category": "pop d",
+    "singer": "Dua Lipa",
+    "title": "Thinking 'bout you",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop f ---
+  {
+    "category": "pop f",
+    "singer": "Fool's Garden",
+    "title": "Lemon Tree",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop f",
+    "singer": "Frank Sinatra",
+    "title": "Fly Me To The Moon",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop f",
+    "singer": "Frank Sinatra",
+    "title": "L-O-V-E",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop g ---
+  {
+    "category": "pop g",
+    "singer": "GAYLE",
+    "title": "abcdefu",
+    "key": "E",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop h ---
+  {
+    "category": "pop h",
+    "singer": "Halsey",
+    "title": "Without me",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop h",
+    "singer": "HUNTR/X",
+    "title": "Golden (KPop Demon Hunters OST)",
+    "key": "Em",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop i ---
+  {
+    "category": "pop i",
+    "singer": "Imagine Dragons",
+    "title": "Radioactive",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop i",
+    "singer": "Imagine Dragons",
+    "title": "Believer",
+    "key": "Bbm",
+    "difficulty": "어려움",
+    "note": "완벽 카피X"
+  },
+  {
+    "category": "pop i",
+    "singer": "Idina Menzel",
+    "title": "Let it Go (겨울왕국 OST)",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop i",
+    "singer": "Idina Menzel",
+    "title": "Into the Unknown (겨울왕국 2 OST)",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop j ---
+  {
+    "category": "pop j",
+    "singer": "Jessi J",
+    "title": "Flashlight",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop j",
+    "singer": "Jessi J",
+    "title": "Price Tag",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop j",
+    "singer": "Justin Bieber",
+    "title": "Love Your Self",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop n ---
+  {
+    "category": "pop n",
+    "singer": "Naomi Scott",
+    "title": "Speechless (알라딘 OST)",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+
+  // --- pop s ---
+  {
+    "category": "pop s",
+    "singer": "Sia",
+    "title": "Chandelier",
+    "key": "C#",
+    "difficulty": "어려움",
+    "note": ""
+  },
+  {
+    "category": "pop s",
+    "singer": "Sia",
+    "title": "Snowman",
+    "key": "C#",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop s",
+    "singer": "salem ilese",
+    "title": "Mad at Disney",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop s",
+    "singer": "Shakira",
+    "title": "Try Everything (주토피아 OST)",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  },
+  {
+    "category": "pop s",
+    "singer": "Sam Ryder",
+    "title": "Tiny Riot",
+    "key": "",
+    "difficulty": "어려움",
+    "note": ""
+  },
+
+  // --- pop t ---
+  {
+    "category": "pop t",
+    "singer": "Tones And I",
+    "title": "Dance Monkey",
+    "key": "",
+    "difficulty": "",
+    "note": ""
+  }
   ];
 
   let currentGenre = '';
