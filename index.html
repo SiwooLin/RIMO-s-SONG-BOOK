@@ -7,6 +7,7 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
+  /* 기본 바디와 중앙 정렬 */
   body {
     background-color: #1f1f1f;
     color: #f0f0f0;
@@ -15,8 +16,9 @@
     margin: 20px auto;
     text-align: center;
   }
+  /* 제목 */
   h1 {
-    color: #ff5c00;
+    color: #ff5300; /* 진하고 화사한 주황 */
     font-size: 4rem;
     margin-bottom: 10px;
     cursor: pointer;
@@ -24,8 +26,8 @@
   }
   /* 필독공지 */
   .important-notice {
-    background: #b1a0e5;
-    color: #3b2d70;
+    background: #b1a0e5; /* 연한 보라 */
+    color: #3b2d70; /* 어두운 보라 */
     padding: 12px 15px;
     border-radius: 8px;
     font-weight: bold;
@@ -33,7 +35,7 @@
     max-width: 860px;
     margin-left: auto;
     margin-right: auto;
-    text-align: left;
+    text-align: center;
   }
   /* 검색창 */
   .search-box {
@@ -46,7 +48,7 @@
     width: 100%;
     padding: 11px 20px;
     font-size: 16px;
-    border-radius: 25px;
+    border-radius: 25px; /* 알약형 */
     border: none;
     outline: none;
     box-sizing: border-box;
@@ -96,7 +98,6 @@
   .btn-circle:hover {
     filter: brightness(0.85);
   }
-
   /* 주황색 테마 (kpop, kpop아이돌, pop 모두 동일) */
   .theme-orange-pill {
     background-color: #ff7a00;
@@ -104,10 +105,9 @@
   .theme-orange-circle {
     background-color: #ffb870;
   }
-
   /* 설명서, 가격표 박스 색상 */
   .doc-section {
-    background: #8c76e0;
+    background: #8c76e0; /* 화사하고 매혹적인 보라 */
     color: #f3ecff;
     padding: 18px 22px;
     border-radius: 12px;
@@ -122,8 +122,8 @@
     font-size: 2rem;
     margin-bottom: 15px;
     color: #ff7a00;
+    text-align: center;
   }
-
   /* 표 스타일 */
   table {
     width: 100%;
@@ -136,7 +136,6 @@
     margin-right: auto;
   }
   thead tr {
-    /* no border lines */
     background-color: #331a00;
   }
   thead th {
@@ -163,7 +162,6 @@
   tbody td:last-child {
     border-right: none;
   }
-
   /* 검색 결과 없을 때 안내 문구 */
   #searchResults {
     max-width: 860px;
@@ -174,7 +172,6 @@
     font-size: 18px;
     min-height: 2em;
   }
-
   /* 카테고리 영역 중앙정렬 */
   .button-row {
     margin-bottom: 25px;
@@ -182,6 +179,13 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+  }
+  /* 윗줄 - 설명서, 가격표 버튼 - 보라 주황 */
+  .btn-doc-pill {
+    background-color: #8c76e0;
+  }
+  .btn-doc-pill:hover {
+    filter: brightness(0.85);
   }
 </style>
 </head>
@@ -197,31 +201,165 @@
   <input type="text" id="search" placeholder="노래 제목, 가수명 등 검색" oninput="searchSongs()" autocomplete="off" />
 </div>
 
-<section id="노래책 설명서" class="doc-section">
-  <h2 class="section-title">노래책 설명서</h2>
-  <p>•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)</p>
-  <p>•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.<br>(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)</p>
-  <p>•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.</p>
-  <p>•추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
-  <p>❌과도한 평가와 훈수는 자제해주세요❌</p>
-</section>
-
-<section id="가격표" class="doc-section" style="display:none;">
-  <h2 class="section-title">가격표</h2>
-  <p>•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
-  <p>•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
-  <p>•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.</p>
-  <p>•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
-</section>
-
-<!-- 설명서 / 가격표 버튼 -->
-<div class="button-row">
-  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
-  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('가격표')">가격표</button>
+<!-- 노래책 설명서 & 가격표 -->
+<div class="button-row" id="docButtons">
+  <button class="category-btn btn-pill btn-doc-pill" onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
+  <button class="category-btn btn-pill btn-doc-pill" onclick="filterCategory('가격표')">가격표</button>
 </div>
 
-<!-- Kpop 전체 + ㄱ~ㅎ -->
-<div class="button-row">
+<!-- Kpop, Kpop 아이돌, Pop 카테고리 버튼 -->
+<div class="button-row" id="genreButtons">
   <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Kpop 전체')">Kpop 전체</button>
-  <span>
-    <button class="category-btn btn-circle
+  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Kpop아이돌 전체')">Kpop아이돌 전체</button>
+  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Pop 전체')">Pop 전체</button>
+</div>
+
+<!-- Kpop ㄱ~ㅎ -->
+<div class="button-row" id="kpopInitials">
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄱ')">ㄱ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄴ')">ㄴ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄷ')">ㄷ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄹ')">ㄹ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅁ')">ㅁ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅂ')">ㅂ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅅ')">ㅅ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅇ')">ㅇ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅈ')">ㅈ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅊ')">ㅊ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅋ')">ㅋ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅌ')">ㅌ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅍ')">ㅍ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅎ')">ㅎ</button>
+</div>
+
+<!-- Kpop아이돌 ㄱ~ㅎ -->
+<div class="button-row" id="kpopIdolInitials">
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄱ')">ㄱ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄴ')">ㄴ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄷ')">ㄷ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄹ')">ㄹ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅁ')">ㅁ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅂ')">ㅂ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅅ')">ㅅ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅇ')">ㅇ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅈ')">ㅈ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅊ')">ㅊ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅋ')">ㅋ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅌ')">ㅌ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅍ')">ㅍ</button>
+  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅎ')">ㅎ</button>
+</div>
+
+<!-- Pop a~z -->
+<div class="button-row" id="popInitials">
+  <!-- a~z 버튼을 두줄로 나누어 중앙 정렬 -->
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div style="margin-bottom: 10px;">
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop a')">a</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop b')">b</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop c')">c</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop d')">d</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop e')">e</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop f')">f</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop g')">g</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop h')">h</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop i')">i</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop j')">j</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop k')">k</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop l')">l</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop m')">m</button>
+    </div>
+    <div>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop n')">n</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop o')">o</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop p')">p</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop q')">q</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop r')">r</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop s')">s</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop t')">t</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop u')">u</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop v')">v</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop w')">w</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop x')">x</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop y')">y</button>
+      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop z')">z</button>
+    </div>
+  </div>
+</div>
+
+<!-- 노래책 설명서 내용 -->
+<div id="노래책 설명서" class="doc-section" style="display:none; text-align:left;">
+  <div class="section-title">노래책 설명서</div>
+  <ul>
+    <li>•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)</li>
+    <li>•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.<br>  (거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)</li>
+    <li>•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.</li>
+    <li>•추천 곡은 디스코드 노래 추천방에 적어주세요.</li>
+    <li>❌과도한 평가와 훈수는 자제해주세요❌</li>
+  </ul>
+</div>
+
+<!-- 가격표 내용 -->
+<div id="가격표" class="doc-section" style="display:none; text-align:left;">
+  <div class="section-title">가격표</div>
+  <ul>
+    <li>•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.</li>
+    <li>•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.</li>
+    <li>•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.</li>
+    <li>•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.</li>
+  </ul>
+</div>
+
+<!-- 검색 결과 및 테이블 표시 -->
+<div id="searchResults"></div>
+
+<script>
+  // 가상의 노래 데이터 예시 (실제로는 사용자 데이터 넣으세요)
+  const songs = [
+    // Kpop 예시
+    { category: 'Kpop 전체', title: 'Dynamite', singer: 'BTS', code: 'C', difficulty: '중', skill: '고' },
+    { category: 'Kpop ㄱ', title: 'Gangnam Style', singer: 'PSY', code: 'Am', difficulty: '쉬움', skill: '중' },
+    { category: 'Kpop ㄴ', title: 'Nobody', singer: 'Wonder Girls', code: 'G', difficulty: '쉬움', skill: '중' },
+    // Kpop아이돌 예시
+    { category: 'Kpop아이돌 전체', title: 'Ice Cream', singer: 'BLACKPINK', code: 'F', difficulty: '중', skill: '중' },
+    { category: 'Kpop아이돌 ㄱ', title: 'Gee', singer: 'SNSD', code: 'C', difficulty: '쉬움', skill: '초' },
+    // Pop 예시
+    { category: 'Pop 전체', title: 'Shape of You', singer: 'Ed Sheeran', code: 'Dm', difficulty: '중', skill: '고' },
+    { category: 'Pop a', title: 'All of Me', singer: 'John Legend', code: 'Em', difficulty: '중', skill: '중' },
+    { category: 'Pop b', title: 'Bad Guy', singer: 'Billie Eilish', code: 'Bm', difficulty: '어려움', skill: '고' },
+  ];
+
+  // 초기 선택 카테고리
+  let currentCategory = '노래책 설명서';
+
+  function filterCategory(category) {
+    currentCategory = category;
+    document.getElementById('search').value = '';
+    clearTableAndMessage();
+
+    // 설명서 & 가격표 처리
+    if(category === '노래책 설명서') {
+      document.getElementById('노래책 설명서').style.display = 'block';
+      document.getElementById('가격표').style.display = 'none';
+      return;
+    }
+    if(category === '가격표') {
+      document.getElementById('노래책 설명서').style.display = 'none';
+      document.getElementById('가격표').style.display = 'block';
+      return;
+    }
+
+    // 그 외는 숨김
+    document.getElementById('노래책 설명서').style.display = 'none';
+    document.getElementById('가격표').style.display = 'none';
+
+    // 데이터 필터링 및 테이블 출력
+    let filteredSongs = [];
+    if(category.endsWith('전체')) {
+      // 전체: 접두사만 보고 필터
+      let prefix = category.split(' ')[0];
+      filteredSongs = songs.filter(s => s.category.startsWith(prefix));
+    } else {
+      // ㄱ,ㄴ,ㄷ 등 이니셜 필터링 (가수명 첫글자)
+      let [prefix, initial] = category.split(' ');
+      filtered
