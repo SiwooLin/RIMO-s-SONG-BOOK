@@ -16,6 +16,7 @@
     margin: 20px auto;
     text-align: center;
   }
+
   /* 제목 */
   h1 {
     color: #ff5300; /* 진하고 화사한 주황 */
@@ -24,6 +25,7 @@
     cursor: pointer;
     user-select: none;
   }
+
   /* 필독공지 */
   .important-notice {
     background: #b1a0e5; /* 연한 보라 */
@@ -37,6 +39,7 @@
     margin-right: auto;
     text-align: center;
   }
+
   /* 검색창 */
   .search-box {
     margin-bottom: 30px;
@@ -54,6 +57,7 @@
     box-sizing: border-box;
     font-family: 'Jua', sans-serif;
   }
+
   /* 알약형 버튼 공통 */
   .btn-pill {
     font-family: 'Jua', sans-serif;
@@ -75,6 +79,7 @@
   .btn-pill:hover {
     filter: brightness(0.85);
   }
+
   /* 원형 이니셜 버튼 공통 */
   .btn-circle {
     font-family: 'Jua', sans-serif;
@@ -98,6 +103,7 @@
   .btn-circle:hover {
     filter: brightness(0.85);
   }
+
   /* 주황색 테마 (kpop, kpop아이돌, pop 모두 동일) */
   .theme-orange-pill {
     background-color: #ff7a00;
@@ -105,6 +111,7 @@
   .theme-orange-circle {
     background-color: #ffb870;
   }
+
   /* 설명서, 가격표 박스 색상 */
   .doc-section {
     background: #8c76e0; /* 화사하고 매혹적인 보라 */
@@ -124,6 +131,7 @@
     color: #ff7a00;
     text-align: center;
   }
+
   /* 표 스타일 */
   table {
     width: 100%;
@@ -162,8 +170,9 @@
   tbody td:last-child {
     border-right: none;
   }
+
   /* 검색 결과 없을 때 안내 문구 */
-  #searchResults {
+  #searchResultsMessage {
     max-width: 860px;
     margin: 10px auto 40px auto;
     text-align: center;
@@ -172,14 +181,16 @@
     font-size: 18px;
     min-height: 2em;
   }
+
   /* 카테고리 영역 중앙정렬 */
   .button-row {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     max-width: 860px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
   }
+
   /* 윗줄 - 설명서, 가격표 버튼 - 보라 주황 */
   .btn-doc-pill {
     background-color: #8c76e0;
@@ -207,87 +218,29 @@
   <button class="category-btn btn-pill btn-doc-pill" onclick="filterCategory('가격표')">가격표</button>
 </div>
 
-<!-- Kpop, Kpop 아이돌, Pop 카테고리 버튼 -->
+<!-- 장르 선택 -->
 <div class="button-row" id="genreButtons">
-  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Kpop 전체')">Kpop 전체</button>
-  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Kpop아이돌 전체')">Kpop아이돌 전체</button>
-  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Pop 전체')">Pop 전체</button>
+  <button class="category-btn btn-pill theme-orange-pill" onclick="selectGenre('Kpop')">Kpop</button>
+  <button class="category-btn btn-pill theme-orange-pill" onclick="selectGenre('Kpop아이돌')">Kpop아이돌</button>
+  <button class="category-btn btn-pill theme-orange-pill" onclick="selectGenre('Pop')">Pop</button>
 </div>
 
-<!-- Kpop ㄱ~ㅎ -->
-<div class="button-row" id="kpopInitials">
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄱ')">ㄱ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄴ')">ㄴ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄷ')">ㄷ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㄹ')">ㄹ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅁ')">ㅁ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅂ')">ㅂ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅅ')">ㅅ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅇ')">ㅇ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅈ')">ㅈ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅊ')">ㅊ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅋ')">ㅋ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅌ')">ㅌ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅍ')">ㅍ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop ㅎ')">ㅎ</button>
-</div>
+<!-- 전체 + 이니셜 버튼 영역 -->
+<div id="categoryButtonsContainer" style="max-width: 860px; margin: 0 auto;">
 
-<!-- Kpop아이돌 ㄱ~ㅎ -->
-<div class="button-row" id="kpopIdolInitials">
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄱ')">ㄱ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄴ')">ㄴ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄷ')">ㄷ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㄹ')">ㄹ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅁ')">ㅁ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅂ')">ㅂ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅅ')">ㅅ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅇ')">ㅇ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅈ')">ㅈ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅊ')">ㅊ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅋ')">ㅋ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅌ')">ㅌ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅍ')">ㅍ</button>
-  <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Kpop아이돌 ㅎ')">ㅎ</button>
-</div>
+  <!-- 전체 버튼 -->
+  <div class="button-row" id="allButtonsRow" style="display:none;">
+    <!-- 전체 버튼은 알약형, 주황색 -->
+    <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory(currentGenre + ' 전체')">전체</button>
+  </div>
 
-<!-- Pop a~z -->
-<div class="button-row" id="popInitials">
-  <!-- a~z 버튼을 두줄로 나누어 중앙 정렬 -->
-  <div style="max-width: 860px; margin: 0 auto;">
-    <div style="margin-bottom: 10px;">
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop a')">a</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop b')">b</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop c')">c</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop d')">d</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop e')">e</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop f')">f</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop g')">g</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop h')">h</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop i')">i</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop j')">j</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop k')">k</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop l')">l</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop m')">m</button>
-    </div>
-    <div>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop n')">n</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop o')">o</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop p')">p</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop q')">q</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop r')">r</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop s')">s</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop t')">t</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop u')">u</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop v')">v</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop w')">w</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop x')">x</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop y')">y</button>
-      <button class="category-btn btn-circle theme-orange-circle" onclick="filterCategory('Pop z')">z</button>
-    </div>
+  <!-- 이니셜 버튼 -->
+  <div class="button-row" id="initialButtonsRow" style="display:none;">
+
   </div>
 </div>
 
-<!-- 노래책 설명서 내용 -->
+<!-- 설명서 내용 -->
 <div id="노래책 설명서" class="doc-section" style="display:none; text-align:left;">
   <div class="section-title">노래책 설명서</div>
   <ul>
@@ -310,56 +263,218 @@
   </ul>
 </div>
 
-<!-- 검색 결과 및 테이블 표시 -->
-<div id="searchResults"></div>
+<!-- 검색 결과 메시지 -->
+<div id="searchResultsMessage"></div>
+
+<!-- 노래 리스트 표 -->
+<div id="songsTableContainer" style="max-width: 860px; margin: 0 auto;"></div>
 
 <script>
-  // 가상의 노래 데이터 예시 (실제로는 사용자 데이터 넣으세요)
   const songs = [
     // Kpop 예시
     { category: 'Kpop 전체', title: 'Dynamite', singer: 'BTS', code: 'C', difficulty: '중', skill: '고' },
     { category: 'Kpop ㄱ', title: 'Gangnam Style', singer: 'PSY', code: 'Am', difficulty: '쉬움', skill: '중' },
     { category: 'Kpop ㄴ', title: 'Nobody', singer: 'Wonder Girls', code: 'G', difficulty: '쉬움', skill: '중' },
+    { category: 'Kpop ㅅ', title: 'Spring Day', singer: 'BTS', code: 'Dm', difficulty: '중', skill: '중' },
     // Kpop아이돌 예시
     { category: 'Kpop아이돌 전체', title: 'Ice Cream', singer: 'BLACKPINK', code: 'F', difficulty: '중', skill: '중' },
     { category: 'Kpop아이돌 ㄱ', title: 'Gee', singer: 'SNSD', code: 'C', difficulty: '쉬움', skill: '초' },
+    { category: 'Kpop아이돌 ㅈ', title: 'Jopping', singer: 'SuperM', code: 'Em', difficulty: '어려움', skill: '고' },
     // Pop 예시
     { category: 'Pop 전체', title: 'Shape of You', singer: 'Ed Sheeran', code: 'Dm', difficulty: '중', skill: '고' },
     { category: 'Pop a', title: 'All of Me', singer: 'John Legend', code: 'Em', difficulty: '중', skill: '중' },
     { category: 'Pop b', title: 'Bad Guy', singer: 'Billie Eilish', code: 'Bm', difficulty: '어려움', skill: '고' },
+    { category: 'Pop c', title: 'Counting Stars', singer: 'OneRepublic', code: 'G', difficulty: '중', skill: '중' },
   ];
 
-  // 초기 선택 카테고리
-  let currentCategory = '노래책 설명서';
+  const korInitials = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  const engInitials = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-  function filterCategory(category) {
-    currentCategory = category;
-    document.getElementById('search').value = '';
+  let currentGenre = '';
+  let currentFilter = '';
+
+  // 카테고리 버튼 클릭시
+  function selectGenre(genre) {
+    currentGenre = genre;
+    currentFilter = '';
     clearTableAndMessage();
+    showDocSections(false);
+    showCategoryButtons(true);
+    renderInitialButtons();
+  }
 
-    // 설명서 & 가격표 처리
-    if(category === '노래책 설명서') {
-      document.getElementById('노래책 설명서').style.display = 'block';
-      document.getElementById('가격표').style.display = 'none';
-      return;
+  // 전체 또는 이니셜 필터링
+  function filterCategory(filter) {
+    currentFilter = filter;
+    document.getElementById('search').value = '';
+    showDocSections(false);
+    clearTableAndMessage();
+    renderSongsTable();
+  }
+
+  // 제목 클릭시 설명서 보여주기
+  function filterCategoryDoc(categoryName) {
+    currentGenre = '';
+    currentFilter = '';
+    clearTableAndMessage();
+    showDocSections(true, categoryName);
+    showCategoryButtons(false);
+  }
+
+  function showDocSections(show, which = '노래책 설명서') {
+    document.getElementById('노래책 설명서').style.display = (show && which === '노래책 설명서') ? 'block' : 'none';
+    document.getElementById('가격표').style.display = (show && which === '가격표') ? 'block' : 'none';
+  }
+
+  function showCategoryButtons(show) {
+    document.getElementById('categoryButtonsContainer').style.display = show ? 'block' : 'none';
+  }
+
+  // 전체 + 이니셜 버튼 렌더링
+  function renderInitialButtons() {
+    // 전체 버튼 보이기
+    document.getElementById('allButtonsRow').style.display = 'block';
+
+    // 초기화
+    const initialButtonsRow = document.getElementById('initialButtonsRow');
+    initialButtonsRow.innerHTML = '';
+
+    let initials = [];
+    if(currentGenre === 'Pop') {
+      initials = engInitials;
+    } else if(currentGenre === 'Kpop' || currentGenre === 'Kpop아이돌') {
+      initials = korInitials;
     }
-    if(category === '가격표') {
-      document.getElementById('노래책 설명서').style.display = 'none';
-      document.getElementById('가격표').style.display = 'block';
-      return;
-    }
 
-    // 그 외는 숨김
-    document.getElementById('노래책 설명서').style.display = 'none';
-    document.getElementById('가격표').style.display = 'none';
+    initials.forEach(init => {
+      const btn = document.createElement('button');
+      btn.className = 'category-btn btn-circle theme-orange-circle';
+      btn.textContent = init;
+      btn.onclick = () => filterCategory(`${currentGenre} ${init}`);
+      initialButtonsRow.appendChild(btn);
+    });
+    initialButtonsRow.style.display = 'block';
+  }
 
-    // 데이터 필터링 및 테이블 출력
-    let filteredSongs = [];
-    if(category.endsWith('전체')) {
-      // 전체: 접두사만 보고 필터
-      let prefix = category.split(' ')[0];
-      filteredSongs = songs.filter(s => s.category.startsWith(prefix));
+  // 노래 테이블 렌더링
+  function renderSongsTable() {
+    const container = document.getElementById('songsTableContainer');
+    const message = document.getElementById('searchResultsMessage');
+    container.innerHTML = '';
+    message.textContent = '';
+
+    // 전체 필터일 때
+    if(currentFilter === `${currentGenre} 전체` || currentFilter === '') {
+      // 해당 장르 전체 필터링
+      var filteredSongs = songs.filter(s => s.category.startsWith(currentGenre));
     } else {
-      // ㄱ,ㄴ,ㄷ 등 이니셜 필터링 (가수명 첫글자)
-      let [prefix, initial] = category.split(' ');
-      filtered
+      filteredSongs = songs.filter(s => s.category === currentFilter);
+    }
+
+    if(filteredSongs.length === 0) {
+      message.textContent = '검색 결과가 없습니다.';
+      return;
+    }
+
+    // 테이블 생성
+    const table = document.createElement('table');
+    // 헤더
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    ['제목', '가수', '코드', '난이도', '숙련도'].forEach(text => {
+      const th = document.createElement('th');
+      th.textContent = text;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    // 본문
+    const tbody = document.createElement('tbody');
+    filteredSongs.forEach(song => {
+      const tr = document.createElement('tr');
+      ['title','singer','code','difficulty','skill'].forEach(key => {
+        const td = document.createElement('td');
+        td.textContent = song[key];
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    container.appendChild(table);
+  }
+
+  // 검색 함수 (전체 노래 검색)
+  function searchSongs() {
+    const keyword = document.getElementById('search').value.trim().toLowerCase();
+    currentFilter = '';
+    if(keyword === '') {
+      clearTableAndMessage();
+      showDocSections(true, '노래책 설명서');
+      showCategoryButtons(false);
+      return;
+    }
+    showDocSections(false);
+    showCategoryButtons(false);
+
+    const container = document.getElementById('songsTableContainer');
+    const message = document.getElementById('searchResultsMessage');
+    container.innerHTML = '';
+    message.textContent = '';
+
+    // 검색: 제목 or 가수 포함하는 노래 모두 찾기
+    const results = songs.filter(s => s.title.toLowerCase().includes(keyword) || s.singer.toLowerCase().includes(keyword));
+
+    if(results.length === 0) {
+      message.textContent = '검색 결과가 없습니다.';
+      return;
+    }
+
+    // 테이블 생성
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const trHead = document.createElement('tr');
+    ['제목', '가수', '코드', '난이도', '숙련도'].forEach(text => {
+      const th = document.createElement('th');
+      th.textContent = text;
+      trHead.appendChild(th);
+    });
+    thead.appendChild(trHead);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    results.forEach(song => {
+      const tr = document.createElement('tr');
+      ['title','singer','code','difficulty','skill'].forEach(key => {
+        const td = document.createElement('td');
+        td.textContent = song[key];
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    container.appendChild(table);
+  }
+
+  function clearTableAndMessage() {
+    document.getElementById('songsTableContainer').innerHTML = '';
+    document.getElementById('searchResultsMessage').textContent = '';
+  }
+
+  // 초기 화면 - 설명서 보이기
+  window.onload = () => {
+    filterCategoryDoc('노래책 설명서');
+  };
+
+  // 가격표/설명서 버튼 처리
+  document.querySelectorAll('.btn-doc-pill').forEach(btn => {
+    btn.onclick = () => {
+      filterCategoryDoc(btn.textContent);
+    };
+  });
+</script>
+
+</body>
+</html>
