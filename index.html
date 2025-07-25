@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>RIMO's SONG BOOK 🎵</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
@@ -22,7 +22,7 @@
     cursor: pointer;
   }
   .important-notice {
-    background: #c3a6db;
+    background: #cbb4f4; /* 눈 아프지 않은 연보라 */
     color: #1f1f1f;
     padding: 10px;
     border-radius: 6px;
@@ -30,8 +30,7 @@
     margin-bottom: 15px;
   }
   #searchInput {
-    width: 90%;
-    max-width: 420px;
+    width: 90%; max-width: 420px;
     padding: 12px 25px;
     font-size: 1.2rem;
     border: 2px solid #ff5300;
@@ -40,7 +39,7 @@
     color: #f0f0f0;
     margin-bottom: 20px;
     text-align: center;
-    transition: border-color 0.3s;
+    box-sizing: border-box;
   }
   #searchInput:focus { border-color: #cc4a00; outline: none; }
   button {
@@ -48,33 +47,43 @@
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s;
     border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    height: 48px;
   }
   .top-categories button {
-    background: #825db5;
+    background: #a26bdf; /* 보라 버튼 */
     color: white;
     margin: 0 8px 15px;
     font-size: 1.1rem;
+    min-width: 130px;
   }
-  .top-categories button:hover { background: #6f4fa2; }
+  .top-categories button:hover { background: #8b55c1; }
   .genre-categories button {
     background: #e67e22;
     color: #1f1f1f;
     margin: 0 8px 15px;
     font-size: 1.1rem;
+    min-width: 130px;
   }
   .genre-categories button:hover { background: #cc6f1a; }
   .initials.korean button,
   .initials.alpha button {
+    width: 40px; height: 40px;
+    line-height: 40px;
+    font-size: 1.15rem;
     background: #f9a263;
     color: #1f1f1f;
     margin: 3px 5px;
-    font-size: 1.15rem;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
     border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .initials.korean button:hover,
   .initials.alpha button:hover {
@@ -95,14 +104,12 @@
   }
   tbody td {
     padding: 8px;
+    border-top: 1px dashed #666;
     border-left: none;
     border-right: none;
-    border-top: none;
   }
   tbody tr:nth-child(even) { background: #2b2b2b; }
-  tbody tr:nth-child(odd) { background: #333; }
-  tbody td:first-child { border-left: 1px solid #444; }
-  tbody td:last-child { border-right: 1px solid #444; }
+  tbody tr:nth-child(odd)  { background: #333; }
   .no-result {
     font-weight: bold;
     color: #ff5300;
@@ -228,18 +235,20 @@
     "K-pop": { type:"table", initialsType:"korean", songs:[
       {가수:"가호", 제목:"시작", 코드:"C", 난이도:"중", 숙련도:"높음"},
       {가수:"거미", 제목:"기억해줘", 코드:"Am", 난이도:"중", 숙련도:"중"},
+ // 추가 가능
     ]},
     "K-pop 아이돌": { type:"table", initialsType:"korean", songs:[
       {가수:"아이유", 제목:"좋은날", 코드:"C", 난이도:"중", 숙련도:"중"},
+ // 추가 가능
     ]},
     "Pop": { type:"table", initialsType:"alpha", songs:[
       {가수:"Adele", 제목:"Hello", 코드:"F", 난이도:"중", 숙련도:"높음"},
+ // 추가 가능
     ]}
   };
 
   let currentCategory = '노래책 설명서';
   let currentInitial = '전체';
-
   const textContent = document.getElementById('textContent');
   const tableBody = document.getElementById('tableBody');
   const songTable = document.getElementById('songTable');
@@ -254,42 +263,34 @@
     currentCategory = cat;
     currentInitial = '전체';
     document.getElementById('searchInput').value = "";
-
     textContent.style.display = songTable.style.display =
       noResultMsg.style.display = koreanInitials.style.display =
       alphaInitials.style.display = 'none';
-    importantNotice.style.display = (cat==="노래책 설명서"||cat==="가격표")?"block":"none";
-
-    const entry = data[cat];
-    if(!entry) return;
-
-    if(entry.type==="text") {
+    importantNotice.style.display = (cat == "노래책 설명서" || cat == "가격표") ? "block" : "none";
+    const entry = data[cat]; if(!entry) return;
+    if(entry.type == "text") {
       textContent.textContent = entry.content;
       textContent.style.display = "block";
     } else {
       renderTable(entry.songs);
       songTable.style.display = "table";
-      if(entry.initialsType==="korean") koreanInitials.style.display="block";
-      if(entry.initialsType==="alpha") alphaInitials.style.display="block";
+      if(entry.initialsType == "korean") koreanInitials.style.display = "inline-flex";
+      else if(entry.initialsType == "alpha") alphaInitials.style.display = "inline-flex";
     }
   }
 
   function renderTable(songs) {
-    tableBody.innerHTML="";
+    tableBody.innerHTML = "";
     let list = songs;
-    if(currentInitial!=="전체") {
-      list = songs.filter(s => {
-        return currentInitial.length===1
-          ? s.가수.charAt(0).toUpperCase()===currentInitial
-          : s.가수.startsWith(currentInitial);
-      });
+    if(currentInitial != "전체") {
+      list = songs.filter(s => s.가수.startsWith(currentInitial));
     }
-    if(list.length===0) {
-      songTable.style.display="none";
-      noResultMsg.style.display="block";
+    if(list.length == 0) {
+      songTable.style.display = "none";
+      noResultMsg.style.display = "block";
       return;
     }
-    noResultMsg.style.display="none";
+    noResultMsg.style.display = "none";
     list.forEach(s => {
       tableBody.insertAdjacentHTML("beforeend",
         `<tr><td>${s.가수}</td><td>${s.제목}</td><td>${s.코드}</td><td>${s.난이도}</td><td>${s.숙련도}</td></tr>`
@@ -299,33 +300,31 @@
 
   function filterByInitial(init) {
     currentInitial = init;
-    if(data[currentCategory].type==="table") renderTable(data[currentCategory].songs);
+    if(data[currentCategory] && data[currentCategory].type == "table") {
+      renderTable(data[currentCategory].songs);
+    }
   }
 
   function handleSearch() {
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
     if(!q) return filterCategory(currentCategory);
-
-    let results=[];
-    for(const key of ["K-pop","K-pop 아이돌","Pop"]) {
-      const e = data[key];
-      e.songs.forEach(s => {
-        if(s.가수.toLowerCase().includes(q)||s.제목.toLowerCase().includes(q)) {
+    let results = [];
+    ["K-pop","K-pop 아이돌","Pop"].forEach(cat => {
+      data[cat].songs.forEach(s => {
+        if(s.가수.toLowerCase().includes(q) || s.제목.toLowerCase().includes(q)) {
           results.push(s);
         }
       });
-    }
-
+    });
     textContent.style.display = koreanInitials.style.display =
       alphaInitials.style.display = importantNotice.style.display = "none";
-    tableBody.innerHTML="";
-
-    if(results.length===0) {
-      songTable.style.display="none";
-      noResultMsg.style.display="block";
+    tableBody.innerHTML = "";
+    if(results.length == 0) {
+      songTable.style.display = "none";
+      noResultMsg.style.display = "block";
     } else {
-      noResultMsg.style.display="none";
-      songTable.style.display="table";
+      noResultMsg.style.display = "none";
+      songTable.style.display = "table";
       results.forEach(s => {
         tableBody.insertAdjacentHTML("beforeend",
           `<tr><td>${s.가수}</td><td>${s.제목}</td><td>${s.코드}</td><td>${s.난이도}</td><td>${s.숙련도}</td></tr>`
@@ -334,5 +333,6 @@
     }
   }
 </script>
+
 </body>
 </html>
