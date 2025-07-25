@@ -1,365 +1,227 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RIMO's SONG BOOK</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-    body {
-      background: #1f1f1f;
-      color: #f0f0f0;
-      font-family: 'Jua', sans-serif;
-      max-width: 900px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    h1 {
-      color: #ff5400;
-      font-size: 3.6rem;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
-    .important-notice {
-      background: #c9b8f9;
-      color: #1f1f1f;
-      padding: 10px;
-      border-radius: 6px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-    button {
-      border-radius: 20px;
-      padding: 0 16px;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 36px;
-      min-width: 80px;
-      font-size: 1rem;
-      margin: 5px;
-      font-family: 'Jua', sans-serif;
-      transition: opacity 0.2s;
-    }
-    button:hover {
-      opacity: 0.85;
-    }
-    .top-categories button {
-      background: #a26bdf;
-      color: white;
-    }
-    .genre-categories button {
-      background: #e67e22;
-      color: #1f1f1f;
-    }
-    .initials.korean, .initials.alpha {
-      display: none;
-      margin: 10px auto;
-    }
-    .initials.korean button, .initials.alpha button {
-      width: 34px;
-      height: 34px;
-      line-height: 34px;
-      font-size: 1.05rem;
-      background: #f9a263;
-      color: #1f1f1f;
-      margin: 3px;
-      border-radius: 20px;
-    }
-    .initials.alpha button {
-      background: #fbc48f;
-    }
-    .initials.korean button:hover, .initials.alpha button:hover {
-      background: #ff7f00;
-      color: white;
-    }
-    #alphaInitials > div {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px 10px;
-      margin-bottom: 5px;
-    }
-    #searchInput {
-      width: 90%;
-      max-width: 420px;
-      padding: 10px 20px;
-      font-size: 1.1rem;
-      border: 2px solid #ff5400;
-      border-radius: 20px;
-      background: #333;
-      color: #f0f0f0;
-      margin: 0 auto 20px;
-      text-align: center;
-      box-sizing: border-box;
-      display: none;
-      font-family: 'Jua', sans-serif;
-    }
-    #textContent {
-      white-space: pre-wrap;
-      background: #2c2c3a;
-      border-radius: 8px;
-      padding: 15px;
-      margin: 0 auto 20px;
-      color: #f0f0f0;
-      font-size: 1.12rem;
-      text-align: left;
-      max-width: 900px;
-      min-height: 150px;
-      display: none;
-      font-family: 'Jua', sans-serif;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 30px;
-      text-align: center;
-      font-size: 1.05rem;
-      font-family: 'Jua', sans-serif;
-    }
-    thead th {
-      background: #e67e22;
-      color: #1f1f1f;
-      padding: 10px;
-      border: 1px solid #444;
-    }
-    tbody td {
-      padding: 8px;
-      border-top: 1px dashed #666;
-    }
-    tbody tr:nth-child(even) {
-      background: #2b2b2b;
-    }
-    tbody tr:nth-child(odd) {
-      background: #333;
-    }
-    .no-result {
-      font-weight: bold;
-      color: #ff5400;
-      margin-top: 20px;
-      display: none;
-      font-family: 'Jua', sans-serif;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RIMO's SONG BOOK</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+  body {
+    background-color: #1f1f1f;
+    color: #f0f0f0;
+    font-family: 'Jua', sans-serif;
+    max-width: 900px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  h1 {
+    color: #ff5c00;
+    font-size: 4rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  /* 필독공지 */
+  .important-notice {
+    background: #b1a0e5;
+    color: #3b2d70;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  /* 검색창 */
+  .search-box {
+    margin-bottom: 30px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #search {
+    width: 100%;
+    padding: 11px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Jua', sans-serif;
+  }
+  /* 알약형 버튼 공통 */
+  .btn-pill {
+    font-family: 'Jua', sans-serif;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px 7px 5px 0;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    padding: 10px 26px;
+    border-radius: 9999px;
+    text-align: center;
+    min-width: 80px;
+  }
+  .btn-pill:hover {
+    filter: brightness(0.85);
+  }
+  /* 원형 이니셜 버튼 공통 */
+  .btn-circle {
+    font-family: 'Jua', sans-serif;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 5px 6px 5px 0;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border-radius: 50%;
+    text-align: center;
+    min-width: 0;
+  }
+  .btn-circle:hover {
+    filter: brightness(0.85);
+  }
+
+  /* 주황색 테마 (kpop, kpop아이돌, pop 모두 동일) */
+  .theme-orange-pill {
+    background-color: #ff7a00;
+  }
+  .theme-orange-circle {
+    background-color: #ffb870;
+  }
+
+  /* 설명서, 가격표 박스 색상 */
+  .doc-section {
+    background: #8c76e0;
+    color: #f3ecff;
+    padding: 18px 22px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    text-align: left;
+    line-height: 1.5;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ff7a00;
+  }
+
+  /* 표 스타일 */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 40px;
+    font-size: 16px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  thead tr {
+    /* no border lines */
+    background-color: #331a00;
+  }
+  thead th {
+    padding: 12px 10px;
+    font-weight: bold;
+    color: #ff5500;
+    border-right: 2px dotted #ff7a00; /* 세로선 점선 */
+    text-align: center;
+  }
+  thead th:last-child {
+    border-right: none;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #2b2b2b;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #1f1f1f;
+  }
+  tbody td {
+    padding: 10px;
+    text-align: center;
+    border-right: 2px dotted #ff7a00; /* 세로선 점선 */
+  }
+  tbody td:last-child {
+    border-right: none;
+  }
+
+  /* 검색 결과 없을 때 안내 문구 */
+  #searchResults {
+    max-width: 860px;
+    margin: 10px auto 40px auto;
+    text-align: center;
+    color: #b1a0e5; /* 필독공지 색상과 동일 */
+    font-weight: bold;
+    font-size: 18px;
+    min-height: 2em;
+  }
+
+  /* 카테고리 영역 중앙정렬 */
+  .button-row {
+    margin-bottom: 25px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 
-<h1 onclick="filterCategory('노래책 설명서')">RIMO's SONG BOOK</h1>
+<h1 onclick="filterCategory('노래책 설명서')">RIMO's SONG BOOK 🎵</h1>
+
 <div class="important-notice">
-  📌 필독 공지: 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
+  📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
 </div>
 
-<div class="top-categories">
-  <button onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
-  <button onclick="filterCategory('가격표')">가격표</button>
+<div class="search-box">
+  <input type="text" id="search" placeholder="노래 제목, 가수명 등 검색" oninput="searchSongs()" autocomplete="off" />
 </div>
 
-<div class="genre-categories">
-  <button onclick="filterCategory('K-pop')">K-pop</button>
-  <button onclick="filterCategory('K-pop 아이돌')">K-pop 아이돌</button>
-  <button onclick="filterCategory('Pop')">Pop</button>
+<section id="노래책 설명서" class="doc-section">
+  <h2 class="section-title">노래책 설명서</h2>
+  <p>•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)</p>
+  <p>•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.<br>(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)</p>
+  <p>•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.</p>
+  <p>•추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
+  <p>❌과도한 평가와 훈수는 자제해주세요❌</p>
+</section>
+
+<section id="가격표" class="doc-section" style="display:none;">
+  <h2 class="section-title">가격표</h2>
+  <p>•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
+  <p>•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
+  <p>•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.</p>
+  <p>•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.</p>
+</section>
+
+<!-- 설명서 / 가격표 버튼 -->
+<div class="button-row">
+  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
+  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('가격표')">가격표</button>
 </div>
 
-<div id="textContent"></div>
-<input type="text" id="searchInput" placeholder="가수명 또는 제목 검색" oninput="handleSearch()">
-
-<div id="koreanInitials" class="initials korean">
-  <!-- 한글 이니셜: 전체 + ㄱ ~ ㅎ -->
-  <button onclick="filterByInitial('전체')">전체</button>
-  <button onclick="filterByInitial('ㄱ')">ㄱ</button>
-  <button onclick="filterByInitial('ㄴ')">ㄴ</button>
-  <button onclick="filterByInitial('ㄷ')">ㄷ</button>
-  <button onclick="filterByInitial('ㄹ')">ㄹ</button>
-  <button onclick="filterByInitial('ㅁ')">ㅁ</button>
-  <button onclick="filterByInitial('ㅂ')">ㅂ</button>
-  <button onclick="filterByInitial('ㅅ')">ㅅ</button>
-  <button onclick="filterByInitial('ㅇ')">ㅇ</button>
-  <button onclick="filterByInitial('ㅈ')">ㅈ</button>
-  <button onclick="filterByInitial('ㅊ')">ㅊ</button>
-  <button onclick="filterByInitial('ㅋ')">ㅋ</button>
-  <button onclick="filterByInitial('ㅌ')">ㅌ</button>
-  <button onclick="filterByInitial('ㅍ')">ㅍ</button>
-  <button onclick="filterByInitial('ㅎ')">ㅎ</button>
-</div>
-
-<div id="alphaInitials" class="initials alpha">
-  <!-- 영어 알파벳: 전체 + A~Z (2줄 중앙 정렬) -->
-  <div>
-    <button onclick="filterByInitial('전체')">전체</button>
-    <button onclick="filterByInitial('A')">A</button>
-    <button onclick="filterByInitial('B')">B</button>
-    <button onclick="filterByInitial('C')">C</button>
-    <button onclick="filterByInitial('D')">D</button>
-    <button onclick="filterByInitial('E')">E</button>
-    <button onclick="filterByInitial('F')">F</button>
-    <button onclick="filterByInitial('G')">G</button>
-    <button onclick="filterByInitial('H')">H</button>
-    <button onclick="filterByInitial('I')">I</button>
-    <button onclick="filterByInitial('J')">J</button>
-    <button onclick="filterByInitial('K')">K</button>
-    <button onclick="filterByInitial('L')">L</button>
-  </div>
-  <div>
-    <button onclick="filterByInitial('M')">M</button>
-    <button onclick="filterByInitial('N')">N</button>
-    <button onclick="filterByInitial('O')">O</button>
-    <button onclick="filterByInitial('P')">P</button>
-    <button onclick="filterByInitial('Q')">Q</button>
-    <button onclick="filterByInitial('R')">R</button>
-    <button onclick="filterByInitial('S')">S</button>
-    <button onclick="filterByInitial('T')">T</button>
-    <button onclick="filterByInitial('U')">U</button>
-    <button onclick="filterByInitial('V')">V</button>
-    <button onclick="filterByInitial('W')">W</button>
-    <button onclick="filterByInitial('X')">X</button>
-    <button onclick="filterByInitial('Y')">Y</button>
-    <button onclick="filterByInitial('Z')">Z</button>
-  </div>
-</div>
-
-<table id="songTable" style="margin: 0 auto; max-width: 900px; display: none;">
-  <thead>
-    <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
-  </thead>
-  <tbody id="tableBody"></tbody>
-</table>
-
-<div class="no-result" id="noResultMsg">
-  검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.
-</div>
-
-<script>
-const data = {
-  "노래책 설명서": {
-    type: "text",
-    content:
-`•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)
-
-•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.
-(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)
-
-•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.
-
-•추천 곡은 디스코드 노래 추천방에 적어주세요.
-
-❌과도한 평가와 훈수는 자제해주세요❌`
-  },
-  "가격표": {
-    type: "text",
-    content:
-`•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.
-
-•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.
-
-•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.
-
-•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.`
-  },
-  "K-pop": {
-    type: "table",
-    songs: [
-      { artist:"아이유", title:"좋은 날", code:"C", difficulty:"중", skill:"상" },
-      { artist:"블랙핑크", title:"How You Like That", code:"Am", difficulty:"하", skill:"중" }
-    ]
-  },
-  "K-pop 아이돌": {
-    type: "table",
-    songs: [
-      { artist:"트와이스", title:"Cheer Up", code:"G", difficulty:"중", skill:"상" }
-    ]
-  },
-  "Pop": {
-    type: "table",
-    songs: [
-      { artist:"Adele", title:"Hello", code:"F", difficulty:"중", skill:"상" }
-    ]
-  }
-};
-
-let currCat = "노래책 설명서", currInit = "전체";
-const txt = document.getElementById("textContent"),
-      tbl = document.getElementById("songTable"),
-      tb = document.getElementById("tableBody"),
-      msg = document.getElementById("noResultMsg"),
-      sinp = document.getElementById("searchInput"),
-      kin = document.getElementById("koreanInitials"),
-      ain = document.getElementById("alphaInitials");
-
-function filterCategory(c) {
-  currCat = c;
-  currInit = "전체";
-  sinp.value = "";
-  sinp.style.display = (c === "K-pop" || c === "K-pop 아이돌" || c === "Pop") ? "block" : "none";
-  render();
-}
-
-function filterByInitial(i) {
-  currInit = i;
-  render();
-}
-
-function handleSearch() {
-  const q = sinp.value.trim().toLowerCase();
-  if (!q) {
-    render();
-    return;
-  }
-  txt.style.display = kin.style.display = ain.style.display = "none";
-  let all = [];
-  Object.values(data).forEach(d => {
-    if (d.type === "table") all.push(...d.songs);
-  });
-  const res = all.filter(s =>
-    s.artist.toLowerCase().includes(q) ||
-    s.title.toLowerCase().includes(q)
-  );
-  renderTable(res);
-  tbl.style.display = res.length ? "table" : "none";
-  msg.style.display = res.length ? "none" : "block";
-}
-
-function render() {
-  msg.style.display = "none";
-  
-  if (data[currCat].type === "text") {
-    txt.style.display = "block";
-    txt.textContent = data[currCat].content;
-    tbl.style.display = "none";
-    kin.style.display = ain.style.display = "none";
-  } else {
-    txt.style.display = "none";
-    renderTable(data[currCat].songs);
-    tbl.style.display = "table";
-    if (currCat === "Pop") {
-      ain.style.display = "block";
-      kin.style.display = "none";
-    } else {
-      kin.style.display = "flex";
-      ain.style.display = "none";
-    }
-  }
-}
-
-function renderTable(arr) {
-  tb.innerHTML = "";
-  arr.filter(s => {
-    if (currInit === "전체") return true;
-    if (currCat === "Pop") {
-      return s.artist.charAt(0).toUpperCase() === currInit;
-    }
-    return s.artist.startsWith(currInit);
-  }).forEach(s => {
-    tb.insertAdjacentHTML("beforeend",
-      `<tr><td>${s.artist}</td><td>${s.title}</td><td>${s.code}</td><td>${s.difficulty}</td><td>${s.skill}</td></tr>`
-    );
-  });
-}
-
-window.onload = () => filterCategory("노래책 설명서");
-</script>
-
-</body>
-</html>
+<!-- Kpop 전체 + ㄱ~ㅎ -->
+<div class="button-row">
+  <button class="category-btn btn-pill theme-orange-pill" onclick="filterCategory('Kpop 전체')">Kpop 전체</button>
+  <span>
+    <button class="category-btn btn-circle
