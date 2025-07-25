@@ -1,173 +1,388 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RIMO's SONG BOOK 🎵</title>
 <style>
-  /* 기본 설정 */
-  body { background-color:#1f1f1f; color:#f0f0f0; font-family:'Jua', sans-serif; text-align:center; margin:0; padding:20px; max-width:900px; }
-  h1 { color:#f4a261; margin-bottom:10px; }
-  .important-notice { background:#8e7cc3; color:#f0f0f0; padding:10px; border-radius:6px; font-weight:bold; margin-bottom:15px; }
-
-  /* 검색창 */
-  #searchInput { width:90%; max-width:400px; padding:8px; margin-bottom:15px; font-size:1rem;
-                 border:2px solid #f4a261; border-radius:8px; background:#333; color:#f0f0f0; }
-  #searchInput:focus { border-color:#e07b39; outline:none; }
-
-  /* 버튼 공통 */
-  button { background:#f4a261; color:#1f1f1f; border:none; padding:7px 12px; margin:4px; border-radius:6px;
-           font-weight:bold; cursor:pointer; }
-  button:hover { background:#e07b39; }
-
-  .category-buttons { margin-bottom:5px; }
-  .top-categories { margin-bottom:10px; }
-  .genre-categories { margin-bottom:15px; }
-
-  /* 초성 (한글) 버튼 */
-  .kpop-initials button { background:#8e7cc3; color:#f0f0f0; }
-  .kpop-initials button:hover { background:#7d6ab2; }
-
-  /* 알파벳 버튼 */
-  .pop-initials button { background:#f4a261; color:#1f1f1f; }
-  .pop-initials button:hover { background:#e07b39; }
-
-  /* 표 스타일 */
-  table { width:100%; border-collapse:collapse; margin-bottom:15px; }
-  th, td {
-    border-top:1px dashed #666; border-bottom:1px dashed #666; border-left:none; border-right:none;
-    padding:8px; text-align:center;
+  @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+  body {
+    background: #1f1f1f;
+    color: #f0f0f0;
+    font-family: 'Jua', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  th { background:#8e7cc3; color:#1f1f1f; }
-  tbody tr:nth-child(odd) { background:#2b2b2b; }
-  tbody tr:nth-child(even) { background:#333; }
-
-  .no-result { margin-top:20px; font-weight:bold; color:#e07b39; display:none; }
-  .text-cell { text-align:center; white-space:pre-line; font-size:1rem; color:#f0f0f0; }
+  h1 {
+    color: #d35400;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+  }
+  .important-notice {
+    background: #8e7cc3;
+    color: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  #searchInput {
+    width: 90%;
+    max-width: 400px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 2px solid #d35400;
+    border-radius: 8px;
+    background: #333;
+    color: #f0f0f0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  #searchInput:focus {
+    border-color: #b34700;
+    outline: none;
+  }
+  button {
+    background: #d35400;
+    color: #1f1f1f;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 4px;
+    text-align: center;
+  }
+  button:hover {
+    background: #b34700;
+  }
+  .kpop-initials button {
+    background: #7961a6;
+    color: #f0f0f0;
+  }
+  .kpop-initials button:hover {
+    background: #684d8e;
+  }
+  .pop-initials button {
+    background: #d35400;
+    color: #1f1f1f;
+  }
+  .pop-initials button:hover {
+    background: #b34700;
+  }
+  /* 초성/알파벳 버튼 모양 지정 */
+  .initial-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    text-align: center;
+  }
+  /* 완전 원형 버튼 그룹 */
+  .circle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    line-height: 36px;
+    text-align: center;
+  }
+  /* 라운드 타원형 버튼 나머지 */
+  .rounded {
+    border-radius: 999px;
+    padding: 6px 14px;
+  }
+  /* 기존 범주 버튼 스타일 */
+  .category-buttons button {
+    padding: 7px 12px;
+    border-radius: 6px;
+  }
+  /* 표 스타일 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  th,
+  td {
+    border-top: 1px dashed #666;
+    border-bottom: 1px dashed #666;
+    border-left: none;
+    border-right: none;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background: #7961a6;
+    color: #1f1f1f;
+  }
+  tbody tr:nth-child(odd) {
+    background: #2b2b2b;
+  }
+  tbody tr:nth-child(even) {
+    background: #333;
+  }
+  .no-result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #e07b39;
+    display: none;
+    text-align: center;
+  }
+  .text-cell {
+    text-align: center;
+    white-space: pre-line;
+    font-size: 1rem;
+    color: #f0f0f0;
+  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<h1>RIMO's SONG BOOK</h1>
+<h1 onclick="filterCategory('노래책 설명서')">RIMO's SONG BOOK</h1>
+
 <div class="important-notice">
   📌 필독 공지: 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
 </div>
 
-<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off">
-
-<div class="category-buttons top-categories">
+<div class="category-buttons top-categories" style="text-align:center;">
   <button onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
   <button onclick="filterCategory('가격표')">가격표</button>
 </div>
-<div class="category-buttons genre-categories">
-  <button onclick="showGenre('K-pop')">K-pop</button>
-  <button onclick="showGenre('K-pop 아이돌')">K-pop 아이돌</button>
+
+<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off" style="text-align:center;">
+
+<div class="category-buttons genre-categories" style="text-align:center; margin-top: 15px;">
+  <button onclick="showGenre('K-pop')">K‑pop</button>
+  <button onclick="showGenre('K-pop 아이돌')">K‑pop 아이돌</button>
   <button onclick="showGenre('Pop')">Pop</button>
 </div>
 
-<div id="hangulInitialFilter" class="kpop-initials" style="display:none; margin-bottom:15px;">
-  <button onclick="filterByInitial('전체')">전체</button>
-  <button onclick="filterByInitial('ㄱ')">ㄱ</button><button onclick="filterByInitial('ㄴ')">ㄴ</button>
-  <button onclick="filterByInitial('ㄷ')">ㄷ</button><button onclick="filterByInitial('ㄹ')">ㄹ</button>
-  <button onclick="filterByInitial('ㅁ')">ㅁ</button><button onclick="filterByInitial('ㅂ')">ㅂ</button>
-  <button onclick="filterByInitial('ㅅ')">ㅅ</button><button onclick="filterByInitial('ㅇ')">ㅇ</button>
-  <button onclick="filterByInitial('ㅈ')">ㅈ</button><button onclick="filterByInitial('ㅊ')">ㅊ</button>
-  <button onclick="filterByInitial('ㅋ')">ㅋ</button><button onclick="filterByInitial('ㅌ')">ㅌ</button>
-  <button onclick="filterByInitial('ㅍ')">ㅍ</button><button onclick="filterByInitial('ㅎ')">ㅎ</button>
-</div>
-<div id="alphaInitialFilter" class="pop-initials" style="display:none; margin-bottom:15px;">
-  <button onclick="filterByInitial('전체')">전체</button>
-  <script>for(let c=65;c<=90;c++){document.write(`<button onclick="filterByInitial('${String.fromCharCode(c)}')">${String.fromCharCode(c)}</button>`);} </script>
+<div id="hangulInitialFilter" class="kpop-initials" style="display:none; margin-bottom:15px; text-align:center;">
+  <span class="initial-btn circle" onclick="filterByInitial('전체')">전체</span>
+  <!-- 원형: ㄱ, ㄴ, ㄷ -->
+  <span class="initial-btn circle" onclick="filterByInitial('ㄱ')">ㄱ</span>
+  <span class="initial-btn circle" onclick="filterByInitial('ㄴ')">ㄴ</span>
+  <span class="initial-btn circle" onclick="filterByInitial('ㄷ')">ㄷ</span>
+  <!-- 나머지는 둥근 타원 -->
+  <span class="initial-btn rounded" onclick="filterByInitial('ㄹ')">ㄹ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅁ')">ㅁ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅂ')">ㅂ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅅ')">ㅅ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅇ')">ㅇ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅈ')">ㅈ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅊ')">ㅊ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅋ')">ㅋ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅌ')">ㅌ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅍ')">ㅍ</span>
+  <span class="initial-btn rounded" onclick="filterByInitial('ㅎ')">ㅎ</span>
 </div>
 
-<table id="songTable">
-  <thead id="tableHead"><tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr></thead>
+<div id="alphaInitialFilter" class="pop-initials" style="display:none; margin-bottom:15px; text-align:center;">
+  <span class="initial-btn circle" onclick="filterByInitial('전체')">전체</span>
+  <!-- 원형: A, B, C -->
+  <span class="initial-btn circle" onclick="filterByInitial('A')">A</span>
+  <span class="initial-btn circle" onclick="filterByInitial('B')">B</span>
+  <span class="initial-btn circle" onclick="filterByInitial('C')">C</span>
+  <!-- 나머지 알파벳 둥근 타원 -->
+  <script>
+    for(let c=68; c<=90; c++){
+      document.write(`<span class="initial-btn rounded" onclick="filterByInitial('${String.fromCharCode(c)}')">${String.fromCharCode(c)}</span>`);
+    }
+  </script>
+</div>
+
+<table id="songTable" style="margin-left:auto; margin-right:auto;">
+  <thead id="tableHead">
+    <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
+  </thead>
   <tbody id="tableBody"></tbody>
 </table>
+
 <div class="no-result" id="noResultMsg">
   검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.
 </div>
 
 <script>
-const data = {
-  "노래책 설명서":[{text:`•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어 신청해주세요. (코드도 적어주시면 감사합니다!)\n\n•컨디션에 따라 판단될 경우 신청곡을 거절할 수도 있습니다.\n(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)\n\n•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.\n\n•추천 곡은 디스코드 노래 추천방에 적어주세요.\n\n❌과도한 평가와 훈수는 자제해주세요❌`}],
-  "가격표":[{text:`•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.\n\n•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.\n\n•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.\n\n•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.`}],
-  "K-pop":[{singer:"아이유",title:"좋은 날",code:"C",level:"중",skill:"높음"},{singer:"방탄소년단",title:"다이너마이트",code:"D",level:"중",skill:"중"},{singer:"블랙핑크",title:"How You Like That",code:"F",level:"상",skill:"높음"},{singer:"에일리",title:"첫눈처럼 너에게 가겠다",code:"E",level:"중",skill:"중"},{singer:"아이콘",title:"사랑을 했다",code:"D",level:"중",skill:"중"}],
-  "K-pop 아이돌":[{singer:"에스파",title:"Next Level",code:"E",level:"중",skill:"중"},{singer:"트와이스",title:"Feel Special",code:"C",level:"중",skill:"중"},{singer:"세븐틴",title:"아낀다",code:"D",level:"중",skill:"중"},{singer:"NCT",title:"Make A Wish",code:"E",level:"상",skill:"높음"}],
-  "Pop":[{singer:"Adele",title:"Hello",code:"C",level:"중",skill:"높음"},{singer:"Bruno Mars",title:"24K Magic",code:"D",level:"중",skill:"중"},{singer:"Coldplay",title:"Yellow",code:"E",level:"중",skill:"중"},{singer:"Dua Lipa",title:"Levitating",code:"F",level:"상",skill:"높음"},{singer:"Ed Sheeran",title:"Shape of You",code:"D",level:"중",skill:"중"}]
-};
+  // 예시 데이터 (노래책 설명서, 가격표, 장르별 데이터 등)
+  const data = {
+    '노래책 설명서': [
+      { text: `•노래 신청을 할 땐 꼭!! 가수와 곡 제목을 함께 적어서 신청해주세요. (코드도 적어주시면 감사합니다!)\n
+•컨디션에 따라 부르기 어렵다고 판단될 경우 신청곡을 거절할 수도 있습니다.\n(거절된 신청은 기본 노래 2곡으로 대체 가능합니다.)\n
+•설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.\n
+•추천 곡은 디스코드 노래 추천방에 적어주세요.\n
+❌과도한 평가와 훈수는 자제해주세요❌` }
+    ],
+    '가격표': [
+      { text: `•기본 노래 신청은 2000 치즈 혹은 투네이션으로 신청 가능합니다.\n
+•어려운 노래 신청은 5000 치즈 혹은 투네이션으로 신청 가능합니다.\n
+•유료곡 노래 신청은 10000 치즈 이상 혹은 투네이션으로 신청 가능합니다.\n
+•개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000 치즈 혹은 투네이션으로 신청 가능합니다.` }
+    ],
+    'K-pop': [
+      { artist: "가수1", title: "노래1", code: "C", difficulty: "중", skill: "높음" },
+      { artist: "강수", title: "노래2", code: "G", difficulty: "쉬움", skill: "중" },
+      { artist: "나나", title: "노래3", code: "D", difficulty: "어려움", skill: "낮음" },
+      { artist: "다솜", title: "노래4", code: "F", difficulty: "중", skill: "중" }
+    ],
+    'K-pop 아이돌': [
+      { artist: "아이돌1", title: "노래A", code: "Am", difficulty: "쉬움", skill: "중" },
+      { artist: "아이돌2", title: "노래B", code: "Em", difficulty: "중", skill: "높음" }
+    ],
+    'Pop': [
+      { artist: "Adele", title: "Hello", code: "C", difficulty: "중", skill: "높음" },
+      { artist: "Beyonce", title: "Halo", code: "G", difficulty: "어려움", skill: "중" },
+      { artist: "Coldplay", title: "Yellow", code: "D", difficulty: "쉬움", skill: "낮음" }
+    ]
+  };
 
-let currentGenre="", currentInitial="전체", searchActive=false, searchQuery="";
+  let currentCategory = '노래책 설명서';
+  let currentGenre = null;
+  let currentInitial = '전체';
 
-function filterCategory(cat){
-  currentGenre=""; currentInitial="전체"; searchActive=false; searchQuery="";
-  document.getElementById("searchInput").value="";
-  hideFilters(); clearTable();
-  const thead=document.getElementById("tableHead");
-  if(!data[cat]||!data[cat].length){ showNoResult(); thead.style.display="none"; return; }
-  thead.style.display=(cat==="노래책 설명서"||cat==="가격표")?"none":"";
-  if(cat==="노래책 설명서"||cat==="가격표"){
-    data[cat].forEach(it=>{ const tr=document.createElement("tr"),td=document.createElement("td"); td.colSpan=5; td.className="text-cell"; td.innerText=it.text; tr.appendChild(td); document.getElementById("tableBody").appendChild(tr); });
+  function clearTable() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
   }
-}
 
-function showGenre(g){
-  currentGenre=g; currentInitial="전체"; searchActive=false; searchQuery="";
-  document.getElementById("searchInput").value="";
-  if(g==="Pop"){ showAlpha(true); showHangul(false); }
-  else if(g==="K-pop"||g==="K-pop 아이돌"){ showHangul(true); showAlpha(false); }
-  else hideFilters();
-  document.getElementById("tableHead").style.display="";
-  filterSongs();
-}
+  function filterCategory(category) {
+    currentCategory = category;
+    currentGenre = null;
+    currentInitial = '전체';
+    document.getElementById('noResultMsg').style.display = 'none';
+    document.getElementById('searchInput').value = '';
 
-function filterByInitial(i){ currentInitial=i; filterSongs(); }
-
-function handleSearch(){
-  const s=document.getElementById("searchInput").value.trim();
-  if(s){ searchActive=true; searchQuery=s.toLowerCase(); hideFilters(); filterSongs(); }
-  else { searchActive=false; searchQuery=""; if(currentGenre==="Pop"){ showAlpha(true);} else if(currentGenre==="K-pop"||currentGenre==="K-pop 아이돌"){ showHangul(true);} filterSongs(); }
-}
-
-function filterSongs(){
-  clearTable();
-  if(searchActive&&searchQuery){
-    const all=[...data["K-pop"],...data["K-pop 아이돌"],...data["Pop"]];
-    const f=all.filter(s=>s.singer.toLowerCase().includes(searchQuery)||s.title.toLowerCase().includes(searchQuery)||s.code.toLowerCase().includes(searchQuery)||s.level.toLowerCase().includes(searchQuery)||s.skill.toLowerCase().includes(searchQuery));
-    if(!f.length){ hideTableHead(); showNoResult(); return; }
-    hideNoResult(); showTableHead(); f.forEach(addRow); return;
+    // 필터별 버튼 보임 처리
+    if(category === '노래책 설명서' || category === '가격표') {
+      document.getElementById('hangulInitialFilter').style.display = 'none';
+      document.getElementById('alphaInitialFilter').style.display = 'none';
+      document.getElementById('searchInput').style.display = 'inline-block';
+    } else {
+      document.getElementById('searchInput').style.display = 'inline-block';
+      if(category === 'Pop') {
+        document.getElementById('hangulInitialFilter').style.display = 'none';
+        document.getElementById('alphaInitialFilter').style.display = 'block';
+      } else {
+        document.getElementById('hangulInitialFilter').style.display = 'block';
+        document.getElementById('alphaInitialFilter').style.display = 'none';
+      }
+    }
+    render();
   }
-  if(!data[currentGenre]||!data[currentGenre].length){ hideTableHead(); showNoResult(); return; }
-  const list=data[currentGenre].filter(s=>(currentInitial==="전체")? true: (currentGenre==="Pop")? s.singer[0].toUpperCase()===currentInitial: getInitial(s.singer)===currentInitial);
-  if(!list.length){ hideTableHead(); showNoResult(); return; }
-  hideNoResult(); showTableHead(); list.forEach(addRow);
-}
 
-function addRow(s){
-  const tr=document.createElement("tr");
-  tr.innerHTML=`<td>${s.singer}</td><td>${s.title}</td><td>${s.code}</td><td>${s.level}</td><td>${s.skill}</td>`;
-  document.getElementById("tableBody").appendChild(tr);
-}
+  function showGenre(genre) {
+    currentCategory = genre;
+    currentGenre = genre;
+    currentInitial = '전체';
+    document.getElementById('noResultMsg').style.display = 'none';
+    document.getElementById('searchInput').value = '';
 
-function clearTable(){ document.getElementById("tableBody").innerHTML=""; }
-function showNoResult(){ document.getElementById("noResultMsg").style.display="block"; }
-function hideNoResult(){ document.getElementById("noResultMsg").style.display="none"; }
-function hideTableHead(){ document.getElementById("tableHead").style.display="none"; }
-function showTableHead(){ document.getElementById("tableHead").style.display=""; }
-function hideFilters(){ document.getElementById("hangulInitialFilter").style.display="none"; document.getElementById("alphaInitialFilter").style.display="none"; }
-function showHangul(f){ document.getElementById("hangulInitialFilter").style.display=f?"block":"none"; }
-function showAlpha(f){ document.getElementById("alphaInitialFilter").style.display=f?"block":"none"; }
+    if(genre === 'Pop') {
+      document.getElementById('hangulInitialFilter').style.display = 'none';
+      document.getElementById('alphaInitialFilter').style.display = 'block';
+    } else {
+      document.getElementById('hangulInitialFilter').style.display = 'block';
+      document.getElementById('alphaInitialFilter').style.display = 'none';
+    }
+    render();
+  }
 
-function getInitial(t){
-  const c=t[0],u=c.charCodeAt(0);
-  if(u<0xAC00||u>0xD7A3) return c.toUpperCase();
-  const L=['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
-  const idx=Math.floor((u-0xAC00)/(21*28)); const ini=L[idx];
-  const map={'ㄲ':'ㄱ','ㄸ':'ㄷ','ㅃ':'ㅂ','ㅆ':'ㅅ','ㅉ':'ㅈ'}; return map[ini]||ini;
-}
+  function filterByInitial(initial) {
+    currentInitial = initial;
+    render();
+  }
 
-window.onload = ()=>filterCategory('노래책 설명서');
-</script>
+  function handleSearch() {
+    render();
+  }
 
-</body>
-</html>
+  function render() {
+    clearTable();
+    const tbody = document.getElementById('tableBody');
+    const noResultMsg = document.getElementById('noResultMsg');
+    const searchVal = document.getElementById('searchInput').value.trim().toLowerCase();
+
+    noResultMsg.style.display = 'none';
+
+    // 노래책 설명서, 가격표 텍스트 출력
+    if(currentCategory === '노래책 설명서' || currentCategory === '가격표') {
+      document.getElementById('tableHead').style.display = 'none';
+      let arr = data[currentCategory];
+      if(!arr) {
+        tbody.innerHTML = '';
+        return;
+      }
+      tbody.innerHTML = '';
+      for(const item of arr) {
+        let tr = document.createElement('tr');
+        let td = document.createElement('td');
+        td.colSpan = 5;
+        td.className = 'text-cell';
+        td.textContent = item.text;
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      }
+      return;
+    } else {
+      document.getElementById('tableHead').style.display = 'table-header-group';
+    }
+
+    // 노래 데이터 필터링
+    let arr = data[currentCategory];
+    if(!arr) arr = [];
+
+    // 초성 / 알파벳 필터 적용
+    if(currentInitial && currentInitial !== '전체') {
+      arr = arr.filter(item => {
+        let firstChar = item.artist.charAt(0).toUpperCase();
+        if(currentCategory === 'Pop') {
+          return firstChar === currentInitial.toUpperCase();
+        } else {
+          // 한글 초성 비교 (간단히 초성 문자와 비교)
+          const 초성목록 = {
+            'ㄱ': ['가','갸','거','겨','고','교','구','규','그','기','갸','갸'],
+            'ㄴ': ['나','냐','너','녀','노','뇨','누','뉴','느','니'],
+            'ㄷ': ['다','댜','더','뎌','도','됴','두','듀','드','디'],
+            'ㄹ': ['라','랴','러','려','로','료','루','류','르','리'],
+            'ㅁ': ['마','먀','머','멸','모','묘','무','뮤','므','미'],
+            'ㅂ': ['바','뱌','버','벼','보','뵤','부','뷰','브','비'],
+            'ㅅ': ['사','샤','서','셔','소','쇼','수','슈','스','시'],
+            'ㅇ': ['아','야','어','여','오','요','우','유','으','이'],
+            'ㅈ': ['자','쟈','저','져','조','죠','주','쥬','즈','지'],
+            'ㅊ': ['차','챠','처','쳐','초','쵸','추','츄','츠','치'],
+            'ㅋ': ['카','캬','커','켜','코','쿄','쿠','큐','크','키'],
+            'ㅌ': ['타','탸','터','텨','토','툐','투','튜','트','티'],
+            'ㅍ': ['파','퍄','퍼','펴','포','표','푸','퓨','프','피'],
+            'ㅎ': ['하','햐','허','혀','호','효','후','휴','흐','히']
+          };
+          const firstCharKor = item.artist.charAt(0);
+          return 초성목록[currentInitial] && 초성목록[currentInitial].some(ch => ch === firstCharKor);
+        }
+      });
+    }
+
+    // 검색 필터 적용
+    if(searchVal) {
+      arr = arr.filter(item =>
+        (item.artist && item.artist.toLowerCase().includes(searchVal)) ||
+        (item.title && item.title.toLowerCase().includes(searchVal)) ||
+        (item.code && item.code.toLowerCase().includes(searchVal))
+      );
+    }
+
+    tbody.innerHTML = '';
+    if(arr.length === 0) {
+      noResultMsg.style.display = 'block';
+      return;
+    } else {
+      noResultMsg.style.display = 'none';
+    }
+
+    for(const item of arr) {
+      let tr = document.createElement('tr');
+      tr.innerHTML = `<td>${item.artist}</td><td>${item
