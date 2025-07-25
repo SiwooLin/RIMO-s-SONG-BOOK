@@ -6,17 +6,18 @@
   <title>RIMO's SONG BOOK</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+    /* 기본 설정 */
     body {
-      font-family: 'Jua', sans-serif;
       background: #1f1f1f;
       color: #f0f0f0;
+      font-family: 'Jua', sans-serif;
       text-align: center;
-      margin: 0 auto;
+      margin: 20px auto;
       max-width: 900px;
-      padding: 20px;
     }
     h1 {
-      color: #ffaa00;
+      color: #ff5000; /* 가장 진한 주황 */
       font-size: 4.2rem;
       margin-bottom: 10px;
       cursor: pointer;
@@ -28,9 +29,14 @@
       border-radius: 8px;
       font-weight: bold;
       margin-bottom: 15px;
+      max-width: 860px;
+      margin: auto;
     }
+
+    /* 검색창 길이 조정 */
     .search-box {
-      margin-bottom: 25px;
+      max-width: 600px;
+      margin: 0 auto 30px;
     }
     #search {
       width: 100%;
@@ -41,35 +47,62 @@
       text-align: center;
       font-family: 'Jua', sans-serif;
     }
+
+    /* 버튼 기본 스타일 */
     .btn-pill, .btn-circle {
       font-family: 'Jua', sans-serif;
       color: white;
       border: none;
       cursor: pointer;
-      transition: filter 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       user-select: none;
-      background: #ffb870;
+      transition: filter 0.2s;
     }
+    .btn-pill:hover, .btn-circle:hover {
+      filter: brightness(0.8);
+    }
+
+    /* 알약형 버튼 (알약) */
     .btn-pill {
       font-size: 16px;
       padding: 10px 26px;
       border-radius: 9999px;
       margin: 5px 6px;
     }
+    /* 원형 버튼 (circle) */
     .btn-circle {
       width: 38px;
       height: 38px;
       border-radius: 50%;
       font-size: 16px;
       margin: 5px 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    /* 설명서/가격표 버튼 색상 (보라계열) */
+    .btn-doc {
+      background: #8c76e0;
+    }
+
+    /* 전체 / 이니셜 버튼 색상 (연한 주황) */
+    .btn-filter {
+      background: #ffb870;
+    }
+
+    /* 장르 버튼 색상 (K-pop 계열 진한 주황) */
+    .btn-genre {
+      background: #ff7a00;
+    }
+
     .button-row {
       margin-bottom: 15px;
+      max-width: 860px;
+      margin: auto;
       text-align: center;
     }
+
+    /* 문서 섹션 */
     .doc-section {
       background: #8c76e0;
       color: #f3ecff;
@@ -85,12 +118,14 @@
       color: #ff7a00;
       text-align: center;
     }
+
+    /* 표 스타일 */
     table {
       width: 100%;
       border-collapse: separate;
       border-spacing: 0;
-      font-size: 16px;
       margin-bottom: 40px;
+      font-size: 16px;
     }
     thead tr {
       background: #331a00;
@@ -98,24 +133,28 @@
     thead th {
       padding: 12px;
       color: #ff5500;
-      border-bottom: 2px dotted #ff7a00;
+      border-right: 2px dotted #ff7a00;
+      text-align: center;
     }
-    tbody tr:nth-child(even) {
-      background: #2b2b2b;
-    }
-    tbody tr:nth-child(odd) {
-      background: #1f1f1f;
-    }
+    thead th:last-child { border-right: none; }
+    tbody tr:nth-child(even) { background: #2b2b2b; }
+    tbody tr:nth-child(odd) { background: #1f1f1f; }
     tbody td {
       padding: 10px;
-      border-bottom: 2px dotted #ff7a00;
+      text-align: center;
+      border-right: 2px dotted #ff7a00;
     }
+    tbody td:last-child { border-right: none; }
+
     #searchResultsMessage {
       color: #b1a0e5;
       font-weight: bold;
       font-size: 18px;
-      margin: 10px 0 30px;
+      margin: 10px auto 30px;
       min-height: 1.5em;
+    }
+    #songsTableContainer {
+      margin-bottom: 40px;
     }
   </style>
 </head>
@@ -132,14 +171,14 @@
 </div>
 
 <div class="button-row">
-  <button class="btn-pill" onclick="showDoc('노래책 설명서')">노래책 설명서</button>
-  <button class="btn-pill" onclick="showDoc('가격표')">가격표</button>
+  <button class="btn-pill btn-doc" onclick="showDoc('노래책 설명서')">노래책 설명서</button>
+  <button class="btn-pill btn-doc" onclick="showDoc('가격표')">가격표</button>
 </div>
 
 <div class="button-row">
-  <button class="btn-pill" onclick="selectGenre('Kpop')">K-pop</button>
-  <button class="btn-pill" onclick="selectGenre('Kpop아이돌')">K-pop 아이돌</button>
-  <button class="btn-pill" onclick="selectGenre('Pop')">Pop</button>
+  <button class="btn-pill btn-genre" onclick="selectGenre('Kpop')">K‑pop</button>
+  <button class="btn-pill btn-genre" onclick="selectGenre('Kpop아이돌')">K‑pop 아이돌</button>
+  <button class="btn-pill btn-genre" onclick="selectGenre('Pop')">Pop</button>
 </div>
 
 <div id="buttonsContainer"></div>
@@ -169,105 +208,98 @@
 <div id="songsTableContainer"></div>
 
 <script>
-const korInitials = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
-const engInitials = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const songs = [
+const korInitials=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const engInitials='abcdefghijklmnopqrstuvwxyz'.split('');
+const songs=[
+  {category:'Kpop 전체', title:'Dynamite', singer:'BTS', code:'C', difficulty:'중', skill:'고'},
   {category:'Kpop ㄱ', title:'Gangnam Style', singer:'PSY', code:'Am', difficulty:'쉬움', skill:'중'},
   {category:'Kpop ㄴ', title:'Nobody', singer:'Wonder Girls', code:'G', difficulty:'쉬움', skill:'중'},
-  {category:'Kpop 전체', title:'Dynamite', singer:'BTS', code:'C', difficulty:'중', skill:'고'},
   {category:'Kpop아이돌 전체', title:'Ice Cream', singer:'BLACKPINK', code:'F', difficulty:'중', skill:'중'},
   {category:'Pop 전체', title:'Shape of You', singer:'Ed Sheeran', code:'Dm', difficulty:'중', skill:'고'},
-  {category:'Pop a', title:'All of Me', singer:'John Legend', code:'Em', difficulty:'중', skill:'중'},
-  {category:'Pop b', title:'Bad Guy', singer:'Billie Eilish', code:'Bm', difficulty:'어려움', skill:'고'}
+  {category:'Pop a', title:'All of Me', singer:'John Legend', code:'Em', difficulty:'중', skill:'중'}
 ];
+
 let currentGenre='', currentFilter='';
 
-function resetToDefault() {
+function resetToDefault(){
   showDoc('노래책 설명서');
-  document.getElementById('buttonsContainer').innerHTML = '';
-  document.getElementById('songsTableContainer').innerHTML = '';
-  document.getElementById('searchResultsMessage').textContent = '';
-  document.getElementById('search').value = '';
-  currentGenre = ''; currentFilter = '';
+  document.getElementById('buttonsContainer').innerHTML='';
+  document.getElementById('songsTableContainer').innerHTML='';
+  document.getElementById('searchResultsMessage').textContent='';
+  document.getElementById('search').value='';
+  currentGenre='';currentFilter='';
 }
 
 function showDoc(which){
   document.getElementById('노래책 설명서').style.display = which==='노래책 설명서'?'block':'none';
   document.getElementById('가격표').style.display = which==='가격표'?'block':'none';
+  document.getElementById('songsTableContainer').innerHTML='';
+  document.getElementById('searchResultsMessage').textContent='';
 }
 
 function selectGenre(genre){
-  currentGenre = genre;
-  currentFilter = genre + ' 전체';
+  currentGenre=genre;
+  currentFilter=genre+' 전체';
   showDoc('');
-  drawInitialButtons();
-  drawTable(songs.filter(s => s.category.startsWith(genre)));
+  drawButtons();
+  drawTable(songs.filter(s=>s.category.startsWith(genre)));
 }
 
-function drawInitialButtons(){
-  const cont = document.getElementById('buttonsContainer');
-  cont.innerHTML = '';
-  const allBtn = document.createElement('button');
-  allBtn.className = 'btn-pill';
-  allBtn.textContent = '전체';
-  allBtn.onclick = () => {
-    currentFilter = currentGenre + ' 전체';
-    drawTable(songs.filter(s => s.category.startsWith(currentGenre)));
-  };
+function drawButtons(){
+  const cont=document.getElementById('buttonsContainer');
+  cont.innerHTML='';
+  const allBtn=document.createElement('button');
+  allBtn.className='btn-pill btn-filter';
+  allBtn.textContent='전체';
+  allBtn.onclick=()=>{ currentFilter=currentGenre+' 전체'; drawTable(songs.filter(s=>s.category.startsWith(currentGenre))); };
   cont.appendChild(allBtn);
 
-  const initials = currentGenre.includes('Pop') ? engInitials : korInitials;
-  initials.forEach(init => {
-    const b = document.createElement('button');
-    b.className = 'btn-circle';
-    b.textContent = init;
-    b.onclick = () => {
-      currentFilter = currentGenre + ' ' + init;
-      drawTable(songs.filter(s => s.category === currentFilter));
-    };
+  const initials = currentGenre==='Pop'? engInitials : korInitials;
+  initials.forEach(ch=>{
+    const b=document.createElement('button');
+    b.className='btn-circle btn-filter';
+    b.textContent=ch;
+    b.onclick=()=>{ currentFilter=currentGenre+' '+ch; drawTable(songs.filter(s=>s.category===currentFilter)); };
     cont.appendChild(b);
   });
 }
 
 function drawTable(list){
-  const msg = document.getElementById('searchResultsMessage');
-  const tbl = document.getElementById('songsTableContainer');
-  tbl.innerHTML = '';
-  msg.textContent = '';
-  if (list.length === 0) {
-    msg.textContent = '검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
-    return;
-  }
-  const table = document.createElement('table');
-  const thead = table.createTHead();
-  const headRow = thead.insertRow();
-  ['제목','가수','코드','난이도','숙련도'].forEach(text => {
-    const th = document.createElement('th');
-    th.textContent = text;
-    headRow.appendChild(th);
-  });
-  const tbody = table.createTBody();
-  list.forEach(item => {
-    const row = tbody.insertRow();
-    ['title','singer','code','difficulty','skill'].forEach(key => {
-      const td = row.insertCell();
-      td.textContent = item[key];
+  const cont = document.getElementById('songsTableContainer');
+    const msg = document.getElementById('searchResultsMessage');
+    cont.innerHTML=''; msg.textContent='';
+    if(list.length===0){
+      msg.textContent='검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
+      return;
+    }
+    const tbl=document.createElement('table');
+    const thead=tbl.createTHead();
+    const hr=thead.insertRow();
+    ['제목','가수','코드','난이도','숙련도'].forEach(t=>{
+      const th=document.createElement('th');
+      th.textContent=t;
+      hr.appendChild(th);
     });
-  });
-  tbl.appendChild(table);
+    const tb=tbl.createTBody();
+    list.forEach(s=>{
+      const r=tb.insertRow();
+      ['title','singer','code','difficulty','skill'].forEach(k=>{
+        const td=r.insertCell();
+        td.textContent=s[k];
+      });
+    });
+    cont.appendChild(tbl);
 }
 
 function searchSongs(){
-  const kw = document.getElementById('search').value.trim().toLowerCase();
-  const res = songs.filter(s => s.title.toLowerCase().includes(kw) || s.singer.toLowerCase().includes(kw));
-  document.getElementById('노래책 설명서').style.display = 'none';
-  document.getElementById('가격표').style.display = 'none';
-  document.getElementById('buttonsContainer').innerHTML = '';
-  drawTable(res);
+  const kw=document.getElementById('search').value.trim().toLowerCase();
+  showDoc('');
+  document.getElementById('buttonsContainer').innerHTML='';
+  drawTable(songs.filter(s=> s.title.toLowerCase().includes(kw)||s.singer.toLowerCase().includes(kw)));
 }
 
-window.onload = resetToDefault;
+window.onload=resetToDefault;
 </script>
-
 </body>
 </html>
+```
