@@ -15,19 +15,21 @@
     text-align: center;
   }
   h1 {
-    color: #ff5400; /* 진하고 화사한 주황 */
+    color: #ff5400;
     font-size: 3.6rem;
     font-weight: 900;
     margin-bottom: 10px;
     cursor: pointer;
+    font-family: 'Jua', sans-serif;
   }
   .important-notice {
-    background: #c9b8f9; /* 연한 보라 */
+    background: #c9b8f9;
     color: #1f1f1f;
     padding: 10px;
     border-radius: 6px;
     font-weight: bold;
     margin-bottom: 15px;
+    font-family: 'Jua', sans-serif;
   }
   #searchInput {
     width: 90%;
@@ -38,9 +40,11 @@
     border-radius: 20px;
     background: #333;
     color: #f0f0f0;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     text-align: center;
     box-sizing: border-box;
+    display: block;
+    font-family: 'Jua', sans-serif;
   }
   #searchInput:focus {
     border-color: #cc4a00; outline: none;
@@ -61,16 +65,18 @@
     min-width: 100px;
     font-size: 1rem;
     margin: 5px 5px 10px;
+    user-select: none;
+    font-family: 'Jua', sans-serif;
   }
   .top-categories button {
-    background: #a26bdf; /* 눈에 띄는 보라 */
+    background: #a26bdf;
     color: white;
   }
   .top-categories button:hover {
     background: #8b55c1;
   }
   .genre-categories button {
-    background: #e67e22; /* 현재 주황 */
+    background: #e67e22;
     color: #1f1f1f;
   }
   .genre-categories button:hover {
@@ -80,7 +86,7 @@
     width: 34px; height: 34px;
     line-height: 34px;
     font-size: 1.05rem;
-    background: #f9a263; /* 연한 주황 */
+    background: #f9a263;
     color: #1f1f1f;
     margin: 3px 4px;
     border-radius: 20px;
@@ -93,7 +99,7 @@
     width: 34px; height: 34px;
     line-height: 34px;
     font-size: 1.05rem;
-    background: #fbc48f; /* 연한 주황 */
+    background: #fbc48f;
     color: #1f1f1f;
     margin: 3px 4px;
     border-radius: 20px;
@@ -116,6 +122,7 @@
     text-align: center;
     font-size: 1.05rem;
     letter-spacing: 0.5px;
+    font-family: 'Jua', sans-serif;
   }
   thead th {
     background: #e67e22;
@@ -126,8 +133,6 @@
   tbody td {
     padding: 8px;
     border-top: 1px dashed #666;
-    border-left: none;
-    border-right: none;
   }
   tbody tr:nth-child(even) {
     background: #2b2b2b;
@@ -140,6 +145,7 @@
     color: #ff5400;
     margin-top: 20px;
     display: none;
+    font-family: 'Jua', sans-serif;
   }
   #textContent {
     white-space: pre-wrap;
@@ -151,6 +157,7 @@
     font-size: 1.12rem;
     text-align: left;
     max-width: 900px;
+    font-family: 'Jua', sans-serif;
   }
 </style>
 </head>
@@ -162,12 +169,12 @@
   📌 필독 공지: 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!
 </div>
 
-<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off">
-
 <div class="top-categories">
   <button onclick="filterCategory('노래책 설명서')">노래책 설명서</button>
   <button onclick="filterCategory('가격표')">가격표</button>
 </div>
+
+<input type="text" id="searchInput" placeholder="가수명, 제목 등으로 검색" oninput="handleSearch()" autocomplete="off">
 
 <div class="genre-categories">
   <button onclick="filterCategory('K-pop')">K-pop</button>
@@ -272,7 +279,6 @@
       songs: [
         {artist: "가수1", title: "노래1", code: "C", difficulty: "중", skill: "상"},
         {artist: "가수2", title: "노래2", code: "Am", difficulty: "하", skill: "중"},
-        //... 추가 곡 데이터
       ]
     },
     "K-pop 아이돌": {
@@ -280,7 +286,6 @@
       songs: [
         {artist: "아이돌가수1", title: "노래A", code: "F", difficulty: "중", skill: "상"},
         {artist: "아이돌가수2", title: "노래B", code: "Dm", difficulty: "하", skill: "중"},
-        //... 추가 곡 데이터
       ]
     },
     "Pop": {
@@ -288,7 +293,6 @@
       songs: [
         {artist: "Pop 가수1", title: "Pop 노래1", code: "G", difficulty: "중", skill: "상"},
         {artist: "Pop 가수2", title: "Pop 노래2", code: "Em", difficulty: "하", skill: "중"},
-        //... 추가 곡 데이터
       ]
     }
   };
@@ -365,47 +369,3 @@
         <td>${song.difficulty}</td>
         <td>${song.skill}</td>
       `;
-      tableBody.appendChild(tr);
-    });
-  }
-
-  function handleSearch() {
-    const query = document.getElementById("searchInput").value.trim().toLowerCase();
-    noResultMsg.style.display = "none";
-    textContentDiv.style.display = "none";
-    songTable.style.display = "table";
-    koreanInitials.style.display = "none";
-    alphaInitials.style.display = "none";
-
-    if(query === "") {
-      updateDisplay();
-      return;
-    }
-
-    // 통합 모든 장르 곡 모음
-    let allSongs = [];
-    ["K-pop", "K-pop 아이돌", "Pop"].forEach(cat => {
-      allSongs = allSongs.concat(data[cat].songs);
-    });
-
-    const filtered = allSongs.filter(song =>
-      song.artist.toLowerCase().includes(query) ||
-      song.title.toLowerCase().includes(query) ||
-      song.code.toLowerCase().includes(query)
-    );
-
-    if(filtered.length === 0) {
-      songTable.style.display = "none";
-      noResultMsg.style.display = "block";
-      noResultMsg.textContent = "검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.";
-      return;
-    }
-
-    noResultMsg.style.display = "none";
-    tableBody.innerHTML = "";
-    filtered.forEach(song => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${song.artist}</td>
-        <td>${song.title}</td>
-        <td>${song.code}</
