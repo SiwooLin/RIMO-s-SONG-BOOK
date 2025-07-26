@@ -18,7 +18,7 @@
       font-size: 32px;
       margin-bottom: 8px;
       color: #ff6f00;
-      cursor: pointer;
+      cursor: pointer; /* 수정된 부분 */
     }
     .headlineNotice {
       font-size: 15px;
@@ -126,7 +126,8 @@
   </style>
 </head>
 <body>
-  <h1 id="title">RIMO’S SONG BOOK</h1>
+  <h1 id="title" onclick="showSection('manual')">RIMO’S SONG BOOK</h1>
+
   <p class="headlineNotice">📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!</p>
 
   <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" />
@@ -137,6 +138,7 @@
     <button onclick="showSection('songs')">노래목록</button>
   </div>
 
+  <!-- 설명서, 가격표 섹션 -->
   <div id="manual" class="section" style="display:none;">
     • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.
     (코드도 적어주시면 감사합니다!)<br/>
@@ -154,8 +156,10 @@
     • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈 혹은 투네이션으로 신청 가능합니다.
   </div>
 
+  <!-- 노래 목록 섹션 -->
   <div id="songs" class="section" style="display:none; text-align:center;">
 
+    <!-- 카테고리 선택 버튼 -->
     <div id="categorySelector">
       <button class="orange-btn active-btn" onclick="selectCategory('전체')" id="cat-btn-전체">전체</button>
       <button class="orange-btn" onclick="selectCategory('Kpop')" id="cat-btn-Kpop">K-pop</button>
@@ -163,9 +167,11 @@
       <button class="orange-btn" onclick="selectCategory('Pop')" id="cat-btn-Pop">Pop</button>
     </div>
 
+    <!-- 전체 + 이니셜 버튼 (초성 or 알파벳) -->
     <div id="initialButtons" style="margin-top: 15px; display:none;"></div>
   </div>
 
+  <!-- 노래 테이블 -->
   <table id="songTable">
     <thead>
       <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
@@ -245,7 +251,6 @@
     // 가수 초성 집합 (중복 제거)
     const initialsSet = new Set(filteredSongs.map(s => s.initial));
     const initials = Array.from(initialsSet).sort((a,b) => {
-      // 한글 초성은 유니코드 순 정렬
       return a.localeCompare(b, 'ko');
     });
 
@@ -336,7 +341,6 @@
   }
 
   function handleSearch() {
-    // 검색 시 카테고리, 초성 무시하지 않고 같이 필터링
     filterAndRenderSongs();
   }
 
