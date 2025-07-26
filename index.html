@@ -32,40 +32,42 @@
       display: block;
       padding: 12px;
       font-size: 16px;
-      border: 2px solid #8e44ad;
+      border: 2px solid #8e44ad; /* 테두리만 색 */
       border-radius: 999px;
-      background-color: #000;
+      background-color: transparent;
       color: #fff;
       outline: none;
       text-align: center;
       box-sizing: border-box;
+      box-shadow: none;
+    }
+    #searchInput::placeholder {
+      color: #d1b3ff;
     }
     #searchInput:focus {
       border-color: #bb99ff;
-      box-shadow: 0 0 6px #bb99ff;
+      box-shadow: none;
     }
     button {
       padding: 6px 10px;
       font-size: 14px;
+      background-color: #111;
+      color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
       margin: 3px 5px;
+      border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
       min-width: 40px;
     }
-    .orange-btn {
-      background-color: #000;
-      color: #ff6f00;
-      border: 1px solid #ff6f00;
-    }
-    .orange-btn:hover {
+    button:hover {
       background-color: #ff6f00;
-      color: #000;
+      color: #111;
     }
     .active-btn {
       background-color: #ff6f00 !important;
-      color: #000 !important;
+      color: #111 !important;
       border-color: #ff6f00 !important;
     }
     .section {
@@ -84,37 +86,41 @@
       margin-right: auto;
     }
     table {
-      display: block;
       width: 100%;
       max-width: 700px;
       margin: 20px auto;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 14px;
-      max-height: 60vh;
-      overflow-y: auto;
-      overflow-x: hidden;
+      display: none;
     }
-    thead, tbody, tr, th, td {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
+    th, td {
+      padding: 12px;
+      text-align: center;
     }
     th {
-      padding: 12px;
-      border: 1px solid #8e44ad;
       background-color: #1a1a1a;
-      text-align: center;
+      border: 1px solid #8e44ad; /* 헤더 실선 테두리 */
     }
-    td {
-      padding: 12px;
-      border-right: 1px dashed #8e44ad;
-      border-left: 1px dashed #8e44ad;
-      text-align: center;
+    th:not(:last-child) {
+      border-right: 1px solid #8e44ad; /* 헤더 세로 실선 */
     }
-    tr:nth-child(even) td {
+    tbody td {
+      border-top: none;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+    }
+    tbody td:not(:last-child) {
+      border-right: 1px dotted #8e44ad; /* 본문 세로 점선 */
+    }
+    tbody tr {
+      border-top: none; /* 가로선 없음 */
+    }
+    tbody tr:nth-child(even) {
       background-color: #1a1a1a;
     }
-    tr:nth-child(odd) td {
+    tbody tr:nth-child(odd) {
       background-color: #2a2a2a;
     }
     #noResult {
@@ -138,6 +144,7 @@
       max-width: 700px;
       margin: 15px auto 0 auto;
       display: block;
+      user-select: none;
     }
     .initial-row {
       width: 100%;
@@ -148,76 +155,93 @@
       margin-bottom: 8px;
     }
 
-    /* 모바일 대응 */
-    @media (max-width: 768px) {
+    /* 모바일 전용 스타일 */
+    @media (max-width: 600px) {
+      html, body {
+        height: 100vh;
+        overflow-y: hidden; /* 세로 스크롤 막기 */
+        overflow-x: auto;   /* 가로 스크롤 허용 */
+        padding: 0;
+        margin: 0;
+      }
+
       body {
         padding: 10px;
-        font-size: 20px;
-        overflow-x: hidden;
-      }
-      h1 {
-        font-size: 36px;
-        margin: 10px 0;
-      }
-      .headlineNotice {
-        font-size: 18px;
-        margin: 8px 0 12px;
-      }
-      #searchInput {
-        width: 100%;
-        font-size: 20px;
-        padding: 18px;
-        border-width: 3px;
-        margin: 12px 0;
         box-sizing: border-box;
       }
-      button {
-        font-size: 20px;
-        padding: 16px;
-        margin: 4px;
-        min-width: 56px;
-        border-width: 2px;
-      }
-      .section {
-        padding: 16px;
-        font-size: 18px;
-        line-height: 1.7;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 0;
-      }
-      table {
-        max-width: 100%;
-        font-size: 20px;
-        max-height: 70vh;
-      }
-      thead, tbody, tr, th, td {
-        display: table;
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 12px;
         width: 100%;
-        table-layout: fixed;
       }
-      thead th, tbody td {
-        padding: 16px;
+
+      .headlineNotice {
+        font-size: 16px;
+        margin-bottom: 16px;
+        width: 100%;
       }
-      .initial-row {
-        gap: 8px;
-        flex-wrap: wrap;
+
+      #searchInput {
+        width: 100% !important;
+        max-width: none !important;
+        font-size: 18px;
+        padding: 14px !important;
+        box-sizing: border-box;
+        margin-bottom: 16px !important;
       }
-      #categorySelector {
-        gap: 6px;
-        flex-wrap: wrap;
+
+      button {
+        min-width: auto !important;
+        width: calc(25% - 10px);
+        margin: 5px 5px !important;
+        font-size: 16px;
+        padding: 10px 0;
+      }
+
+      #categorySelector, #initialButtons {
+        max-width: 100% !important;
+        justify-content: space-around !important;
+        margin: 0 0 16px 0 !important;
+      }
+
+      .section {
+        max-width: 100% !important;
+        font-size: 16px !important;
+        padding: 16px !important;
+        margin-top: 16px !important;
+      }
+
+      table#songTable {
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: 16px !important;
+        margin: 16px 0 !important;
+      }
+
+      th, td {
+        padding: 10px !important;
+        font-size: 14px !important;
+      }
+
+      #noResult {
+        font-size: 16px !important;
+        margin-top: 16px !important;
       }
     }
   </style>
 </head>
 <body>
   <h1 id="title" onclick="showSection('manual')">RIMO’S SONG BOOK</h1>
+
   <p class="headlineNotice">📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!</p>
-  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" />
+
+  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" style="display:none;"/>
+
   <div>
-    <button class="orange-btn" onclick="showSection('manual')">노래책 설명서</button>
-    <button class="orange-btn" onclick="showSection('price')">가격표</button>
-    <button class="orange-btn" onclick="showSection('songs')">노래목록</button>
+    <button onclick="showSection('manual')">노래책 설명서</button>
+    <button onclick="showSection('price')">가격표</button>
+    <button onclick="showSection('songs')">노래목록</button>
   </div>
 
   <div id="manual" class="section" style="display:none;">
@@ -261,101 +285,191 @@
   const songs = [
     {category:'Kpop 아이돌', initial:'ㅋ', singer:'큐더블유이알(QWER)', title:'가짜아이돌', key:'Fm', difficulty:'', skill:'완벽 카피X'},
     {category:'Kpop', initial:'ㅇ', singer:'아이유', title:'밤편지', key:'C', difficulty:'하', skill:'상'},
-    {category:'Pop', initial:'A', singer:'Adele', title:'Hello', key:'C', difficulty:'중', skill:'중'},
-    // ... 실제 곡 데이터는 여기에 넣어주세요
+    {category:'Pop', initial:'A', singer:'Adele', title:'Hello', key:'Am', difficulty:'상', skill:'상'},
+    {category:'Kpop 아이돌', initial:'ㅇ', singer:'오마이걸', title:'Dun Dun Dance', key:'E', difficulty:'중', skill:'중'},
+    {category:'Kpop', initial:'ㄴ', singer:'뉴진스', title:'Hype Boy', key:'D', difficulty:'중', skill:'중'},
+    {category:'Kpop 아이돌', initial:'ㅂ', singer:'방탄소년단', title:'Dynamite', key:'G', difficulty:'중', skill:'중'},
   ];
 
   let currentCategory = '전체';
-  let currentInitial = '';
+  let currentInitial = '전체';
 
-  function showSection(section) {
-    ['manual','price','songs'].forEach(s => {
-      document.getElementById(s).style.display = (s === section) ? 'block' : 'none';
+  const songTable = document.getElementById("songTable");
+  const songList = document.getElementById("songList");
+  const noResult = document.getElementById("noResult");
+  const initialButtonsDiv = document.getElementById("initialButtons");
+  const categorySelector = document.getElementById("categorySelector");
+  const searchInput = document.getElementById("searchInput");
+
+  // 한글 초성 14개 7개씩 2줄
+  const allChosung = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+  const allChosungLine1 = allChosung.slice(0,7);
+  const allChosungLine2 = allChosung.slice(7);
+
+  const allAlpha = Array.from(Array(26)).map((_,i)=>String.fromCharCode(65+i));
+
+  function showSection(sectionId) {
+    ['manual','price','songs'].forEach(id => {
+      document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
     });
-    document.getElementById('songTable').style.display = (section === 'songs') ? 'block' : 'none';
-    document.getElementById('noResult').style.display = 'none';
-    currentInitial = '';
-    selectCategory(currentCategory);
-  }
 
-  function selectCategory(cat) {
-    currentCategory = cat;
-    currentInitial = '';
-    updateInitialButtons();
-    updateSongList();
-    updateCategoryButtons();
+    if(sectionId === 'songs') {
+      searchInput.style.display = 'block';
+      categorySelector.style.display = 'flex';
+      initialButtonsDiv.style.display = 'block';
+      songTable.style.display = 'none';
+      noResult.style.display = 'none';
+
+      currentCategory = '전체';
+      currentInitial = '전체';
+      searchInput.value = '';
+
+      updateCategoryButtons();
+      generateInitialButtons();
+      filterAndRenderSongs();
+    } else {
+      searchInput.style.display = 'none';
+      categorySelector.style.display = 'none';
+      initialButtonsDiv.style.display = 'none';
+      songTable.style.display = 'none';
+      noResult.style.display = 'none';
+    }
   }
 
   function updateCategoryButtons() {
     ['전체','Kpop','Kpop 아이돌','Pop'].forEach(cat => {
-      const btn = document.getElementById('cat-btn-' + cat);
-      if (btn) {
-        btn.classList.toggle('active-btn', cat === currentCategory);
+      const btn = document.getElementById(`cat-btn-${cat}`);
+      if(btn) {
+        if(cat === currentCategory) btn.classList.add('active-btn');
+        else btn.classList.remove('active-btn');
       }
     });
   }
 
-  function updateInitialButtons() {
-    const initialDiv = document.getElementById('initialButtons');
-    initialDiv.innerHTML = '';
-    let initialsSet = new Set();
+  function selectCategory(cat) {
+    currentCategory = cat;
+    currentInitial = '전체';
+    searchInput.value = '';
+    updateCategoryButtons();
+    generateInitialButtons();
+    filterAndRenderSongs();
+  }
 
-    songs.forEach(song => {
-      if (currentCategory === '전체' || song.category === currentCategory) {
-        initialsSet.add(song.initial);
-      }
+  function generateInitialButtons() {
+    initialButtonsDiv.innerHTML = '';
+
+    // 전체 버튼
+    const allBtn = document.createElement('button');
+    allBtn.textContent = '전체';
+    allBtn.className = currentInitial === '전체' ? 'active-btn' : '';
+    allBtn.onclick = () => {
+      currentInitial = '전체';
+      searchInput.value = '';
+      generateInitialButtons();
+      filterAndRenderSongs();
+    };
+    initialButtonsDiv.appendChild(allBtn);
+
+    // 한글 초성 7개씩 2줄
+    const chosungRow1 = document.createElement('div');
+    chosungRow1.className = 'initial-row';
+    allChosungLine1.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.className = currentInitial === ch ? 'active-btn' : '';
+      btn.onclick = () => {
+        currentInitial = ch;
+        searchInput.value = '';
+        generateInitialButtons();
+        filterAndRenderSongs();
+      };
+      chosungRow1.appendChild(btn);
     });
+    initialButtonsDiv.appendChild(chosungRow1);
 
-    const initials = Array.from(initialsSet).sort();
-    if (initials.length > 0) {
-      let rowDiv = document.createElement('div');
-      rowDiv.className = 'initial-row';
-      initials.forEach(initial => {
-        let btn = document.createElement('button');
-        btn.textContent = initial;
+    const chosungRow2 = document.createElement('div');
+    chosungRow2.className = 'initial-row';
+    allChosungLine2.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.className = currentInitial === ch ? 'active-btn' : '';
+      btn.onclick = () => {
+        currentInitial = ch;
+        searchInput.value = '';
+        generateInitialButtons();
+        filterAndRenderSongs();
+      };
+      chosungRow2.appendChild(btn);
+    });
+    initialButtonsDiv.appendChild(chosungRow2);
+
+    // 영어 알파벳 3줄 (9,9,8)
+    const alphaLines = [9, 9, 8];
+    let idx = 0;
+    for(let line = 0; line < 3; line++) {
+      const alphaRow = document.createElement('div');
+      alphaRow.className = 'initial-row';
+      for(let i = 0; i < alphaLines[line]; i++) {
+        const ch = allAlpha[idx++];
+        const btn = document.createElement('button');
+        btn.textContent = ch;
+        btn.className = currentInitial === ch ? 'active-btn' : '';
         btn.onclick = () => {
-          currentInitial = initial;
-          updateInitialButtons();
-          updateSongList();
+          currentInitial = ch;
+          searchInput.value = '';
+          generateInitialButtons();
+          filterAndRenderSongs();
         };
-        if (initial === currentInitial) btn.classList.add('active-btn');
-        rowDiv.appendChild(btn);
-      });
-      initialDiv.appendChild(rowDiv);
+        alphaRow.appendChild(btn);
+      }
+      initialButtonsDiv.appendChild(alphaRow);
     }
   }
 
-  function updateSongList() {
-    const tbody = document.getElementById('songList');
-    tbody.innerHTML = '';
-    let filtered = songs.filter(song => {
-      const catMatch = (currentCategory === '전체') || (song.category === currentCategory);
-      const initialMatch = !currentInitial || song.initial === currentInitial;
-      const search = document.getElementById('searchInput').value.trim().toLowerCase();
-      const searchMatch = song.singer.toLowerCase().includes(search) || song.title.toLowerCase().includes(search);
-      return catMatch && initialMatch && searchMatch;
-    });
+  function filterAndRenderSongs() {
+    let filtered = songs;
 
-    if (filtered.length === 0) {
-      document.getElementById('noResult').style.display = 'block';
-      document.getElementById('songTable').style.display = 'none';
-    } else {
-      document.getElementById('noResult').style.display = 'none';
-      document.getElementById('songTable').style.display = 'block';
-      filtered.forEach(song => {
-        let tr = document.createElement('tr');
-        ['singer','title','key','difficulty','skill'].forEach(field => {
-          let td = document.createElement('td');
-          td.textContent = song[field] || '';
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      });
+    if(currentCategory !== '전체') {
+      filtered = filtered.filter(s => s.category === currentCategory);
     }
+    if(currentInitial !== '전체') {
+      filtered = filtered.filter(s => s.initial === currentInitial);
+    }
+
+    const searchVal = searchInput.value.trim().toLowerCase();
+    if(searchVal.length > 0) {
+      filtered = filtered.filter(s => 
+        s.singer.toLowerCase().includes(searchVal) || s.title.toLowerCase().includes(searchVal)
+      );
+    }
+
+    if(filtered.length === 0) {
+      songTable.style.display = 'none';
+      noResult.style.display = 'block';
+      noResult.textContent = '검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
+      return;
+    }
+
+    noResult.style.display = 'none';
+    songTable.style.display = 'table';
+    songList.innerHTML = '';
+    filtered.forEach(song => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${song.singer}</td>
+        <td>${song.title}</td>
+        <td>${song.key}</td>
+        <td>${song.difficulty}</td>
+        <td>${song.skill || ''}</td>
+      `;
+      songList.appendChild(tr);
+    });
   }
 
   function handleSearch() {
-    updateSongList();
+    currentInitial = '전체';
+    generateInitialButtons();
+    filterAndRenderSongs();
   }
 
   showSection('manual');
