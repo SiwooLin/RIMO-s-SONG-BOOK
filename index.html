@@ -34,15 +34,18 @@
       font-size: 16px;
       border: none;
       border-radius: 999px;
-      background-color: #111;
+      background-color: #8e44ad; /* 보라색 배경 */
       color: #fff;
-      box-shadow: 0 0 8px #ff6f00;
+      box-shadow: 0 0 8px #8e44ad;
       outline: none;
       text-align: center;
       box-sizing: border-box;
     }
+    #searchInput::placeholder {
+      color: #d1b3ff;
+    }
     #searchInput:focus {
-      box-shadow: 0 0 12px #8e44ad;
+      box-shadow: 0 0 12px #bb99ff;
     }
     button {
       padding: 6px 10px;
@@ -206,7 +209,11 @@
   const categorySelector = document.getElementById("categorySelector");
   const searchInput = document.getElementById("searchInput");
 
+  // 한글 초성 14개 7개씩 2줄
   const allChosung = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+  const allChosungLine1 = allChosung.slice(0,7);
+  const allChosungLine2 = allChosung.slice(7);
+
   const allAlpha = Array.from(Array(26)).map((_,i)=>String.fromCharCode(65+i));
 
   function showSection(sectionId) {
@@ -257,10 +264,9 @@
   }
 
   function generateInitialButtons() {
-    // 초기화
     initialButtonsDiv.innerHTML = '';
 
-    // "전체" 버튼
+    // 전체 버튼
     const allBtn = document.createElement('button');
     allBtn.textContent = '전체';
     allBtn.className = currentInitial === '전체' ? 'active-btn' : '';
@@ -272,10 +278,10 @@
     };
     initialButtonsDiv.appendChild(allBtn);
 
-    // 초성 14개 한줄
-    const chosungRow = document.createElement('div');
-    chosungRow.className = 'initial-row';
-    allChosung.forEach(ch => {
+    // 한글 초성 7개씩 2줄
+    const chosungRow1 = document.createElement('div');
+    chosungRow1.className = 'initial-row';
+    allChosungLine1.forEach(ch => {
       const btn = document.createElement('button');
       btn.textContent = ch;
       btn.className = currentInitial === ch ? 'active-btn' : '';
@@ -285,9 +291,25 @@
         generateInitialButtons();
         filterAndRenderSongs();
       };
-      chosungRow.appendChild(btn);
+      chosungRow1.appendChild(btn);
     });
-    initialButtonsDiv.appendChild(chosungRow);
+    initialButtonsDiv.appendChild(chosungRow1);
+
+    const chosungRow2 = document.createElement('div');
+    chosungRow2.className = 'initial-row';
+    allChosungLine2.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.className = currentInitial === ch ? 'active-btn' : '';
+      btn.onclick = () => {
+        currentInitial = ch;
+        searchInput.value = '';
+        generateInitialButtons();
+        filterAndRenderSongs();
+      };
+      chosungRow2.appendChild(btn);
+    });
+    initialButtonsDiv.appendChild(chosungRow2);
 
     // 영어 알파벳 3줄 (9,9,8)
     const alphaLines = [9, 9, 8];
@@ -315,16 +337,13 @@
   function filterAndRenderSongs() {
     let filtered = songs;
 
-    // 카테고리 필터링
     if(currentCategory !== '전체') {
       filtered = filtered.filter(s => s.category === currentCategory);
     }
-    // 이니셜 필터링
     if(currentInitial !== '전체') {
       filtered = filtered.filter(s => s.initial === currentInitial);
     }
 
-    // 검색 필터링
     const searchVal = searchInput.value.trim().toLowerCase();
     if(searchVal.length > 0) {
       filtered = filtered.filter(s => 
@@ -332,7 +351,6 @@
       );
     }
 
-    // 결과 렌더링
     if(filtered.length === 0) {
       songTable.style.display = 'none';
       noResult.style.display = 'block';
@@ -357,12 +375,11 @@
   }
 
   function handleSearch() {
-    currentInitial = '전체'; // 검색 시 이니셜 필터 초기화
+    currentInitial = '전체';
     generateInitialButtons();
     filterAndRenderSongs();
   }
 
-  // 초기 화면은 설명서 보이기
   showSection('manual');
 </script>
 </body>
