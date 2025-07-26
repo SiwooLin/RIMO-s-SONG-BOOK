@@ -32,34 +32,33 @@
       display: block;
       padding: 12px;
       font-size: 16px;
-      border: 2px solid #8e44ad; /* 테두리만 색 */
+      border: 2px solid #8e44ad;
       border-radius: 999px;
-      background-color: transparent;
+      background-color: #000;
       color: #fff;
       outline: none;
       text-align: center;
       box-sizing: border-box;
-      box-shadow: none;
     }
     #searchInput::placeholder {
       color: #d1b3ff;
     }
     #searchInput:focus {
       border-color: #bb99ff;
-      box-shadow: none;
+      box-shadow: 0 0 6px #bb99ff;
     }
     button {
       padding: 6px 10px;
       font-size: 14px;
-      background-color: #111;
-      color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
       margin: 3px 5px;
-      border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
       min-width: 40px;
+      background-color: #111;
+      color: #ff6f00;
+      border: 1px solid #ff6f00;
     }
     button:hover {
       background-color: #ff6f00;
@@ -89,39 +88,37 @@
       width: 100%;
       max-width: 700px;
       margin: 20px auto;
-      border-collapse: separate;
-      border-spacing: 0;
+      border-collapse: collapse;
       font-size: 14px;
       display: none;
     }
-    th, td {
+    thead th {
       padding: 12px;
+      border: 1px solid #8e44ad;
       text-align: center;
-    }
-    th {
       background-color: #1a1a1a;
-      border: 1px solid #8e44ad; /* 헤더 실선 테두리 */
     }
-    th:not(:last-child) {
-      border-right: 1px solid #8e44ad; /* 헤더 세로 실선 */
+    thead th:not(:last-child) {
+      border-right: 1px solid #8e44ad;
     }
     tbody td {
-      border-top: none;
-      border-bottom: none;
+      padding: 12px;
       border-left: none;
       border-right: none;
-    }
-    tbody td:not(:last-child) {
-      border-right: 1px dotted #8e44ad; /* 본문 세로 점선 */
+      text-align: center;
     }
     tbody tr {
-      border-top: none; /* 가로선 없음 */
+      border-top: 1px dashed #8e44ad;
+      background-color: inherit;
     }
     tbody tr:nth-child(even) {
       background-color: #1a1a1a;
     }
     tbody tr:nth-child(odd) {
       background-color: #2a2a2a;
+    }
+    tbody td:not(:last-child) {
+      border-right: 1px dashed #8e44ad;
     }
     #noResult {
       display: none;
@@ -153,6 +150,38 @@
       justify-content: center;
       gap: 8px;
       margin-bottom: 8px;
+    }
+
+    /* 모바일 반응형 추가 */
+    @media screen and (max-width: 480px) {
+      body {
+        padding: 20px;
+      }
+      #searchInput {
+        width: 90%;
+        font-size: 14px;
+        padding: 10px;
+      }
+      #categorySelector, #initialButtons {
+        max-width: 100%;
+        gap: 5px;
+      }
+      button {
+        padding: 5px 8px;
+        font-size: 12px;
+        min-width: 32px;
+        margin: 2px 3px;
+      }
+      table {
+        font-size: 12px;
+      }
+      thead th, tbody td {
+        padding: 8px 6px;
+      }
+      .section {
+        padding: 15px 10px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -385,7 +414,7 @@
         <td>${song.title}</td>
         <td>${song.key}</td>
         <td>${song.difficulty}</td>
-        <td>${song.skill || ''}</td>
+        <td>${song.skill}</td>
       `;
       songList.appendChild(tr);
     });
