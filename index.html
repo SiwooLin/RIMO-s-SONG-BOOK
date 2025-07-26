@@ -32,7 +32,7 @@
       display: block;
       padding: 12px;
       font-size: 16px;
-      border: 2px solid #8e44ad;
+      border: 2px solid #8e44ad; /* 테두리만 보라색 */
       border-radius: 999px;
       background-color: #000;
       color: #fff;
@@ -50,15 +50,15 @@
     button {
       padding: 6px 10px;
       font-size: 14px;
+      background-color: #111;
+      color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
       margin: 3px 5px;
+      border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
       min-width: 40px;
-      background-color: #111;
-      color: #ff6f00;
-      border: 1px solid #ff6f00;
     }
     button:hover {
       background-color: #ff6f00;
@@ -88,28 +88,28 @@
       width: 100%;
       max-width: 700px;
       margin: 20px auto;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 14px;
       display: none;
+      border-left: none;
+      border-right: none;
     }
     thead th {
       padding: 12px;
-      border: 1px solid #8e44ad;
-      text-align: center;
+      border-bottom: 2px solid #8e44ad;
+      border-right: 2px solid #8e44ad;
       background-color: #1a1a1a;
+      text-align: center;
+      position: relative;
     }
-    thead th:not(:last-child) {
-      border-right: 1px solid #8e44ad;
+    thead th:last-child {
+      border-right: none;
     }
     tbody td {
       padding: 12px;
-      border-left: none;
-      border-right: none;
+      border-right: 1px dotted #8e44ad;
       text-align: center;
-    }
-    tbody tr {
-      border-top: 1px dashed #8e44ad;
-      background-color: inherit;
     }
     tbody tr:nth-child(even) {
       background-color: #1a1a1a;
@@ -117,8 +117,11 @@
     tbody tr:nth-child(odd) {
       background-color: #2a2a2a;
     }
-    tbody td:not(:last-child) {
-      border-right: 1px dashed #8e44ad;
+    tbody tr td:last-child {
+      border-right: none;
+    }
+    tbody tr {
+      border-bottom: none;
     }
     #noResult {
       display: none;
@@ -152,35 +155,37 @@
       margin-bottom: 8px;
     }
 
-    /* 모바일 반응형 추가 */
+    /* 모바일 반응형 - 화면폭에 맞게 크기, 간격 조정 */
     @media screen and (max-width: 480px) {
       body {
-        padding: 20px;
+        padding: 10px;
+        font-size: 16px;
       }
       #searchInput {
-        width: 90%;
-        font-size: 14px;
-        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
       }
       #categorySelector, #initialButtons {
         max-width: 100%;
-        gap: 5px;
+        gap: 6px;
       }
       button {
-        padding: 5px 8px;
-        font-size: 12px;
-        min-width: 32px;
-        margin: 2px 3px;
+        padding: 8px 12px;
+        font-size: 16px;
+        min-width: 44px;
+        margin: 4px 4px;
       }
       table {
-        font-size: 12px;
+        width: 100%;
+        font-size: 16px;
       }
       thead th, tbody td {
-        padding: 8px 6px;
+        padding: 12px 8px;
       }
       .section {
-        padding: 15px 10px;
-        font-size: 13px;
+        padding: 20px 15px;
+        font-size: 16px;
       }
     }
   </style>
