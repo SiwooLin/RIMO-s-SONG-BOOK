@@ -11,54 +11,59 @@
       color: #fff;
       font-family: 'Jua', sans-serif;
       text-align: center;
-      padding: 40px;
+      padding: 40px 15px 40px 15px; /* 좌우 15px 여백 */
       box-sizing: border-box;
+      font-size: 16px;
     }
     h1 {
-      font-size: 32px;
-      margin-bottom: 8px;
+      font-size: 36px;
+      margin-bottom: 12px;
       color: #ff6f00;
       cursor: pointer;
       user-select: none;
     }
     .headlineNotice {
-      font-size: 15px;
+      font-size: 18px;
       margin-bottom: 24px;
       color: #ff6f00;
+      line-height: 1.4;
     }
     #searchInput {
-      width: 320px;
-      margin: 0 auto 20px auto;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto 24px auto;
       display: block;
-      padding: 12px;
-      font-size: 16px;
-      border: 2px solid #8e44ad; /* 테두리만 보라색 */
+      padding: 14px 20px;
+      font-size: 20px;
+      border: 2px solid #8e44ad;
       border-radius: 999px;
       background-color: #000;
       color: #fff;
       outline: none;
       text-align: center;
       box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
     #searchInput::placeholder {
       color: #d1b3ff;
     }
     #searchInput:focus {
       border-color: #bb99ff;
-      box-shadow: 0 0 6px #bb99ff;
+      box-shadow: 0 0 12px #bb99ff;
     }
     button {
-      padding: 6px 10px;
-      font-size: 14px;
+      padding: 12px 18px;
+      font-size: 18px;
       background-color: #111;
       color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
-      margin: 3px 5px;
+      margin: 6px 10px;
       border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
-      min-width: 40px;
+      min-width: 80px;
+      box-sizing: border-box;
     }
     button:hover {
       background-color: #ff6f00;
@@ -74,9 +79,9 @@
       border: 1px solid #8e44ad;
       box-shadow: 0 0 8px #8e44ad;
       border-radius: 12px;
-      padding: 20px;
-      margin-top: 20px;
-      font-size: 14px;
+      padding: 24px 20px;
+      margin-top: 24px;
+      font-size: 18px;
       line-height: 1.6;
       white-space: pre-line;
       text-align: left;
@@ -87,62 +92,68 @@
     table {
       width: 100%;
       max-width: 700px;
-      margin: 20px auto;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: 14px;
+      margin: 24px auto;
+      border-collapse: collapse;
+      font-size: 18px;
       display: none;
-      border-left: none;
-      border-right: none;
+      table-layout: fixed;
+    }
+    th, td {
+      padding: 16px 12px;
+      text-align: center;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
     }
     thead th {
-      padding: 12px;
-      border-bottom: 2px solid #8e44ad;
-      border-right: 2px solid #8e44ad;
       background-color: #1a1a1a;
-      text-align: center;
-      position: relative;
+      border-bottom: 2px solid #ff6f00;
+      border-left: 1px solid #8e44ad;
+      border-right: 1px solid #8e44ad;
+      border-top: 1px solid #8e44ad;
+    }
+    thead th:first-child {
+      border-left: 1px solid #8e44ad;
     }
     thead th:last-child {
-      border-right: none;
+      border-right: 1px solid #8e44ad;
     }
-    tbody td {
-      padding: 12px;
-      border-right: 1px dotted #8e44ad;
-      text-align: center;
+    tbody tr {
+      background-color: #2a2a2a;
+      border-top: none;
     }
     tbody tr:nth-child(even) {
       background-color: #1a1a1a;
     }
-    tbody tr:nth-child(odd) {
-      background-color: #2a2a2a;
-    }
-    tbody tr td:last-child {
+    tbody td {
+      border-left: none;
       border-right: none;
+      border-top: 1px dotted #8e44ad;
+      border-bottom: 1px dotted #8e44ad;
+      border-style: none none dotted none; /* 가로 점선만 */
     }
-    tbody tr {
-      border-bottom: none;
+    tbody td:not(:last-child) {
+      border-right: 1px dotted #8e44ad; /* 세로 점선 */
     }
     #noResult {
       display: none;
       color: #ff6f00;
-      margin-top: 20px;
-      font-size: 15px;
+      margin-top: 24px;
+      font-size: 20px;
       text-align: center;
     }
     #categorySelector {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 16px;
+      margin-top: 12px;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
     #initialButtons {
       max-width: 700px;
-      margin: 15px auto 0 auto;
+      margin: 20px auto 0 auto;
       display: block;
       user-select: none;
     }
@@ -151,41 +162,72 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px;
-      margin-bottom: 8px;
+      gap: 16px;
+      margin-bottom: 12px;
     }
 
-    /* 모바일 반응형 - 화면폭에 맞게 크기, 간격 조정 */
-    @media screen and (max-width: 480px) {
+    /* 모바일 대응 */
+    @media screen and (max-width: 600px) {
       body {
-        padding: 10px;
+        padding: 20px 12px 20px 12px;
+        font-size: 20px;
+      }
+      h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .headlineNotice {
         font-size: 16px;
+        margin-bottom: 18px;
       }
       #searchInput {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px;
-      }
-      #categorySelector, #initialButtons {
+        font-size: 22px;
+        padding: 16px 24px;
         max-width: 100%;
-        gap: 6px;
       }
       button {
-        padding: 8px 12px;
-        font-size: 16px;
-        min-width: 44px;
-        margin: 4px 4px;
-      }
-      table {
-        width: 100%;
-        font-size: 16px;
-      }
-      thead th, tbody td {
-        padding: 12px 8px;
+        font-size: 20px;
+        padding: 14px 24px;
+        min-width: 100px;
+        margin: 8px 12px;
       }
       .section {
-        padding: 20px 15px;
-        font-size: 16px;
+        font-size: 20px;
+        padding: 28px 20px;
+        margin-top: 28px;
+        max-width: 100%;
+      }
+      table {
+        font-size: 20px;
+        margin: 28px auto;
+        max-width: 100%;
+      }
+      thead th {
+        font-size: 20px;
+        border-bottom: 2px solid #ff6f00;
+      }
+      tbody td {
+        font-size: 20px;
+        border-top: none;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+        border-style: none;
+      }
+      tbody td:not(:last-child) {
+        border-right: 1px dotted #8e44ad;
+        border-top: none;
+        border-bottom: none;
+      }
+      #categorySelector {
+        gap: 12px;
+      }
+      #initialButtons {
+        margin: 16px auto 0 auto;
+      }
+      .initial-row {
+        gap: 12px;
+        margin-bottom: 8px;
       }
     }
   </style>
@@ -195,7 +237,7 @@
 
   <p class="headlineNotice">📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!</p>
 
-  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" style="display:none;"/>
+  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" />
 
   <div>
     <button onclick="showSection('manual')">노래책 설명서</button>
@@ -405,21 +447,23 @@
     if(filtered.length === 0) {
       songTable.style.display = 'none';
       noResult.style.display = 'block';
-      noResult.textContent = '검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
-      return;
+    } else {
+      songTable.style.display = 'table';
+      noResult.style.display = 'none';
+      renderTable(filtered);
     }
+  }
 
-    noResult.style.display = 'none';
-    songTable.style.display = 'table';
+  function renderTable(data) {
     songList.innerHTML = '';
-    filtered.forEach(song => {
+    data.forEach(s => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${song.singer}</td>
-        <td>${song.title}</td>
-        <td>${song.key}</td>
-        <td>${song.difficulty}</td>
-        <td>${song.skill}</td>
+        <td>${s.singer}</td>
+        <td>${s.title}</td>
+        <td>${s.key}</td>
+        <td>${s.difficulty}</td>
+        <td>${s.skill}</td>
       `;
       songList.appendChild(tr);
     });
@@ -431,6 +475,7 @@
     filterAndRenderSongs();
   }
 
+  // 처음 화면은 설명서 보여주기
   showSection('manual');
 </script>
 </body>
