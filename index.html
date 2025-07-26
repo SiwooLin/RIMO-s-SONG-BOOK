@@ -112,7 +112,7 @@
       margin-top: 20px;
       font-size: 15px;
     }
-    #categoryButtons, #initialButtons {
+    #categorySelector, #initialButtons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -133,9 +133,10 @@
   <div>
     <button onclick="showSection('manual')">노래책 설명서</button>
     <button onclick="showSection('price')">가격표</button>
-    <button onclick="showSection('category')">카테고리</button>
+    <button onclick="showSection('songs')">노래목록</button>
   </div>
 
+  <!-- 설명서, 가격표 섹션 -->
   <div id="manual" class="section" style="display:none;">
     • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.
     (코드도 적어주시면 감사합니다!)<br/>
@@ -153,17 +154,22 @@
     • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈 혹은 투네이션으로 신청 가능합니다.
   </div>
 
-  <div id="category" class="section" style="display:none; text-align:center;">
-    <div>
-      <button class="orange-btn" onclick="filterByCategory('전체', true)">전체</button>
-      <button class="orange-btn" onclick="filterByCategory('Kpop')">K-pop</button>
-      <button class="orange-btn" onclick="filterByCategory('Kpop 아이돌')">K-pop 아이돌</button>
-      <button class="orange-btn" onclick="filterByCategory('Pop')">Pop</button>
+  <!-- 노래 목록 섹션 -->
+  <div id="songs" class="section" style="display:none; text-align:center;">
+
+    <!-- 카테고리 선택 버튼 -->
+    <div id="categorySelector">
+      <button class="orange-btn" onclick="selectCategory('전체')" id="cat-btn-전체">전체</button>
+      <button class="orange-btn" onclick="selectCategory('Kpop')" id="cat-btn-Kpop">K-pop</button>
+      <button class="orange-btn" onclick="selectCategory('Kpop 아이돌')" id="cat-btn-Kpop 아이돌">K-pop 아이돌</button>
+      <button class="orange-btn" onclick="selectCategory('Pop')" id="cat-btn-Pop">Pop</button>
     </div>
-    <div id="categoryButtons"></div>
-    <div id="initialButtons"></div>
+
+    <!-- 전체 + 이니셜 버튼 (초성 or 알파벳) -->
+    <div id="initialButtons" style="margin-top: 15px; display:none;"></div>
   </div>
 
+  <!-- 노래 테이블 -->
   <table id="songTable">
     <thead>
       <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
@@ -173,181 +179,48 @@
 
   <p id="noResult">검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
 
-  <script>
-    // 노래 데이터 예시
-    const songs = [
-      {category:'Kpop 아이돌', initial:'ㅋ', singer:'큐더블유이알(QWER)', title:'가짜아이돌', key:'Fm', difficulty:'', skill:'완벽 카피X'},
-      {category:'Kpop', initial:'ㅇ', singer:'아이유', title:'밤편지', key:'C', difficulty:'하', skill:'상'},
-      {category:'Pop', initial:'A', singer:'Adele', title:'Hello', key:'Am', difficulty:'상', skill:'상'},
-      {category:'Kpop 아이돌', initial:'ㅇ', singer:'오마이걸', title:'Dun Dun Dance', key:'E', difficulty:'중', skill:'중'},
-      {category:'Kpop', initial:'ㄴ', singer:'뉴진스', title:'Hype Boy', key:'D', difficulty:'중', skill:'중'},
-      {category:'Kpop 아이돌', initial:'ㅂ', singer:'방탄소년단', title:'Dynamite', key:'G', difficulty:'중', skill:'중'},
-      // 추가 데이터 가능
-    ];
+<script>
+  const songs = [
+    {category:'Kpop 아이돌', initial:'ㅋ', singer:'큐더블유이알(QWER)', title:'가짜아이돌', key:'Fm', difficulty:'', skill:'완벽 카피X'},
+    {category:'Kpop', initial:'ㅇ', singer:'아이유', title:'밤편지', key:'C', difficulty:'하', skill:'상'},
+    {category:'Pop', initial:'A', singer:'Adele', title:'Hello', key:'Am', difficulty:'상', skill:'상'},
+    {category:'Kpop 아이돌', initial:'ㅇ', singer:'오마이걸', title:'Dun Dun Dance', key:'E', difficulty:'중', skill:'중'},
+    {category:'Kpop', initial:'ㄴ', singer:'뉴진스', title:'Hype Boy', key:'D', difficulty:'중', skill:'중'},
+    {category:'Kpop 아이돌', initial:'ㅂ', singer:'방탄소년단', title:'Dynamite', key:'G', difficulty:'중', skill:'중'},
+  ];
 
-    // 현재 선택된 필터 상태 저장용
-    let currentCategory = '전체';
-    let currentInitial = '전체';
-    let isFilteringByInitial = false; // true면 이니셜 필터링 중
+  let currentCategory = '전체';
+  let currentInitial = '전체';
 
-    const songTable = document.getElementById("songTable");
-    const songList = document.getElementById("songList");
-    const noResult = document.getElementById("noResult");
+  const songTable = document.getElementById("songTable");
+  const songList = document.getElementById("songList");
+  const noResult = document.getElementById("noResult");
+  const initialButtonsDiv = document.getElementById("initialButtons");
 
-    // 한글 초성 추출 함수 (초성 반환)
-    function getChosung(str) {
-      const CHOSUNG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
-      const aliasMap = { "ㄲ": "ㄱ", "ㄸ": "ㄷ", "ㅃ": "ㅂ", "ㅉ": "ㅈ", "ㅆ": "ㅅ" };
-      if (!str) return '';
-      const char = str[0];
-      const code = char.charCodeAt(0) - 44032;
-      if (code >= 0 && code <= 11171) {
-        let c = CHOSUNG[Math.floor(code / 588)];
-        return aliasMap[c] || c;
-      }
-      return char.toUpperCase(); // 한글 아니면 대문자 반환
+  // 한글 초성 반환 함수
+  function getChosung(str) {
+    const CHOSUNG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+    const aliasMap = { "ㄲ": "ㄱ", "ㄸ": "ㄷ", "ㅃ": "ㅂ", "ㅉ": "ㅈ", "ㅆ": "ㅅ" };
+    if (!str) return '';
+    const char = str[0];
+    const code = char.charCodeAt(0) - 44032;
+    if (code >= 0 && code <= 11171) {
+      let c = CHOSUNG[Math.floor(code / 588)];
+      return aliasMap[c] || c;
     }
+    return char.toUpperCase();
+  }
 
-    // 렌더 함수
-    function renderSongs(list) {
-      songList.innerHTML = "";
-      if (list.length === 0) {
-        songTable.style.display = "none";
-        noResult.style.display = "block";
-        return;
-      }
-      noResult.style.display = "none";
-      songTable.style.display = "table";
-
-      list.forEach(song => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${song.singer}</td>
-          <td>${song.title}</td>
-          <td>${song.key || '-'}</td>
-          <td>${song.difficulty || '-'}</td>
-          <td>${song.skill || '-'}</td>
-        `;
-        songList.appendChild(tr);
-      });
+  // 노래 렌더링
+  function renderSongs(list) {
+    songList.innerHTML = "";
+    if (list.length === 0) {
+      songTable.style.display = "none";
+      noResult.style.display = "block";
+      return;
     }
+    noResult.style.display = "none";
+    songTable.style.display = "table";
 
-    // 카테고리 필터링 함수
-    function filterByCategory(category, resetInitial=false) {
-      currentCategory = category;
-      if(resetInitial) {
-        currentInitial = '전체';
-        isFilteringByInitial = false;
-        clearActiveButtons('categoryButtons');
-        clearActiveButtons('initialButtons');
-      }
-      updateCategoryButtons();
-      updateInitialButtons();
-
-      filterAndRender();
-    }
-
-    // 이니셜 필터링 함수 (한글 초성 또는 알파벳)
-    function filterByInitial(initial) {
-      currentInitial = initial;
-      isFilteringByInitial = (initial !== '전체');
-      updateInitialButtons();
-      filterAndRender();
-    }
-
-    // 조건에 따라 필터링 후 렌더링
-    function filterAndRender() {
-      const searchQuery = document.getElementById("searchInput").value.trim().toLowerCase();
-
-      let filtered = songs;
-
-      if(currentCategory !== '전체') {
-        filtered = filtered.filter(s => s.category === currentCategory);
-      }
-
-      if(isFilteringByInitial && currentInitial !== '전체') {
-        filtered = filtered.filter(s => {
-          if(/[ㄱ-ㅎ]/.test(currentInitial)) {
-            // 한글 초성 필터
-            return getChosung(s.singer) === currentInitial;
-          } else {
-            // 영어 알파벳 필터 (대문자)
-            return s.singer[0].toUpperCase() === currentInitial;
-          }
-        });
-      }
-
-      if(searchQuery) {
-        filtered = filtered.filter(s =>
-          s.singer.toLowerCase().includes(searchQuery) ||
-          s.title.toLowerCase().includes(searchQuery)
-        );
-      }
-
-      renderSongs(filtered);
-    }
-
-    // 버튼 상태 업데이트 (활성화 스타일 적용)
-    function updateCategoryButtons() {
-      const container = document.getElementById("categoryButtons");
-      container.innerHTML = "";
-
-      const initials = currentCategory === 'Pop' ? 
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('') :
-        ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
-
-      // 전체 버튼
-      const btnAll = document.createElement("button");
-      btnAll.innerText = "전체";
-      btnAll.className = "orange-btn" + (currentInitial === '전체' ? " active-btn" : "");
-      btnAll.onclick = () => filterByInitial('전체');
-      container.appendChild(btnAll);
-
-      initials.forEach(init => {
-        const btn = document.createElement("button");
-        btn.innerText = init;
-        btn.className = "orange-btn" + (currentInitial === init ? " active-btn" : "");
-        btn.onclick = () => filterByInitial(init);
-        container.appendChild(btn);
-      });
-    }
-
-    // 이니셜 버튼 업데이트 (아래 따로 분리해도 되고 여기서 같이 구현 가능)
-    function updateInitialButtons() {
-      // 이 함수 대신 updateCategoryButtons에서 이미 이니셜 버튼을 갱신하므로 빈 함수로 둠
-      // 필요하면 따로 초기화 및 추가 버튼 구현 가능
-    }
-
-    // 활성화된 버튼 클래스 제거
-    function clearActiveButtons(containerId) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      const buttons = container.querySelectorAll("button");
-      buttons.forEach(btn => btn.classList.remove("active-btn"));
-    }
-
-    // 노래책 설명서, 가격표, 카테고리 섹션 표시 제어
-    function showSection(id) {
-      ['manual','price','category'].forEach(sec => {
-        document.getElementById(sec).style.display = (sec === id) ? 'block' : 'none';
-      });
-    }
-
-    // 제목 클릭 시 설명서 페이지 보이기
-    document.getElementById("title").addEventListener('click', () => {
-      showSection('manual');
-    });
-
-    // 검색 입력 이벤트에 필터링 통합
-    document.getElementById("searchInput").addEventListener('input', () => {
-      filterAndRender();
-    });
-
-    // 초기 로드 시 전체 노래 렌더링 및 카테고리/초성 버튼 생성
-    window.onload = () => {
-      showSection('manual'); // 기본 설명서 보여주기
-      filterByCategory('전체', true);
-    };
-  </script>
-</body>
-</html>
+    list.forEach(song => {
+      const tr = document.createElement("
