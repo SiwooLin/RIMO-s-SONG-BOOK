@@ -256,7 +256,7 @@
     });
   }
 
-  // 이니셜 버튼을 3줄로 나눠서 생성
+  // 이니셜 버튼을 5줄로 나눠서 생성 (전체 1줄 + 한글초성 2줄 + 영어 알파벳 2줄)
   function generateInitialButtons() {
     initialButtonsDiv.innerHTML = '';
 
@@ -275,43 +275,53 @@
     allRow.appendChild(allBtn);
     initialButtonsDiv.appendChild(allRow);
 
-    // 한글 초성 줄
-    const hangulRow = document.createElement('div');
-    hangulRow.className = 'initial-row';
-    allChosung.forEach(ch => {
-      const btn = document.createElement('button');
-      btn.textContent = ch;
-      btn.className = 'orange-btn';
-      if(currentInitial === ch) btn.classList.add('active-btn');
-      btn.onclick = () => {
-        currentInitial = ch;
-        updateInitialButtons();
-        filterAndRenderSongs();
-      };
-      hangulRow.appendChild(btn);
-    });
-    initialButtonsDiv.appendChild(hangulRow);
+    // 한글초성 2줄로 나누기 (7개, 나머지)
+    const hangulFirstHalf = allChosung.slice(0, 7);
+    const hangulSecondHalf = allChosung.slice(7);
 
-    // 영어 알파벳 줄
-    const alphaRow = document.createElement('div');
-    alphaRow.className = 'initial-row';
-    allAlpha.forEach(ch => {
-      const btn = document.createElement('button');
-      btn.textContent = ch;
-      btn.className = 'orange-btn';
-      if(currentInitial === ch) btn.classList.add('active-btn');
-      btn.onclick = () => {
-        currentInitial = ch;
-        updateInitialButtons();
-        filterAndRenderSongs();
-      };
-      alphaRow.appendChild(btn);
+    [hangulFirstHalf, hangulSecondHalf].forEach(group => {
+      const row = document.createElement('div');
+      row.className = 'initial-row';
+      group.forEach(ch => {
+        const btn = document.createElement('button');
+        btn.textContent = ch;
+        btn.className = 'orange-btn';
+        if(currentInitial === ch) btn.classList.add('active-btn');
+        btn.onclick = () => {
+          currentInitial = ch;
+          updateInitialButtons();
+          filterAndRenderSongs();
+        };
+        row.appendChild(btn);
+      });
+      initialButtonsDiv.appendChild(row);
     });
-    initialButtonsDiv.appendChild(alphaRow);
+
+    // 영어 알파벳 2줄로 나누기 (13개, 나머지)
+    const alphaFirstHalf = allAlpha.slice(0, 13);
+    const alphaSecondHalf = allAlpha.slice(13);
+
+    [alphaFirstHalf, alphaSecondHalf].forEach(group => {
+      const row = document.createElement('div');
+      row.className = 'initial-row';
+      group.forEach(ch => {
+        const btn = document.createElement('button');
+        btn.textContent = ch;
+        btn.className = 'orange-btn';
+        if(currentInitial === ch) btn.classList.add('active-btn');
+        btn.onclick = () => {
+          currentInitial = ch;
+          updateInitialButtons();
+          filterAndRenderSongs();
+        };
+        row.appendChild(btn);
+      });
+      initialButtonsDiv.appendChild(row);
+    });
   }
 
   function updateInitialButtons() {
-    // 모든 버튼들 active 처리 (전체+한글+영어)
+    // 모든 이니셜 버튼 active 상태 업데이트
     const btns = initialButtonsDiv.querySelectorAll('button');
     btns.forEach(btn => {
       btn.classList.toggle('active-btn', btn.textContent === currentInitial);
@@ -340,7 +350,7 @@
     return char.toUpperCase();
   }
 
-  // 필터링 + 렌더링
+  // 노래 필터링 + 렌더링
   function filterAndRenderSongs() {
     const searchTerm = searchInput.value.trim().toLowerCase();
 
@@ -351,28 +361,25 @@
       // 이니셜 필터
       if(currentInitial !== '전체') {
         if(/[ㄱ-ㅎ]/.test(currentInitial)) {
-          // 한글 초성 비교 (가수명 첫 글자 초성과 비교)
           if(getChosung(song.singer) !== currentInitial) return false;
         } else {
-          // 영어 알파벳 비교 (가수명 첫 글자 대문자 비교)
           if(song.singer[0].toUpperCase() !== currentInitial) return false;
         }
       }
 
-      // 검색어 필터 (가수명 또는 제목에 포함 여부)
+      // 검색어 필터
       if(searchTerm) {
         const singerLower = song.singer.toLowerCase();
         const titleLower = song.title.toLowerCase();
         if(!(singerLower.includes(searchTerm) || titleLower.includes(searchTerm))) return false;
       }
-
       return true;
     });
 
     renderSongs(filtered);
   }
 
-  // 노래 리스트 렌더링
+  // 노래 목록 렌더링
   function renderSongs(list) {
     songList.innerHTML = "";
     if (list.length === 0) {
@@ -386,12 +393,12 @@
     list.forEach(song => {
       const tr = document.createElement("tr");
 
-      // 가수 컬럼
+      // 가수
       const tdSinger = document.createElement("td");
       tdSinger.textContent = song.singer;
       tr.appendChild(tdSinger);
 
-      // 제목 컬럼 - 클릭 시 설명서 섹션 보이도록 이벤트 추가
+      // 제목 (클릭 시 설명서 섹션으로 이동)
       const tdTitle = document.createElement("td");
       tdTitle.textContent = song.title;
       tdTitle.style.cursor = "pointer";
@@ -411,7 +418,7 @@
       tdDiff.textContent = song.difficulty || "-";
       tr.appendChild(tdDiff);
 
-      // 숙련도 (skill)
+      // 숙련도
       const tdSkill = document.createElement("td");
       tdSkill.textContent = song.skill || "-";
       tr.appendChild(tdSkill);
@@ -420,14 +427,14 @@
     });
   }
 
-  // 검색창 입력시 필터링
+  // 검색창 입력 이벤트
   function handleSearch() {
-    currentInitial = '전체'; // 검색하면 이니셜 초기화
+    currentInitial = '전체'; // 검색 시 이니셜 초기화
     updateInitialButtons();
     filterAndRenderSongs();
   }
 
-  // 초기에는 설명서 보여주기
+  // 초기 페이지는 설명서 표시
   showSection('manual');
 </script>
 </body>
