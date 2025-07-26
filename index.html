@@ -14,6 +14,7 @@
       padding: 40px;
       box-sizing: border-box;
     }
+
     h1 {
       font-size: 32px;
       margin-bottom: 8px;
@@ -21,11 +22,13 @@
       cursor: pointer;
       user-select: none;
     }
+
     .headlineNotice {
       font-size: 15px;
       margin-bottom: 24px;
       color: #ff6f00;
     }
+
     #searchInput {
       width: 320px;
       margin: 0 auto 20px auto;
@@ -34,40 +37,48 @@
       font-size: 16px;
       border: 2px solid #8e44ad;
       border-radius: 999px;
-      background-color: #000;
+      background-color: transparent;
       color: #fff;
       outline: none;
       text-align: center;
       box-sizing: border-box;
+      box-shadow: none;
     }
+
+    #searchInput::placeholder {
+      color: #d1b3ff;
+    }
+
     #searchInput:focus {
       border-color: #bb99ff;
-      box-shadow: 0 0 6px #bb99ff;
+      box-shadow: none;
     }
+
     button {
       padding: 6px 10px;
       font-size: 14px;
+      background-color: #111;
+      color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
       margin: 3px 5px;
+      border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
       min-width: 40px;
     }
-    .orange-btn {
-      background-color: #000;
-      color: #ff6f00;
-      border: 1px solid #ff6f00;
-    }
-    .orange-btn:hover {
+
+    button:hover {
       background-color: #ff6f00;
-      color: #000;
+      color: #111;
     }
+
     .active-btn {
       background-color: #ff6f00 !important;
-      color: #000 !important;
+      color: #111 !important;
       border-color: #ff6f00 !important;
     }
+
     .section {
       background-color: #111;
       border: 1px solid #8e44ad;
@@ -83,32 +94,54 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     table {
       width: 100%;
       max-width: 700px;
       margin: 20px auto;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 14px;
       display: none;
     }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+
     th {
-      padding: 12px;
+      background-color: #1a1a1a;
       border: 1px solid #8e44ad;
+    }
+
+    th:not(:last-child) {
+      border-right: 1px solid #8e44ad;
+    }
+
+    tbody td {
+      border-top: none;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    tbody td:not(:last-child) {
+      border-right: 1px dotted #8e44ad;
+    }
+
+    tbody tr {
+      border-top: none;
+    }
+
+    tbody tr:nth-child(even) {
       background-color: #1a1a1a;
-      text-align: center;
     }
-    td {
-      padding: 12px;
-      border-right: 1px dashed #8e44ad;
-      border-left: 1px dashed #8e44ad;
-      text-align: center;
-    }
-    tr:nth-child(even) td {
-      background-color: #1a1a1a;
-    }
-    tr:nth-child(odd) td {
+
+    tbody tr:nth-child(odd) {
       background-color: #2a2a2a;
     }
+
     #noResult {
       display: none;
       color: #ff6f00;
@@ -116,6 +149,7 @@
       font-size: 15px;
       text-align: center;
     }
+
     #categorySelector {
       display: flex;
       flex-wrap: wrap;
@@ -126,70 +160,69 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     #initialButtons {
       max-width: 700px;
       margin: 15px auto 0 auto;
       display: block;
+      user-select: none;
     }
+
     .initial-row {
       width: 100%;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
+      flex-wrap: nowrap;
+      justify-content: space-between;
       margin-bottom: 8px;
     }
 
+    .initial-row button {
+      flex: 1;
+      margin: 0 2px;
+    }
+
+    /* 모바일 전용 */
     @media (max-width: 768px) {
       body {
-        padding: 0;
-        font-size: 20px;
+        padding: 16px;
       }
+
       h1 {
-        font-size: 36px;
-        margin: 10px 0;
+        font-size: 28px;
       }
+
       .headlineNotice {
-        font-size: 18px;
-        margin: 8px 0 12px;
+        font-size: 13px;
       }
+
       #searchInput {
         width: 100%;
-        font-size: 20px;
-        padding: 18px;
-        border-width: 3px;
-        margin: 12px 0;
-        box-sizing: border-box;
+        font-size: 18px;
+        padding: 14px;
       }
+
       button {
-        font-size: 20px;
-        padding: 16px;
-        margin: 4px;
-        min-width: 56px;
-        border-width: 2px;
+        font-size: 16px;
+        padding: 10px 14px;
+        min-width: 48px;
       }
+
       .section {
+        font-size: 16px;
         padding: 16px;
-        font-size: 18px;
-        line-height: 1.7;
-        max-width: 100%;
-        margin: 0;
-        border-radius: 0;
       }
+
       table {
-        font-size: 18px;
-        max-width: 100%;
+        font-size: 16px;
       }
-      thead th, tbody td {
-        padding: 16px;
+
+      th, td {
+        padding: 10px 6px;
       }
-      .initial-row {
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      #categorySelector {
-        gap: 6px;
-        flex-wrap: wrap;
+
+      .initial-row button {
+        font-size: 16px;
+        padding: 10px 6px;
       }
     }
   </style>
