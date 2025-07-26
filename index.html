@@ -52,6 +52,7 @@
       margin: 5px;
       border: 1px solid #8e44ad;
       user-select: none;
+      transition: background-color 0.3s, color 0.3s;
     }
     button:hover {
       background-color: #8e44ad;
@@ -136,7 +137,6 @@
     <button onclick="showSection('songs')">노래목록</button>
   </div>
 
-  <!-- 설명서, 가격표 섹션 -->
   <div id="manual" class="section" style="display:none;">
     • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.
     (코드도 적어주시면 감사합니다!)<br/>
@@ -154,22 +154,18 @@
     • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈 혹은 투네이션으로 신청 가능합니다.
   </div>
 
-  <!-- 노래 목록 섹션 -->
   <div id="songs" class="section" style="display:none; text-align:center;">
 
-    <!-- 카테고리 선택 버튼 -->
     <div id="categorySelector">
-      <button class="orange-btn" onclick="selectCategory('전체')" id="cat-btn-전체">전체</button>
+      <button class="orange-btn active-btn" onclick="selectCategory('전체')" id="cat-btn-전체">전체</button>
       <button class="orange-btn" onclick="selectCategory('Kpop')" id="cat-btn-Kpop">K-pop</button>
       <button class="orange-btn" onclick="selectCategory('Kpop 아이돌')" id="cat-btn-Kpop 아이돌">K-pop 아이돌</button>
       <button class="orange-btn" onclick="selectCategory('Pop')" id="cat-btn-Pop">Pop</button>
     </div>
 
-    <!-- 전체 + 이니셜 버튼 (초성 or 알파벳) -->
     <div id="initialButtons" style="margin-top: 15px; display:none;"></div>
   </div>
 
-  <!-- 노래 테이블 -->
   <table id="songTable">
     <thead>
       <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
@@ -196,6 +192,7 @@
   const songList = document.getElementById("songList");
   const noResult = document.getElementById("noResult");
   const initialButtonsDiv = document.getElementById("initialButtons");
+  const searchInput = document.getElementById("searchInput");
 
   // 한글 초성 반환 함수
   function getChosung(str) {
@@ -211,7 +208,101 @@
     return char.toUpperCase();
   }
 
-  // 노래 렌더링
+  function showSection(sectionId) {
+    ['manual','price','songs'].forEach(id => {
+      document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
+    });
+    // 노래목록 선택 시 초기화
+    if(sectionId === 'songs') {
+      searchInput.value = '';
+      currentCategory = '전체';
+      currentInitial = '전체';
+      updateCategoryButtons();
+      generateInitialButtons();
+      filterAndRenderSongs();
+      initialButtonsDiv.style.display = 'flex';
+      songTable.style.display = 'none';
+      noResult.style.display = 'none';
+    } else {
+      initialButtonsDiv.style.display = 'none';
+      songTable.style.display = 'none';
+      noResult.style.display = 'none';
+    }
+  }
+
+  function updateCategoryButtons() {
+    ['전체','Kpop','Kpop 아이돌','Pop'].forEach(cat => {
+      const btn = document.getElementById(`cat-btn-${cat}`);
+      if(btn) btn.classList.toggle('active-btn', cat === currentCategory);
+    });
+  }
+
+  // 선택한 카테고리 내 가수 초성들로 버튼 생성
+  function generateInitialButtons() {
+    initialButtonsDiv.innerHTML = '';
+    let filteredSongs = (currentCategory === '전체') ? songs : songs.filter(s => s.category === currentCategory);
+
+    // 가수 초성 집합 (중복 제거)
+    const initialsSet = new Set(filteredSongs.map(s => s.initial));
+    const initials = Array.from(initialsSet).sort((a,b) => {
+      // 한글 초성은 유니코드 순 정렬
+      return a.localeCompare(b, 'ko');
+    });
+
+    // "전체" 버튼 추가
+    const allBtn = document.createElement('button');
+    allBtn.textContent = '전체';
+    allBtn.className = 'orange-btn';
+    if(currentInitial === '전체') allBtn.classList.add('active-btn');
+    allBtn.onclick = () => {
+      currentInitial = '전체';
+      updateInitialButtons();
+      filterAndRenderSongs();
+    };
+    initialButtonsDiv.appendChild(allBtn);
+
+    initials.forEach(init => {
+      const btn = document.createElement('button');
+      btn.textContent = init;
+      btn.className = 'orange-btn';
+      if(currentInitial === init) btn.classList.add('active-btn');
+      btn.onclick = () => {
+        currentInitial = init;
+        updateInitialButtons();
+        filterAndRenderSongs();
+      };
+      initialButtonsDiv.appendChild(btn);
+    });
+  }
+
+  function updateInitialButtons() {
+    Array.from(initialButtonsDiv.children).forEach(btn => {
+      btn.classList.toggle('active-btn', btn.textContent === currentInitial);
+    });
+  }
+
+  // 노래 필터링 및 렌더링
+  function filterAndRenderSongs() {
+    let filtered = songs;
+
+    if(currentCategory !== '전체') {
+      filtered = filtered.filter(s => s.category === currentCategory);
+    }
+    if(currentInitial !== '전체') {
+      filtered = filtered.filter(s => s.initial === currentInitial);
+    }
+
+    // 검색어 필터 추가
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    if(searchTerm) {
+      filtered = filtered.filter(s => {
+        return s.singer.toLowerCase().includes(searchTerm) || s.title.toLowerCase().includes(searchTerm);
+      });
+    }
+
+    renderSongs(filtered);
+  }
+
   function renderSongs(list) {
     songList.innerHTML = "";
     if (list.length === 0) {
@@ -223,4 +314,34 @@
     songTable.style.display = "table";
 
     list.forEach(song => {
-      const tr = document.createElement("
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${song.singer}</td>
+        <td>${song.title}</td>
+        <td>${song.key}</td>
+        <td>${song.difficulty}</td>
+        <td>${song.skill}</td>
+      `;
+      songList.appendChild(tr);
+    });
+  }
+
+  function selectCategory(cat) {
+    currentCategory = cat;
+    currentInitial = '전체';
+    searchInput.value = '';
+    updateCategoryButtons();
+    generateInitialButtons();
+    filterAndRenderSongs();
+  }
+
+  function handleSearch() {
+    // 검색 시 카테고리, 초성 무시하지 않고 같이 필터링
+    filterAndRenderSongs();
+  }
+
+  // 초기 로드 시 설명서 보이기
+  showSection('manual');
+</script>
+</body>
+</html>
