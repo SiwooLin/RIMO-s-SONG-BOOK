@@ -11,59 +11,54 @@
       color: #fff;
       font-family: 'Jua', sans-serif;
       text-align: center;
-      padding: 40px 15px 40px 15px; /* 좌우 15px 여백 */
+      padding: 40px;
       box-sizing: border-box;
-      font-size: 16px;
     }
     h1 {
-      font-size: 36px;
-      margin-bottom: 12px;
+      font-size: 32px;
+      margin-bottom: 8px;
       color: #ff6f00;
       cursor: pointer;
       user-select: none;
     }
     .headlineNotice {
-      font-size: 18px;
+      font-size: 15px;
       margin-bottom: 24px;
       color: #ff6f00;
-      line-height: 1.4;
     }
     #searchInput {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto 24px auto;
+      width: 320px;
+      margin: 0 auto 20px auto;
       display: block;
-      padding: 14px 20px;
-      font-size: 20px;
-      border: 2px solid #8e44ad;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
       border-radius: 999px;
       background-color: #000;
       color: #fff;
+      border: 2px solid #8e44ad; /* 테두리만 보라색 */
       outline: none;
       text-align: center;
       box-sizing: border-box;
-      transition: border-color 0.3s, box-shadow 0.3s;
     }
     #searchInput::placeholder {
       color: #d1b3ff;
     }
     #searchInput:focus {
-      border-color: #bb99ff;
       box-shadow: 0 0 12px #bb99ff;
     }
     button {
-      padding: 12px 18px;
-      font-size: 18px;
+      padding: 6px 10px;
+      font-size: 14px;
       background-color: #111;
       color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
-      margin: 6px 10px;
+      margin: 3px 5px;
       border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
-      min-width: 80px;
-      box-sizing: border-box;
+      min-width: 40px;
     }
     button:hover {
       background-color: #ff6f00;
@@ -79,9 +74,9 @@
       border: 1px solid #8e44ad;
       box-shadow: 0 0 8px #8e44ad;
       border-radius: 12px;
-      padding: 24px 20px;
-      margin-top: 24px;
-      font-size: 18px;
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 14px;
       line-height: 1.6;
       white-space: pre-line;
       text-align: left;
@@ -92,142 +87,105 @@
     table {
       width: 100%;
       max-width: 700px;
-      margin: 24px auto;
-      border-collapse: collapse;
-      font-size: 18px;
+      margin: 20px auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 14px;
       display: none;
       table-layout: fixed;
     }
-    th, td {
-      padding: 16px 12px;
-      text-align: center;
-      box-sizing: border-box;
-      overflow-wrap: break-word;
-    }
     thead th {
       background-color: #1a1a1a;
-      border-bottom: 2px solid #ff6f00;
-      border-left: 1px solid #8e44ad;
+      border-bottom: 2px solid #8e44ad;
       border-right: 1px solid #8e44ad;
-      border-top: 1px solid #8e44ad;
-    }
-    thead th:first-child {
-      border-left: 1px solid #8e44ad;
+      padding: 12px;
+      text-align: center;
+      color: #ff6f00;
+      font-weight: bold;
     }
     thead th:last-child {
-      border-right: 1px solid #8e44ad;
+      border-right: none;
     }
     tbody tr {
       background-color: #2a2a2a;
-      border-top: none;
+      color: #fff;
     }
     tbody tr:nth-child(even) {
       background-color: #1a1a1a;
     }
     tbody td {
-      border-left: none;
-      border-right: none;
-      border-top: 1px dotted #8e44ad;
-      border-bottom: 1px dotted #8e44ad;
-      border-style: none none dotted none; /* 가로 점선만 */
+      padding: 12px;
+      border-left: 1px dotted #8e44ad;
+      border-right: 1px dotted #8e44ad;
+      text-align: center;
+      vertical-align: middle;
     }
-    tbody td:not(:last-child) {
-      border-right: 1px dotted #8e44ad; /* 세로 점선 */
+    tbody td:first-child {
+      border-left: none;
+    }
+    tbody td:last-child {
+      border-right: none;
+    }
+    tbody tr td {
+      border-top: none;
+      border-bottom: none;
     }
     #noResult {
       display: none;
       color: #ff6f00;
-      margin-top: 24px;
-      font-size: 20px;
+      margin-top: 20px;
+      font-size: 15px;
       text-align: center;
     }
     #categorySelector {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      margin-top: 12px;
+      gap: 8px;
+      margin-top: 10px;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
     #initialButtons {
       max-width: 700px;
-      margin: 20px auto 0 auto;
+      margin: 15px auto 0 auto;
       display: block;
       user-select: none;
     }
     .initial-row {
       width: 100%;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; /* 모바일에서 7개씩 고정 */
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
-
-    /* 모바일 대응 */
-    @media screen and (max-width: 600px) {
+    @media (max-width: 768px) {
       body {
-        padding: 20px 12px 20px 12px;
-        font-size: 20px;
+        padding: 12px;
+        font-size: 18px;
       }
       h1 {
         font-size: 28px;
-        margin-bottom: 10px;
-      }
-      .headlineNotice {
-        font-size: 16px;
-        margin-bottom: 18px;
       }
       #searchInput {
-        font-size: 22px;
-        padding: 16px 24px;
-        max-width: 100%;
+        width: 100%;
+        font-size: 18px;
+        padding: 14px;
       }
       button {
-        font-size: 20px;
-        padding: 14px 24px;
-        min-width: 100px;
-        margin: 8px 12px;
-      }
-      .section {
-        font-size: 20px;
-        padding: 28px 20px;
-        margin-top: 28px;
-        max-width: 100%;
+        font-size: 18px;
+        padding: 12px 16px;
+        margin: 5px 6px;
+        min-width: 48px;
       }
       table {
-        font-size: 20px;
-        margin: 28px auto;
+        font-size: 16px;
         max-width: 100%;
       }
-      thead th {
-        font-size: 20px;
-        border-bottom: 2px solid #ff6f00;
-      }
-      tbody td {
-        font-size: 20px;
-        border-top: none;
-        border-bottom: none;
-        border-left: none;
-        border-right: none;
-        border-style: none;
-      }
-      tbody td:not(:last-child) {
-        border-right: 1px dotted #8e44ad;
-        border-top: none;
-        border-bottom: none;
-      }
-      #categorySelector {
-        gap: 12px;
-      }
-      #initialButtons {
-        margin: 16px auto 0 auto;
-      }
       .initial-row {
-        gap: 12px;
-        margin-bottom: 8px;
+        gap: 10px;
       }
     }
   </style>
@@ -302,7 +260,7 @@
   const categorySelector = document.getElementById("categorySelector");
   const searchInput = document.getElementById("searchInput");
 
-  // 한글 초성 14개 7개씩 2줄
+  // 한글 초성 14개 7개씩 2줄 고정
   const allChosung = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
   const allChosungLine1 = allChosung.slice(0,7);
   const allChosungLine2 = allChosung.slice(7);
@@ -371,7 +329,7 @@
     };
     initialButtonsDiv.appendChild(allBtn);
 
-    // 한글 초성 7개씩 2줄
+    // 한글 초성 7개씩 2줄 고정
     const chosungRow1 = document.createElement('div');
     chosungRow1.className = 'initial-row';
     allChosungLine1.forEach(ch => {
@@ -447,23 +405,21 @@
     if(filtered.length === 0) {
       songTable.style.display = 'none';
       noResult.style.display = 'block';
-    } else {
-      songTable.style.display = 'table';
-      noResult.style.display = 'none';
-      renderTable(filtered);
+      noResult.textContent = '검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.';
+      return;
     }
-  }
 
-  function renderTable(data) {
+    noResult.style.display = 'none';
+    songTable.style.display = 'table';
     songList.innerHTML = '';
-    data.forEach(s => {
+    filtered.forEach(song => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${s.singer}</td>
-        <td>${s.title}</td>
-        <td>${s.key}</td>
-        <td>${s.difficulty}</td>
-        <td>${s.skill}</td>
+        <td>${song.singer}</td>
+        <td>${song.title}</td>
+        <td>${song.key}</td>
+        <td>${song.difficulty}</td>
+        <td>${song.skill}</td>
       `;
       songList.appendChild(tr);
     });
@@ -475,7 +431,6 @@
     filterAndRenderSongs();
   }
 
-  // 처음 화면은 설명서 보여주기
   showSection('manual');
 </script>
 </body>
