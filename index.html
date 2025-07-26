@@ -46,13 +46,21 @@
       font-size: 14px;
       background-color: #111;
       color: #fff;
-      border: 1px solid #8e44ad;
       border-radius: 20px;
       cursor: pointer;
       margin: 5px;
+      border: 1px solid #8e44ad;
     }
     button:hover {
       background-color: #8e44ad;
+    }
+    .orange-btn {
+      border-color: #ff6f00;
+      color: #ff6f00;
+    }
+    .orange-btn:hover {
+      background-color: #ff6f00;
+      color: #111;
     }
     .section {
       display: none;
@@ -64,6 +72,7 @@
       margin-top: 20px;
       font-size: 14px;
       line-height: 1.6;
+      white-space: pre-line;
     }
     table {
       width: 100%;
@@ -71,6 +80,7 @@
       margin: 20px auto;
       border-collapse: collapse;
       font-size: 14px;
+      display: none;
     }
     th, td {
       padding: 12px;
@@ -91,13 +101,6 @@
       margin-top: 20px;
       font-size: 15px;
     }
-    .genreRow, .initialRow, .controlRow, .chosungRow {
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
   </style>
 </head>
 <body>
@@ -106,78 +109,71 @@
 
   <input type="text" id="searchInput" placeholder="가수 / 제목 / 코드 / 난이도 / 숙련도 검색" oninput="handleSearch()" />
 
-  <div class="controlRow">
+  <div>
     <button onclick="toggleSection('manual')">노래책 설명서 보기</button>
     <button onclick="toggleSection('price')">가격표 보기</button>
-    <button onclick="renderSongs(songs)">전체 보기</button>
+    <button onclick="toggleSection('categoryPanel')">카테고리 보기</button>
   </div>
 
   <div class="section" id="manual">
-    📖 <strong>노래책 설명서</strong><br><br>
-    • 신청 시 가수 + 제목 필수!<br>
-    • 코드 적어주면 감사!<br>
-    • 컨디션 따라 거절 가능 / 2곡 대체<br>
-    • 책임은 신청자에게!<br>
-    • 추천은 디스코드 노래 추천방에 작성<br>
-    ❌ 훈수 & 과한 평가는 금지!
+    • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.
+    (코드도 적어주시면 감사합니다!)
+    • 컨디션에 따라 부르기 어렵다고 판단 될 경우 신청곡을 거절 할 수도 있습니다.
+      ( 거절 당한 신청은 기본 노래 2곡으로 대체 가능 합니다. )
+    • 설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.
+    • 추천 곡은 디스코드 노래 추천방에 적어주세요.
+
+    ❌ 과도한 평가와 훈수는 자제 해주세요 ❌
   </div>
 
   <div class="section" id="price">
-    💰 <strong>가격표</strong><br><br>
-    • 기본곡: 2000치즈<br>
-    • 어려운곡: 5000치즈<br>
-    • 유료곡: 10000치즈<br>
-    • 녹음본(믹싱 선택): 200,000치즈
+    • 기본 노래 신청은 2000치즈 혹은 투네이션으로 신청 가능합니다.
+    • 어려운 노래 신청은 5000치즈 혹은 투네이션으로 신청 가능합니다.
+    • 유료곡 노래 신청은 10000치즈 이상 혹은 투네이션으로 신청 가능합니다.
+    • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈
+      혹은 투네이션으로 신청 가능합니다.
   </div>
 
-  <div class="genreRow">
-    <button onclick="filterGenre('K-pop')">K-pop</button>
-    <button onclick="filterGenre('Idol')">K-pop 아이돌</button>
-    <button onclick="filterGenre('Pop')">Pop</button>
+  <div class="section" id="categoryPanel">
+    <p style="color:#ff6f00;">카테고리를 선택하세요</p>
+    <div id="categoryButtons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;"></div>
+    <div id="chosungButtons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px;"></div>
   </div>
 
-  <div class="initialRow">
-    ${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => `<button onclick="filterInitial('${l}')">${l}</button>`).join('')}
-  </div>
-
-  <div class="chosungRow">
-    ${'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'.split('').map(c => `<button onclick="filterChosung('${c}')">${c}</button>`).join('')}
-  </div>
-
-  <table>
+  <table id="songTable">
     <thead>
-      <tr>
-        <th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th><th>장르</th>
-      </tr>
+      <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
     </thead>
     <tbody id="songList"></tbody>
   </table>
 
-  <p id="noResult">검색 결과가 없습니다. 추천은 디스코드 노래 추천방에 작성해주세요 🙏</p>
+  <p id="noResult">검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
 
   <script>
     const songs = [
-      { artist: "아이유", title: "밤편지", code: "C", difficulty: "하", proficiency: "상", genre: "K-pop" },
-      { artist: "뉴진스", title: "Hype Boy", code: "D", difficulty: "중", proficiency: "중", genre: "Idol" },
-      { artist: "BTS", title: "Dynamite", code: "G", difficulty: "중", proficiency: "중", genre: "Idol" },
-      { artist: "Adele", title: "Hello", code: "Am", difficulty: "상", proficiency: "상", genre: "Pop" },
-      { artist: "정국", title: "Seven", code: "Em", difficulty: "하", proficiency: "상", genre: "Idol" },
-      { artist: "짜잔밴드", title: "멋진 하루", code: "F", difficulty: "중", proficiency: "중", genre: "K-pop" },
-      { artist: "뚜비", title: "둠칫둠칫", code: "Dm", difficulty: "상", proficiency: "상", genre: "K-pop" },
-      { artist: "빠밤", title: "인생은 아름다워", code: "C", difficulty: "중", proficiency: "중", genre: "Pop" }
+      { artist: "아이유", title: "밤편지", code: "C", difficulty: "하", proficiency: "상" },
+      { artist: "뉴진스", title: "Hype Boy", code: "D", difficulty: "중", proficiency: "중" },
+      { artist: "BTS", title: "Dynamite", code: "G", difficulty: "중", proficiency: "중" },
+      { artist: "Adele", title: "Hello", code: "Am", difficulty: "상", proficiency: "상" },
+      { artist: "정국", title: "Seven", code: "Em", difficulty: "하", proficiency: "상" },
+      { artist: "짜잔밴드", title: "멋진 하루", code: "F", difficulty: "중", proficiency: "중" },
+      { artist: "뚜비", title: "둠칫둠칫", code: "Dm", difficulty: "상", proficiency: "상" },
+      { artist: "빠밤", title: "인생은 아름다워", code: "C", difficulty: "중", proficiency: "중" }
     ];
 
     function renderSongs(list) {
       const tbody = document.getElementById("songList");
       tbody.innerHTML = "";
       list.forEach(song => {
-        tbody.innerHTML += `<tr>
+        const row = `<tr>
           <td>${song.artist}</td><td>${song.title}</td><td>${song.code}</td>
-          <td>${song.difficulty}</td><td>${song.proficiency}</td><td>${song.genre}</td>
+          <td>${song.difficulty}</td><td>${song.proficiency}</td>
         </tr>`;
+        tbody.innerHTML += row;
       });
+      document.getElementById("songTable").style.display = list.length ? "table" : "none";
       document.getElementById("noResult").style.display = list.length === 0 ? "block" : "none";
     }
 
     function handleSearch() {
-      const query =
+      const query = document.get
