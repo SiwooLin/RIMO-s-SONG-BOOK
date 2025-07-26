@@ -5,6 +5,7 @@
   <title>RIMO’S SONG BOOK</title>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
   <style>
+    /* (기존 스타일 유지) */
     body {
       margin: 0;
       background-color: #000;
@@ -18,7 +19,7 @@
       font-size: 32px;
       margin-bottom: 8px;
       color: #ff6f00;
-      cursor: pointer; /* 수정된 부분 */
+      cursor: pointer;
     }
     .headlineNotice {
       font-size: 15px;
@@ -38,6 +39,7 @@
       outline: none;
       text-align: center;
       margin-bottom: 20px;
+      display: none; /* 검색창은 노래목록에서만 보이도록 */
     }
     input[type="text"]:focus {
       box-shadow: 0 0 12px #8e44ad;
@@ -168,7 +170,7 @@
     </div>
 
     <!-- 전체 + 이니셜 버튼 (초성 or 알파벳) -->
-    <div id="initialButtons" style="margin-top: 15px; display:none;"></div>
+    <div id="initialButtons" style="margin-top: 15px;"></div>
   </div>
 
   <!-- 노래 테이블 -->
@@ -198,38 +200,34 @@
   const songList = document.getElementById("songList");
   const noResult = document.getElementById("noResult");
   const initialButtonsDiv = document.getElementById("initialButtons");
+  const categorySelector = document.getElementById("categorySelector");
   const searchInput = document.getElementById("searchInput");
 
-  // 한글 초성 반환 함수
-  function getChosung(str) {
-    const CHOSUNG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
-    const aliasMap = { "ㄲ": "ㄱ", "ㄸ": "ㄷ", "ㅃ": "ㅂ", "ㅉ": "ㅈ", "ㅆ": "ㅅ" };
-    if (!str) return '';
-    const char = str[0];
-    const code = char.charCodeAt(0) - 44032;
-    if (code >= 0 && code <= 11171) {
-      let c = CHOSUNG[Math.floor(code / 588)];
-      return aliasMap[c] || c;
-    }
-    return char.toUpperCase();
-  }
+  // 한글 초성 리스트 전체 (19자)
+  const allChosung = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+  // 영어 알파벳 대문자 A~Z
+  const allAlpha = Array.from(Array(26)).map((_,i)=>String.fromCharCode(65+i));
 
   function showSection(sectionId) {
     ['manual','price','songs'].forEach(id => {
       document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
     });
-    // 노래목록 선택 시 초기화
     if(sectionId === 'songs') {
-      searchInput.value = '';
+      searchInput.style.display = 'block'; // 노래목록에서만 검색창 보이게
+      categorySelector.style.display = 'flex';
+      initialButtonsDiv.style.display = 'flex';
+      songTable.style.display = 'none';
+      noResult.style.display = 'none';
+
+      // 기본 초기화
       currentCategory = '전체';
       currentInitial = '전체';
       updateCategoryButtons();
       generateInitialButtons();
       filterAndRenderSongs();
-      initialButtonsDiv.style.display = 'flex';
-      songTable.style.display = 'none';
-      noResult.style.display = 'none';
     } else {
+      searchInput.style.display = 'none';
+      categorySelector.style.display = 'none';
       initialButtonsDiv.style.display = 'none';
       songTable.style.display = 'none';
       noResult.style.display = 'none';
@@ -243,18 +241,11 @@
     });
   }
 
-  // 선택한 카테고리 내 가수 초성들로 버튼 생성
+  // 모든 초성(한글, 영어) 버튼 생성, 항상 고정
   function generateInitialButtons() {
     initialButtonsDiv.innerHTML = '';
-    let filteredSongs = (currentCategory === '전체') ? songs : songs.filter(s => s.category === currentCategory);
 
-    // 가수 초성 집합 (중복 제거)
-    const initialsSet = new Set(filteredSongs.map(s => s.initial));
-    const initials = Array.from(initialsSet).sort((a,b) => {
-      return a.localeCompare(b, 'ko');
-    });
-
-    // "전체" 버튼 추가
+    // "전체" 버튼
     const allBtn = document.createElement('button');
     allBtn.textContent = '전체';
     allBtn.className = 'orange-btn';
@@ -266,13 +257,28 @@
     };
     initialButtonsDiv.appendChild(allBtn);
 
-    initials.forEach(init => {
+    // 한글 초성 버튼
+    allChosung.forEach(ch => {
       const btn = document.createElement('button');
-      btn.textContent = init;
+      btn.textContent = ch;
       btn.className = 'orange-btn';
-      if(currentInitial === init) btn.classList.add('active-btn');
+      if(currentInitial === ch) btn.classList.add('active-btn');
       btn.onclick = () => {
-        currentInitial = init;
+        currentInitial = ch;
+        updateInitialButtons();
+        filterAndRenderSongs();
+      };
+      initialButtonsDiv.appendChild(btn);
+    });
+
+    // 영어 알파벳 버튼
+    allAlpha.forEach(ch => {
+      const btn = document.createElement('button');
+      btn.textContent = ch;
+      btn.className = 'orange-btn';
+      if(currentInitial === ch) btn.classList.add('active-btn');
+      btn.onclick = () => {
+        currentInitial = ch;
         updateInitialButtons();
         filterAndRenderSongs();
       };
@@ -336,7 +342,6 @@
     currentInitial = '전체';
     searchInput.value = '';
     updateCategoryButtons();
-    generateInitialButtons();
     filterAndRenderSongs();
   }
 
