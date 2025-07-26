@@ -1,202 +1,183 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>RIMO’S SONG BOOK</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       background-color: #000;
       color: #fff;
       font-family: 'Jua', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
       padding: 40px;
       box-sizing: border-box;
-      min-height: 100vh;
-      text-align: center;
     }
-
     h1 {
       font-size: 32px;
+      margin-bottom: 8px;
       color: #ff6f00;
-      margin-bottom: 12px;
+      cursor: pointer;
     }
-
-    .section {
-      background-color: #111;
-      border: 1px solid #8e44ad;
-      box-shadow: 0 0 8px #8e44ad;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 600px;
+    .headlineNotice {
+      font-size: 15px;
       margin-bottom: 24px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #f0f0f0;
+      color: #ff6f00;
     }
-
     input[type="text"] {
       width: 100%;
       max-width: 500px;
-      padding: 12px 24px;
+      padding: 12px;
       font-size: 16px;
       border: none;
       border-radius: 999px;
       background-color: #111;
       color: #fff;
       box-shadow: 0 0 8px #ff6f00;
-      text-align: center;
       outline: none;
-      margin-bottom: 16px;
-      transition: box-shadow 0.3s ease;
+      text-align: center;
     }
-
     input[type="text"]:focus {
-      box-shadow: 0 0 10px #8e44ad;
+      box-shadow: 0 0 12px #8e44ad;
     }
-
-    p.description {
+    button {
+      padding: 8px 16px;
       font-size: 14px;
-      color: #ccc;
-      margin-bottom: 32px;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 14px;
-    }
-
-    thead tr {
-      background-color: #1a1a1a;
+      background-color: #111;
       color: #fff;
+      border: 1px solid #8e44ad;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 5px;
     }
-
-    thead th {
+    button:hover {
+      background-color: #8e44ad;
+    }
+    .section {
+      display: none;
+      background-color: #111;
+      border: 1px solid #8e44ad;
+      box-shadow: 0 0 8px #8e44ad;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
       padding: 12px;
-      border-right: 1px solid #ff6f00;
+      border: 1px solid #8e44ad;
     }
-
-    thead th:last-child {
-      border-right: none;
-    }
-
-    tbody tr:nth-child(even) {
+    th {
       background-color: #1a1a1a;
     }
-
-    tbody tr:nth-child(odd) {
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+    tr:nth-child(odd) {
       background-color: #2a2a2a;
     }
-
-    tbody td {
-      padding: 10px;
-      border-right: 1px dashed #8e44ad;
-      color: #fff;
-    }
-
-    tbody td:last-child {
-      border-right: none;
-    }
-
     #noResult {
+      display: none;
       color: #ff6f00;
       margin-top: 20px;
       font-size: 15px;
+    }
+    .genreRow, .initialRow, .controlRow, .chosungRow {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
     }
   </style>
 </head>
 <body>
   <h1>RIMO’S SONG BOOK</h1>
+  <p class="headlineNotice">📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!</p>
 
-  <div class="section">
+  <input type="text" id="searchInput" placeholder="가수 / 제목 / 코드 / 난이도 / 숙련도 검색" oninput="handleSearch()" />
+
+  <div class="controlRow">
+    <button onclick="toggleSection('manual')">노래책 설명서 보기</button>
+    <button onclick="toggleSection('price')">가격표 보기</button>
+    <button onclick="renderSongs(songs)">전체 보기</button>
+  </div>
+
+  <div class="section" id="manual">
     📖 <strong>노래책 설명서</strong><br><br>
-    • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.<br>
-    (코드도 적어주시면 감사합니다!)<br><br>
-    • 컨디션에 따라 부르기 어렵다고 판단 될 경우 신청곡을 거절 할 수도 있습니다.<br>
-    (거절 당한 신청은 기본 노래 2곡으로 대체 가능 합니다.)<br><br>
-    • 설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.<br><br>
-    • 추천 곡은 디스코드 노래 추천방에 적어주세요.<br><br>
-    ❌ 과도한 평가와 훈수는 자제 해주세요 ❌
+    • 신청 시 가수 + 제목 필수!<br>
+    • 코드 적어주면 감사!<br>
+    • 컨디션 따라 거절 가능 / 2곡 대체<br>
+    • 책임은 신청자에게!<br>
+    • 추천은 디스코드 노래 추천방에 작성<br>
+    ❌ 훈수 & 과한 평가는 금지!
   </div>
 
-  <div class="section">
+  <div class="section" id="price">
     💰 <strong>가격표</strong><br><br>
-    • 기본 노래 신청은 2000치즈 혹은 투네이션으로 신청 가능합니다.<br>
-    • 어려운 노래 신청은 5000치즈 혹은 투네이션으로 신청 가능합니다.<br>
-    • 유료곡 노래 신청은 10000치즈 이상 혹은 투네이션으로 신청 가능합니다.<br>
-    • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈<br>
-    혹은 투네이션으로 신청 가능합니다.
+    • 기본곡: 2000치즈<br>
+    • 어려운곡: 5000치즈<br>
+    • 유료곡: 10000치즈<br>
+    • 녹음본(믹싱 선택): 200,000치즈
   </div>
 
-  <input type="text" id="searchInput" placeholder="가수 / 곡 제목 / 카테고리 검색">
-  <p class="description">예: 아이유, 겨울 노래, OST</p>
+  <div class="genreRow">
+    <button onclick="filterGenre('K-pop')">K-pop</button>
+    <button onclick="filterGenre('Idol')">K-pop 아이돌</button>
+    <button onclick="filterGenre('Pop')">Pop</button>
+  </div>
+
+  <div class="initialRow">
+    ${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => `<button onclick="filterInitial('${l}')">${l}</button>`).join('')}
+  </div>
+
+  <div class="chosungRow">
+    ${'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ'.split('').map(c => `<button onclick="filterChosung('${c}')">${c}</button>`).join('')}
+  </div>
 
   <table>
     <thead>
       <tr>
-        <th>가수</th>
-        <th>곡 제목</th>
-        <th>카테고리</th>
-        <th>발매 연도</th>
+        <th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th><th>장르</th>
       </tr>
     </thead>
-    <tbody id="songList">
-      <!-- 노래 리스트 비워둠 -->
-    </tbody>
+    <tbody id="songList"></tbody>
   </table>
 
-  <p id="noResult">검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
+  <p id="noResult">검색 결과가 없습니다. 추천은 디스코드 노래 추천방에 작성해주세요 🙏</p>
 
   <script>
-    const songs = []; // 리스트 비워둠
+    const songs = [
+      { artist: "아이유", title: "밤편지", code: "C", difficulty: "하", proficiency: "상", genre: "K-pop" },
+      { artist: "뉴진스", title: "Hype Boy", code: "D", difficulty: "중", proficiency: "중", genre: "Idol" },
+      { artist: "BTS", title: "Dynamite", code: "G", difficulty: "중", proficiency: "중", genre: "Idol" },
+      { artist: "Adele", title: "Hello", code: "Am", difficulty: "상", proficiency: "상", genre: "Pop" },
+      { artist: "정국", title: "Seven", code: "Em", difficulty: "하", proficiency: "상", genre: "Idol" },
+      { artist: "짜잔밴드", title: "멋진 하루", code: "F", difficulty: "중", proficiency: "중", genre: "K-pop" },
+      { artist: "뚜비", title: "둠칫둠칫", code: "Dm", difficulty: "상", proficiency: "상", genre: "K-pop" },
+      { artist: "빠밤", title: "인생은 아름다워", code: "C", difficulty: "중", proficiency: "중", genre: "Pop" }
+    ];
 
-    const input = document.getElementById("searchInput");
-    const songList = document.getElementById("songList");
-    const noResult = document.getElementById("noResult");
-
-    function renderSongs(filtered) {
-      songList.innerHTML = "";
-      if (filtered.length === 0) {
-        noResult.style.display = "block";
-        return;
-      }
-      noResult.style.display = "none";
-      filtered.forEach((song, index) => {
-        const row = document.createElement("tr");
-        row.style.backgroundColor = index % 2 === 0 ? "#2a2a2a" : "#1a1a1a";
-        ["artist", "title", "category", "year"].forEach((key, i) => {
-          const td = document.createElement("td");
-          td.textContent = song[key];
-          if (i < 3) td.style.borderRight = "1px dashed #8e44ad";
-          row.appendChild(td);
-        });
-        songList.appendChild(row);
+    function renderSongs(list) {
+      const tbody = document.getElementById("songList");
+      tbody.innerHTML = "";
+      list.forEach(song => {
+        tbody.innerHTML += `<tr>
+          <td>${song.artist}</td><td>${song.title}</td><td>${song.code}</td>
+          <td>${song.difficulty}</td><td>${song.proficiency}</td><td>${song.genre}</td>
+        </tr>`;
       });
+      document.getElementById("noResult").style.display = list.length === 0 ? "block" : "none";
     }
 
-    function searchSongs(keyword) {
-      const query = keyword.trim().toLowerCase();
-      const result = songs.filter(song =>
-        song.artist.toLowerCase().includes(query) ||
-        song.title.toLowerCase().includes(query) ||
-        song.category.toLowerCase().includes(query)
-      );
-      renderSongs(result);
-    }
-
-    input.addEventListener("keyup", e => {
-      if (e.key === "Enter") {
-        searchSongs(e.target.value);
-      }
-    });
-
-    renderSongs([]);
-  </script>
-</body>
-</html>
+    function handleSearch() {
+      const query =
