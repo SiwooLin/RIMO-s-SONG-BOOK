@@ -163,49 +163,6 @@
 
     function renderSongs(list) {
       const tbody = document.getElementById("songList");
-      tbody.innerHTML = "";
-      list.forEach(song => {
-        const row = `<tr>
-          <td>${song.artist}</td><td>${song.title}</td><td>${song.code}</td>
-          <td>${song.difficulty}</td><td>${song.proficiency}</td>
-        </tr>`;
-        tbody.innerHTML += row;
-      });
-      document.getElementById("songTable").style.display = list.length ? "table" : "none";
-      document.getElementById("noResult").style.display = list.length === 0 ? "block" : "none";
-    }
-
-    function handleSearch() {
-      const query = document.get
-        <div class="section" id="categoryPanel">
-    <p style="color:#ff6f00;">카테고리를 선택하세요</p>
-    <div id="categoryButtons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;"></div>
-    <div id="chosungButtons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px;"></div>
-  </div>
-
-  <table id="songTable">
-    <thead>
-      <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
-    </thead>
-    <tbody id="songList"></tbody>
-  </table>
-
-  <p id="noResult">검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
-
-  <script>
-    const songs = [
-      { artist: "아이유", title: "밤편지", code: "C", difficulty: "하", proficiency: "상" },
-      { artist: "뉴진스", title: "Hype Boy", code: "D", difficulty: "중", proficiency: "중" },
-      { artist: "BTS", title: "Dynamite", code: "G", difficulty: "중", proficiency: "중" },
-      { artist: "Adele", title: "Hello", code: "Am", difficulty: "상", proficiency: "상" },
-      { artist: "정국", title: "Seven", code: "Em", difficulty: "하", proficiency: "상" },
-      { artist: "짜잔밴드", title: "멋진 하루", code: "F", difficulty: "중", proficiency: "중" },
-      { artist: "뚜비", title: "둠칫둠칫", code: "Dm", difficulty: "상", proficiency: "상" },
-      { artist: "빠밤", title: "인생은 아름다워", code: "C", difficulty: "중", proficiency: "중" }
-    ];
-
-    function renderSongs(list) {
-      const tbody = document.getElementById("songList");
       const table = document.getElementById("songTable");
       tbody.innerHTML = "";
       list.forEach(song => {
@@ -224,7 +181,13 @@
         s.artist.toLowerCase().includes(query) ||
         s.title.toLowerCase().includes(query) ||
         s.code.toLowerCase().includes(query) ||
-        s.difficulty.toLowerCase().inc    function filterInitial(letter) {
+        s.difficulty.toLowerCase().includes(query) ||
+        s.proficiency.toLowerCase().includes(query)
+      );
+      renderSongs(result);
+    }
+
+    function filterInitial(letter) {
       renderSongs(songs.filter(s => s.artist.toUpperCase().startsWith(letter)));
     }
 
@@ -291,9 +254,4 @@
     window.onload = () => renderSongs(songs);
   </script>
 </body>
-</html>ludes(query) ||
-        s.proficiency.toLowerCase().includes(query)
-      );
-      renderSongs(result);
-    }
-      
+</html>
