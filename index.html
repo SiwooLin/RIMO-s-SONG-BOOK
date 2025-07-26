@@ -32,45 +32,41 @@
       display: block;
       padding: 12px;
       font-size: 16px;
+      border: none;
       border-radius: 999px;
-      background-color: #000;
+      background-color: #8e44ad; /* 보라색 배경 */
       color: #fff;
+      box-shadow: 0 0 8px #8e44ad;
       outline: none;
       text-align: center;
       box-sizing: border-box;
-      border: 2px solid #8e44ad;
-      box-shadow: 0 0 8px #8e44ad;
-      transition: box-shadow 0.3s, border-color 0.3s;
     }
     #searchInput::placeholder {
       color: #d1b3ff;
     }
     #searchInput:focus {
-      border-color: #bb99ff;
       box-shadow: 0 0 12px #bb99ff;
     }
     button {
       padding: 6px 10px;
       font-size: 14px;
+      background-color: #111;
+      color: #ff6f00;
       border-radius: 20px;
       cursor: pointer;
       margin: 3px 5px;
+      border: 1px solid #ff6f00;
       user-select: none;
       transition: background-color 0.3s, color 0.3s;
       min-width: 40px;
-
-      /* 통일된 색상: 제목색 (#ff6f00) */
-      background-color: transparent;
-      color: #ff6f00;
-      border: 1px solid #ff6f00;
     }
     button:hover {
       background-color: #ff6f00;
-      color: #000;
+      color: #111;
     }
     .active-btn {
       background-color: #ff6f00 !important;
-      color: #000 !important;
+      color: #111 !important;
       border-color: #ff6f00 !important;
     }
     .section {
@@ -92,22 +88,45 @@
       width: 100%;
       max-width: 700px;
       margin: 20px auto;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 14px;
       display: none;
     }
     th, td {
       padding: 12px;
-      border: 1px solid #8e44ad;
       text-align: center;
+      border-left: none !important;
+      border-right: none !important;
+      border-top: none !important;
+      border-bottom: none !important;
     }
     th {
       background-color: #1a1a1a;
+      border-bottom: 2px solid #8e44ad;
+      border-left: 1px solid #8e44ad;
+      border-right: 1px solid #8e44ad;
+      border-top: 1px solid #8e44ad;
     }
-    tr:nth-child(even) {
+    th:first-child {
+      border-left: 1px solid #8e44ad;
+    }
+    th:last-child {
+      border-right: 1px solid #8e44ad;
+    }
+    tbody tr {
+      border-top: 1px dotted #8e44ad;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+    tbody tr:first-child {
+      border-top: none;
+    }
+    tbody tr:nth-child(even) {
       background-color: #1a1a1a;
     }
-    tr:nth-child(odd) {
+    tbody tr:nth-child(odd) {
       background-color: #2a2a2a;
     }
     #noResult {
@@ -148,7 +167,7 @@
 
   <p class="headlineNotice">📌 노래책 설명서와 가격표를 먼저 확인하고 이용해주세요!</p>
 
-  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" style="display:none;" />
+  <input type="text" id="searchInput" placeholder="가수 / 제목 검색" oninput="handleSearch()" style="display:none;"/>
 
   <div>
     <button onclick="showSection('manual')">노래책 설명서</button>
@@ -218,7 +237,6 @@
   const allChosungLine1 = allChosung.slice(0,7);
   const allChosungLine2 = allChosung.slice(7);
 
-  // 영어 알파벳 A~Z 3줄(9,9,8)
   const allAlpha = Array.from(Array(26)).map((_,i)=>String.fromCharCode(65+i));
 
   function showSection(sectionId) {
