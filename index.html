@@ -96,29 +96,22 @@
     th, td {
       padding: 12px;
       text-align: center;
-      border-left: none !important;
-      border-right: none !important;
       border-top: none !important;
       border-bottom: none !important;
     }
     th {
       background-color: #1a1a1a;
-      border-bottom: 2px solid #8e44ad;
-      border-left: 1px solid #8e44ad;
-      border-right: 1px solid #8e44ad;
-      border-top: 1px solid #8e44ad;
+      border: 1px solid #8e44ad; /* 헤더 전체 실선 테두리 */
     }
-    th:first-child {
-      border-left: 1px solid #8e44ad;
+    th:not(:last-child) {
+      border-right: 1px solid #8e44ad; /* 헤더 세로선 */
     }
-    th:last-child {
-      border-right: 1px solid #8e44ad;
+    td {
+      border-left: none !important;
+      border-right: none !important;
     }
     tbody tr {
-      border-top: 1px dotted #8e44ad;
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
+      border-top: 1px dotted #8e44ad; /* 본문 가로 점선 */
     }
     tbody tr:first-child {
       border-top: none;
