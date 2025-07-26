@@ -83,7 +83,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-    /* 표 스타일 수정 시작 */
     table {
       display: block;
       width: 100%;
@@ -118,8 +117,6 @@
     tr:nth-child(odd) td {
       background-color: #2a2a2a;
     }
-    /* 표 스타일 수정 끝 */
-
     #noResult {
       display: none;
       color: #ff6f00;
@@ -222,5 +219,146 @@
     <button class="orange-btn" onclick="showSection('price')">가격표</button>
     <button class="orange-btn" onclick="showSection('songs')">노래목록</button>
   </div>
+
+  <div id="manual" class="section" style="display:none;">
+    • 노래 신청을 할땐 꼭!!! 가수와 곡 제목을 함께 적어서 신청해주세요.
+    (코드도 적어주시면 감사합니다!)<br/>
+    • 컨디션에 따라 부르기 어렵다고 판단 될 경우 신청곡을 거절 할 수도 있습니다.
+    (거절 당한 신청은 기본 노래 2곡으로 대체 가능 합니다.)<br/>
+    • 설명을 읽지 않고 신청할 경우 책임은 신청자에게 있습니다.<br/>
+    • 추천 곡은 디스코드 노래 추천방에 적어주세요.<br/><br/>
+    ❌ 과도한 평가와 훈수는 자제 해주세요 ❌
+  </div>
+
+  <div id="price" class="section" style="display:none;">
+    • 기본 노래 신청은 2000치즈 혹은 투네이션으로 신청 가능합니다.<br/>
+    • 어려운 노래 신청은 5000치즈 혹은 투네이션으로 신청 가능합니다.<br/>
+    • 유료곡 노래 신청은 10000치즈 이상 혹은 투네이션으로 신청 가능합니다.<br/>
+    • 개인 소장 노래 녹음본 (믹싱 유무 선택 가능)은 200,000치즈 혹은 투네이션으로 신청 가능합니다.
+  </div>
+
+  <div id="songs" class="section" style="display:none; text-align:center;">
+    <div id="categorySelector">
+      <button class="active-btn" onclick="selectCategory('전체')" id="cat-btn-전체">전체</button>
+      <button onclick="selectCategory('Kpop')" id="cat-btn-Kpop">K-pop</button>
+      <button onclick="selectCategory('Kpop 아이돌')" id="cat-btn-Kpop 아이돌">K-pop 아이돌</button>
+      <button onclick="selectCategory('Pop')" id="cat-btn-Pop">Pop</button>
+    </div>
+
+    <div id="initialButtons"></div>
+  </div>
+
+  <table id="songTable">
+    <thead>
+      <tr><th>가수</th><th>제목</th><th>코드</th><th>난이도</th><th>숙련도</th></tr>
+    </thead>
+    <tbody id="songList"></tbody>
+  </table>
+
+  <p id="noResult">검색 결과가 없습니다. 추천 곡은 디스코드 노래 추천방에 적어주세요.</p>
+
+<script>
+  const songs = [
+    {category:'Kpop 아이돌', initial:'ㅋ', singer:'큐더블유이알(QWER)', title:'가짜아이돌', key:'Fm', difficulty:'', skill:'완벽 카피X'},
+    {category:'Kpop', initial:'ㅇ', singer:'아이유', title:'밤편지', key:'C', difficulty:'하', skill:'상'},
+    {category:'Pop', initial:'A', singer:'Adele', title:'Hello', key:'C', difficulty:'중', skill:'중'},
+    // ... 실제 곡 데이터는 여기에 넣어주세요
+  ];
+
+  let currentCategory = '전체';
+  let currentInitial = '';
+
+  function showSection(section) {
+    ['manual','price','songs'].forEach(s => {
+      document.getElementById(s).style.display = (s === section) ? 'block' : 'none';
+    });
+    document.getElementById('songTable').style.display = (section === 'songs') ? 'block' : 'none';
+    document.getElementById('noResult').style.display = 'none';
+    currentInitial = '';
+    selectCategory(currentCategory);
+  }
+
+  function selectCategory(cat) {
+    currentCategory = cat;
+    currentInitial = '';
+    updateInitialButtons();
+    updateSongList();
+    updateCategoryButtons();
+  }
+
+  function updateCategoryButtons() {
+    ['전체','Kpop','Kpop 아이돌','Pop'].forEach(cat => {
+      const btn = document.getElementById('cat-btn-' + cat);
+      if (btn) {
+        btn.classList.toggle('active-btn', cat === currentCategory);
+      }
+    });
+  }
+
+  function updateInitialButtons() {
+    const initialDiv = document.getElementById('initialButtons');
+    initialDiv.innerHTML = '';
+    let initialsSet = new Set();
+
+    songs.forEach(song => {
+      if (currentCategory === '전체' || song.category === currentCategory) {
+        initialsSet.add(song.initial);
+      }
+    });
+
+    const initials = Array.from(initialsSet).sort();
+    if (initials.length > 0) {
+      let rowDiv = document.createElement('div');
+      rowDiv.className = 'initial-row';
+      initials.forEach(initial => {
+        let btn = document.createElement('button');
+        btn.textContent = initial;
+        btn.onclick = () => {
+          currentInitial = initial;
+          updateInitialButtons();
+          updateSongList();
+        };
+        if (initial === currentInitial) btn.classList.add('active-btn');
+        rowDiv.appendChild(btn);
+      });
+      initialDiv.appendChild(rowDiv);
+    }
+  }
+
+  function updateSongList() {
+    const tbody = document.getElementById('songList');
+    tbody.innerHTML = '';
+    let filtered = songs.filter(song => {
+      const catMatch = (currentCategory === '전체') || (song.category === currentCategory);
+      const initialMatch = !currentInitial || song.initial === currentInitial;
+      const search = document.getElementById('searchInput').value.trim().toLowerCase();
+      const searchMatch = song.singer.toLowerCase().includes(search) || song.title.toLowerCase().includes(search);
+      return catMatch && initialMatch && searchMatch;
+    });
+
+    if (filtered.length === 0) {
+      document.getElementById('noResult').style.display = 'block';
+      document.getElementById('songTable').style.display = 'none';
+    } else {
+      document.getElementById('noResult').style.display = 'none';
+      document.getElementById('songTable').style.display = 'block';
+      filtered.forEach(song => {
+        let tr = document.createElement('tr');
+        ['singer','title','key','difficulty','skill'].forEach(field => {
+          let td = document.createElement('td');
+          td.textContent = song[field] || '';
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+  }
+
+  function handleSearch() {
+    updateSongList();
+  }
+
+  showSection('manual');
+</script>
 </body>
 </html>
